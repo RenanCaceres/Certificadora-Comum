@@ -109,7 +109,10 @@ Princípios que orientam a produção:
 .
 ├── README.md
 ├── Gabarito-Exercícios/     # Resoluções em C dos exercícios propostos
-└── ...                      # Materiais teóricos e listas de exercícios por fase
+├── Conteúdo Teórico/        # Conteúdos Teóricos/Educacionais    
+├──      
+└── ...        
+
 ```
 
 > 💡 Ajuste a árvore acima conforme a organização final do repositório.
