@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Try, Catch &amp; Learn — Recurso Educacional Aberto de Programação em C | UTFPR-CP</title>
+  
+  <meta name="description" content="Recursos Educacionais Abertos para Fundamentos da Programação em C. Projeto de Extensão Universitária da UTFPR Cornélio Procópio.">
+  <meta name="theme-color" content="#fbf8f2">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans & DM Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- 1. FLOATING PILL NAVBAR -->
+  <div class="nav-wrap" id="navbarWrap">
+    <header class="nav-pill">
+      <a href="#" class="brand" aria-label="Ir para o topo">
+        <span class="brand-icon">&lt;C/&gt;</span>
+        <span>Try, Catch &amp; Learn</span>
+        <span class="brand-tag">UTFPR-CP</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="nav-links" id="desktopNav" aria-label="Navegação principal">
+        <a href="#sobre">A Certificadora</a>
+        <a href="#trilha">Trilha de 6 Fases</a>
+        <a href="#materiais">Cadernos &amp; PDFs</a>
+        <a href="#equipe">Equipe</a>
+      </nav>
+
+      <!-- Action Button -->
+      <a href="#videoaulas" class="btn-pill">
+        <span>Assistir Aulas</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="menu-toggle" id="menuToggleBtn" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+      <nav class="mobile-nav-links">
+        <a href="#sobre">A Certificadora</a>
+        <a href="#trilha">Trilha de 6 Fases</a>
+        <a href="#materiais">Cadernos &amp; PDFs</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#videoaulas" class="mobile-btn-pill">Assistir Aulas (Aula 1)</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- 2. HERO SECTION -->
+    <section class="hero">
+      <div class="shell hero-grid">
+        
+        <!-- Left Column: Typography & CTAs -->
+        <div class="hero-text-col reveal">
+          <div class="live-badge">
+            <span class="dot-coral"></span>
+            <span>Projeto de Extensão Universitária • UTFPR Cornélio Procópio</span>
+          </div>
+
+          <h1 class="hero-title">
+            Cada conceito conectado.<br>
+            Cada erro <span class="underline-draw">compreendido.<svg viewBox="0 0 300 14" fill="none" preserveAspectRatio="none"><path d="M 3 9 C 70 3, 150 2, 220 5 S 285 9, 297 6" stroke="#2f37ff" stroke-width="3.5" stroke-linecap="round"/></svg></span>
+          </h1>
+
+          <p class="hero-sub">
+            O <strong>Try, Catch &amp; Learn</strong> democratiza os Fundamentos da Programação em C na UTFPR. Unimos teoria acessível, cadernos de missões em 3 níveis e códigos compiláveis 100% comentados.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#trilha" class="btn-pill" style="padding: 14px 28px; font-size: 0.95rem;">
+              <span>Explorar a Trilha</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#videoaulas" class="btn-secondary-pill">
+              <span class="dot-coral" style="width:6px; height:6px;"></span>
+              <span>Aulas Gravadas (Em Construção)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: 3D Tilted Interactive Code Widget -->
+        <div class="hero-card-tilt reveal stagger-2">
+          <div class="code-widget-card hover-lift">
+            <div class="card-topbar">
+              <span class="card-label">
+                <span class="dot-coral"></span>
+                GCC 13.2 · C99
+              </span>
+              <span class="card-label">TRY, CATCH &amp; LEARN</span>
+            </div>
+
+            <div class="card-code-area">
+              <div><span style="color:#f43f5e">#include</span> &lt;stdio.h&gt;</div>
+              <div style="margin-top:6px"><span style="color:#38bdf8">int</span> <span style="color:#fbbf24">main</span>(void) {</div>
+              <div style="padding-left:16px">printf(<span style="color:#34d399">"Try, Catch &amp; Learn!\\n"</span>);</div>
+              <div style="padding-left:16px"><span style="color:#94a3b8">// Erros capturados com sucesso</span></div>
+              <div style="padding-left:16px"><span style="color:#f43f5e">return</span> 0;</div>
+              <div>}</div>
+            </div>
+
+            <div class="card-status-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Compilação: 0 erros · 100% Sucesso</span>
+            </div>
+
+            <dl class="card-metrics">
+              <div>
+                <dt>Fases</dt>
+                <dd>6</dd>
+              </div>
+              <div>
+                <dt>Missões</dt>
+                <dd>23+</dd>
+              </div>
+              <div>
+                <dt>Licença</dt>
+                <dd>MIT</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. LIVE TICKER BAR (MARQUEE CONTÍNUA) -->
+    <div class="ticker-bar" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span class="ticker-item"><span class="dot-coral"></span> RECURSO EDUCACIONAL ABERTO (REA)</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">UTFPR CAMPUS CORNÉLIO PROCÓPIO</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">23 EXERCÍCIOS RESOLVIDOS EM C</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">CADERNO DE MISSÕES EM 3 NÍVEIS</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">LICENÇA MIT LIVRE PARA REUSO</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">SUPERVISÃO: PROF. DR. ANDRÉ LUÍS DOS SANTOS DOMINGUES</span>
+          <span class="ticker-sep">/</span>
+        </div>
+        <div class="ticker-group">
+          <span class="ticker-item"><span class="dot-coral"></span> RECURSO EDUCACIONAL ABERTO (REA)</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">UTFPR CAMPUS CORNÉLIO PROCÓPIO</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">23 EXERCÍCIOS RESOLVIDOS EM C</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">CADERNO DE MISSÕES EM 3 NÍVEIS</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">LICENÇA MIT LIVRE PARA REUSO</span>
+          <span class="ticker-sep">/</span>
+          <span class="ticker-item">SUPERVISÃO: PROF. DR. ANDRÉ LUÍS DOS SANTOS DOMINGUES</span>
+          <span class="ticker-sep">/</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. BENTO GRID SECTION: A METODOLOGIA DO PROJETO -->
+    <section class="bento-section" id="trilha">
+      <div class="shell">
+        <div class="section-eyebrow reveal">Estrutura Curricular</div>
+        <h2 class="section-headline reveal stagger-1">Como Funciona a Trilha Pedagógica</h2>
+        <p class="section-subhead reveal stagger-2">
+          Desenvolvemos uma metodologia progressiva onde cada fase prepara o terreno conceitual para a próxima etapa sem saltos frustrantes.
+        </p>
+
+        <div class="bento-grid">
+          
+          <!-- Card 1 (Col 7): Trilha Progressiva em 6 Fases -->
+          <div class="bento-card bento-col-7 reveal stagger-1">
+            <h3>Trilha Progressiva em 6 Fases</h3>
+            <p>
+              Estruturada para guiar o estudante desde o primeiro comando <code>printf</code> até tipos de dados heterogêneos compostos com <code>struct</code>.
+            </p>
+            <div class="pipeline-list">
+              <div class="pipeline-item">
+                <span>Fase 1: Primeiros Passos em C (Variáveis &amp; I/O)</span>
+                <span class="pipeline-tag">Fundamentos</span>
+              </div>
+              <div class="pipeline-item">
+                <span>Fase 2: O Programa Aprende a Decidir (if, else, switch)</span>
+                <span class="pipeline-tag">Lógica</span>
+              </div>
+              <div class="pipeline-item">
+                <span>Fase 3: Repita Comigo (Laços for, while, do-while)</span>
+                <span class="pipeline-tag">Repetição</span>
+              </div>
+              <div class="pipeline-item">
+                <span>Fase 4: Dividir para Programar (Funções &amp; Modularização)</span>
+                <span class="pipeline-tag">Modular</span>
+              </div>
+              <div class="pipeline-item">
+                <span>Fase 5: Muitos Dados, Uma Só Caixa (Vetores &amp; Matrizes)</span>
+                <span class="pipeline-tag">Compostos</span>
+              </div>
+              <div class="pipeline-item active-phase">
+                <span>🏆 Fase 6: Boss Final — A Ficha Completa (Struct)</span>
+                <span class="pipeline-tag" style="background:var(--ultramarine); color:#ffffff;">Avançado</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 (Col 5): Missões em 3 Níveis -->
+          <div class="bento-card bento-col-5 reveal stagger-2">
+            <h3>Missões em 3 Níveis</h3>
+            <p>
+              Exercícios contextualizados com histórias e regras de negócio divididos em Nível I (Básico), Nível II (Intermediário) e Nível III (Desafios Finais).
+            </p>
+            <div class="levels-widget">
+              <div class="levels-num">23</div>
+              <div class="levels-label">Missões Práticas com Código</div>
+            </div>
+          </div>
+
+          <!-- Card 3 (Col 5): Gabarito Comentado -->
+          <div class="bento-card bento-col-5 reveal stagger-3">
+            <h3>Gabarito 100% Comentado</h3>
+            <p>
+              Não entregamos apenas código cru: detalhamos o porquê de cada ponteiro, validações de entrada e formatação de saída.
+            </p>
+            <div class="terminal-widget">
+              <div>// Compilação rigorosa sem warnings</div>
+              <div style="color:#ffffff;">$ gcc -Wall -Wextra -o solucao missao.c</div>
+              <div style="color:#38bdf8; margin-top:4px;">✓ 0 errors, 0 warnings (100% GCC Compatible)</div>
+            </div>
+          </div>
+
+          <!-- Card 4 (Col 7): Biblioteca de PDFs para Download -->
+          <div class="bento-card bento-col-7 reveal stagger-4" id="materiais">
+            <h3>Biblioteca Oficial de Downloads (PDFs)</h3>
+            <p>
+              Baixe os cadernos oficiais diagramados no modelo visual do projeto, prontos para impressão ou consulta direta.
+            </p>
+            <div class="download-pill-row">
+              <a href="Conteúdo-Teórico/Caderno_de_Missoes_III.pdf" target="_blank" class="download-pill" download>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Caderno de Missões III (26 pgs)</span>
+              </a>
+              <a href="Conteúdo-Teórico/Gabarito_Comentado_III.pdf" target="_blank" class="download-pill" download>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Gabarito Comentado III (30 pgs)</span>
+              </a>
+              <a href="Conteúdo-Teórico/Caderno_e_Gabarito_III_Completo.pdf" target="_blank" class="download-pill" download>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Volume Completo (56 pgs)</span>
+              </a>
+              <a href="https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios" target="_blank" rel="noopener noreferrer" class="download-pill" style="border-style:dashed;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <span>Códigos .C no GitHub</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. SEÇÃO DE CONTRASTE ESCURO: A CERTIFICADORA & UTFPR -->
+    <section class="dark-section" id="sobre">
+      <div class="shell dark-grid">
+        
+        <!-- Left: Text Context -->
+        <div class="dark-left-col reveal-left">
+          <h2>
+            Programar é tentar.<br>
+            Tratar o erro e <span class="highlight-text">aprender com ele.</span>
+          </h2>
+          
+          <p class="dark-lead">
+            Este repositório reúne os <strong>Recursos Educacionais Abertos (REA)</strong> desenvolvidos pelo grupo <strong>Try, Catch &amp; Learn</strong> no âmbito da disciplina <strong>Certificadora de Competência Comum</strong>, da Universidade Tecnológica Federal do Paraná (UTFPR), Campus Cornélio Procópio.
+          </p>
+
+          <p class="dark-lead" style="font-size: 0.95rem;">
+            O primeiro contato com programação costuma ser o maior filtro de acesso à área de tecnologia. Ao transformar conceitos fundamentais em materiais abertos, lúdicos e didaticamente estruturados, buscamos reduzir essa barreira de entrada e devolver à comunidade externa o conhecimento produzido na universidade, em consonância com o princípio da extensão universitária.
+          </p>
+
+          <!-- Citation Box -->
+          <div class="citation-box">
+            <div class="citation-header">
+              <span>Como citar este projeto (ABNT)</span>
+              <button id="btnCopyCitation" class="btn-copy-citation" type="button" title="Copiar citação ABNT">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Copiar Citação</span>
+              </button>
+            </div>
+            <p class="citation-text">
+              MARÇULO, L.; MARTINELLI, L. E. B.; REGINATO, M. V.; ANSELMO, R. C.; DOMINGUES, A. L. S. <em>Try, Catch &amp; Learn: Recurso Educacional Aberto para Fundamentos de Programação em C</em>. Cornélio Procópio: UTFPR, 2026.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Supervisor & Steps -->
+        <div class="dark-right-col reveal-right">
+          
+          <!-- Supervisor Card -->
+          <div class="supervisor-card hover-lift">
+            <div class="sup-avatar">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="sup-info">
+              <span class="sup-role">Professor Orientador</span>
+              <h4 class="sup-name">Prof. Dr. André Luís dos Santos Domingues</h4>
+              <p>Universidade Tecnológica Federal do Paraná — Campus Cornélio Procópio</p>
+            </div>
+          </div>
+
+          <!-- Steps List -->
+          <div class="steps-list">
+            <div class="step-card">
+              <div class="step-num">1</div>
+              <div class="step-info">
+                <h4>Diagnóstico &amp; Estruturação</h4>
+                <p>Mapeamento das maiores dificuldades dos estudantes em algoritmos e ponteiros.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">2</div>
+              <div class="step-info">
+                <h4>Criação dos Cadernos &amp; Videoaulas</h4>
+                <p>Gravação de videoaulas e produção de cadernos de missões no modelo visual do projeto.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">3</div>
+              <div class="step-info">
+                <h4>Compilação &amp; Validação de Códigos</h4>
+                <p>23 algoritmos testados com GCC para garantir compatibilidade e reprodutibilidade.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">4</div>
+              <div class="step-info">
+                <h4>Publicação em Acesso Aberto (REA)</h4>
+                <p>Disponibilização livre de todo o repositório sob a Licença MIT no GitHub Pages.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. EQUIPE SECTION COM FOTOS & REDES OFICIAIS -->
+    <section class="team-section" id="equipe">
+      <div class="shell">
+        <div class="section-eyebrow reveal">Quem Fez Acontecer</div>
+        <h2 class="section-headline reveal stagger-1">Equipe Try, Catch &amp; Learn</h2>
+        <p class="section-subhead reveal stagger-2">
+          Estudantes da UTFPR responsáveis pelo desenvolvimento do ecossistema, videoaulas e materiais didáticos.
+        </p>
+
+        <div class="team-grid">
+          
+          <!-- Lauren -->
+          <div class="team-card hover-lift reveal stagger-1">
+            <div class="member-photo-frame">
+              <img src="assets/img/team/lauren.jpeg" alt="Foto de Lauren Marçulo" class="member-photo" onerror="if(!this.dataset.triedFallback){this.dataset.triedFallback='1'; this.src='assets/img/team/lauren.png';}else{this.style.display='none'; this.nextElementSibling.style.display='flex';}">
+              <div class="member-photo-fallback">LM</div>
+            </div>
+            <h3 class="team-name">Lauren Marçulo</h3>
+            <div class="team-role">Desenvolvimento &amp; Didática</div>
+            <p class="team-bio">
+              Estruturação dos roteiros das videoaulas, elaboração de questões de raciocínio lógico e curadoria dos tópicos da Trilha C.
+            </p>
+            <div class="team-socials">
+              <a href="https://www.linkedin.com/in/lauren-marculo/" target="_blank" rel="noopener noreferrer" class="btn-social btn-linkedin" title="LinkedIn de Lauren Marçulo" aria-label="LinkedIn de Lauren Marçulo">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+              <a href="https://github.com/LaurenM-rc" target="_blank" rel="noopener noreferrer" class="btn-social btn-github" title="GitHub de Lauren Marçulo" aria-label="GitHub de Lauren Marçulo">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Lorena -->
+          <div class="team-card hover-lift reveal stagger-2">
+            <div class="member-photo-frame">
+              <img src="assets/img/team/lorena.jpeg" alt="Foto de Lorena Eduarda" class="member-photo" onerror="if(!this.dataset.triedFallback){this.dataset.triedFallback='1'; this.src='assets/img/team/lorena.png';}else{this.style.display='none'; this.nextElementSibling.style.display='flex';}">
+              <div class="member-photo-fallback">LE</div>
+            </div>
+            <h3 class="team-name">Lorena Eduarda</h3>
+            <div class="team-role">Design &amp; Apresentação</div>
+            <p class="team-bio">
+              Concepção visual das apresentações, ritmo de aprendizagem e mediação audiovisual nas videoaulas explicativas.
+            </p>
+            <div class="team-socials">
+              <a href="https://www.linkedin.com/in/lorena-eduarda-barros-martinelli-795791375" target="_blank" rel="noopener noreferrer" class="btn-social btn-linkedin" title="LinkedIn de Lorena Eduarda" aria-label="LinkedIn de Lorena Eduarda">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+              <a href="https://github.com/lorenaduda06" target="_blank" rel="noopener noreferrer" class="btn-social btn-github" title="GitHub de Lorena Eduarda" aria-label="GitHub de Lorena Eduarda">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Manuella -->
+          <div class="team-card hover-lift reveal stagger-3">
+            <div class="member-photo-frame">
+              <img src="assets/img/team/manuella.jpeg" alt="Foto de Manuella Vieira" class="member-photo" onerror="if(!this.dataset.triedFallback){this.dataset.triedFallback='1'; this.src='assets/img/team/manuella.png';}else{this.style.display='none'; this.nextElementSibling.style.display='flex';}">
+              <div class="member-photo-fallback">MV</div>
+            </div>
+            <h3 class="team-name">Manuella Vieira</h3>
+            <div class="team-role">Curadoria &amp; Documentação</div>
+            <p class="team-bio">
+              Organização dos cadernos de exercícios, revisão ortográfica, diagramação didática e padronização dos enunciados.
+            </p>
+            <div class="team-socials">
+              <a href="https://www.linkedin.com/in/manuella-vieira-reginato-16368135a/" target="_blank" rel="noopener noreferrer" class="btn-social btn-linkedin" title="LinkedIn de Manuella Vieira" aria-label="LinkedIn de Manuella Vieira">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+              <a href="https://github.com/reginatomanu" target="_blank" rel="noopener noreferrer" class="btn-social btn-github" title="GitHub de Manuella Vieira" aria-label="GitHub de Manuella Vieira">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Renan -->
+          <div class="team-card hover-lift reveal stagger-4">
+            <div class="member-photo-frame">
+              <img src="assets/img/team/renan.jpeg" alt="Foto de Renan Cáceres" class="member-photo" onerror="if(!this.dataset.triedFallback){this.dataset.triedFallback='1'; this.src='assets/img/team/renan.png';}else{this.style.display='none'; this.nextElementSibling.style.display='flex';}">
+              <div class="member-photo-fallback">RC</div>
+            </div>
+            <h3 class="team-name">Renan Cáceres</h3>
+            <div class="team-role">Arquitetura &amp; Código C</div>
+            <p class="team-bio">
+              Desenvolvimento da plataforma web interativa, implementação de todos os 23 algoritmos em C e gabarito comentado.
+            </p>
+            <div class="team-socials">
+              <a href="https://www.linkedin.com/in/renan-caceres/" target="_blank" rel="noopener noreferrer" class="btn-social btn-linkedin" title="LinkedIn de Renan Cáceres" aria-label="LinkedIn de Renan Cáceres">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+              <a href="https://github.com/RenanCaceres" target="_blank" rel="noopener noreferrer" class="btn-social btn-github" title="GitHub de Renan Cáceres" aria-label="GitHub de Renan Cáceres">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. HUB DE VIDEOAULAS (EM CONSTRUÇÃO ATIVA) -->
+    <section class="video-hub" id="videoaulas">
+      <div class="shell">
+        <div class="construction-banner reveal">
+          <span class="dot-coral"></span>
+          <span>SEÇÃO EM CONSTRUÇÃO ATIVA • 1 Aula Gravada já disponível no repositório!</span>
+        </div>
+
+        <h2 class="section-headline reveal stagger-1">Videoaulas da Certificadora</h2>
+        <p class="section-subhead reveal stagger-2">
+          As aulas completas estão sendo produzidas e gravadas pela equipe. Assista abaixo à <strong>Aula 1 (Algoritmos, Memória e Variáveis em C)</strong> já integrada diretamente do repositório local:
+        </p>
+
+        <!-- Player Container (Course Player Experience) -->
+        <div class="player-container reveal-scale stagger-3">
+          <div class="player-header-bar">
+            <div class="player-header-info">
+              <span class="player-live-dot" id="playerLiveDot"></span>
+              <span class="player-lesson-tag">Aula 1 • Em Destaque</span>
+              <h3 class="player-lesson-title" id="playerLessonTitle">Algoritmos, Memória e Variáveis em C</h3>
+            </div>
+            <div class="player-meta-badges">
+              <span class="player-badge">15:41 min</span>
+              <span class="player-badge">1080p HD</span>
+            </div>
+          </div>
+
+          <div class="player-frame-box" id="playerFrameBox">
+            <video id="mainCourseVideo" preload="auto" playsinline controls poster="assets/img/video-poster.svg">
+              <source src="Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula1.mp4" type="video/mp4">
+              <source src="Conteúdo-Teórico/aulas/Aula1.mp4" type="video/mp4">
+              Seu navegador não suporta reprodução direta de vídeo MP4.
+            </video>
+
+            <!-- Big Center Play Button Overlay -->
+            <button class="player-big-play" id="btnBigPlay" type="button" aria-label="Iniciar reprodução da Aula 1">
+              <span class="player-big-play-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </span>
+              <span class="player-big-play-label">Clique para Assistir à Aula 1</span>
+            </button>
+          </div>
+
+          <!-- Player Quick Helper & Direct Open Link -->
+          <div class="player-footer-bar">
+            <div class="player-status-hint" id="playerStatusHint">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Dica: Clique no vídeo ou use <strong>Espaço</strong> para pausar/retomar.</span>
+            </div>
+            <a href="Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula1.mp4" target="_blank" class="player-direct-file-link" title="Abrir vídeo em arquivo direto ou nova aba">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>Abrir arquivo direto (.mp4)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Upcoming Lessons Grid -->
+        <div class="upcoming-lessons-grid reveal stagger-4">
+          <div class="upcoming-card active-playable" id="cardLesson1" role="button" tabindex="0" title="Clique para reproduzir Aula 1">
+            <div class="upcoming-info">
+              <h4>Aula 1: Algoritmos &amp; Memória</h4>
+              <span>Fundamentos e Tipos Primitivos • 15:41</span>
+            </div>
+            <span class="badge-status ready">▶ Reproduzir</span>
+          </div>
+
+          <div class="upcoming-card">
+            <div class="upcoming-info">
+              <h4>Aula 2: Tomada de Decisão</h4>
+              <span>if, else e switch-case</span>
+            </div>
+            <span class="badge-status recording">Em Gravação</span>
+          </div>
+
+          <div class="upcoming-card">
+            <div class="upcoming-info">
+              <h4>Aula 3: Laços de Repetição</h4>
+              <span>for, while e acumuladores</span>
+            </div>
+            <span class="badge-status recording">Em Gravação</span>
+          </div>
+
+          <div class="upcoming-card">
+            <div class="upcoming-info">
+              <h4>Aula 4: Funções &amp; Escopo</h4>
+              <span>Modularização e prototipagem</span>
+            </div>
+            <span class="badge-status recording">Em Gravação</span>
+          </div>
+
+          <div class="upcoming-card">
+            <div class="upcoming-info">
+              <h4>Aula 5: Vetores &amp; Matrizes</h4>
+              <span>Arranjos 1D e 2D em memória</span>
+            </div>
+            <span class="badge-status recording">Em Gravação</span>
+          </div>
+
+          <div class="upcoming-card">
+            <div class="upcoming-info">
+              <h4>Aula 6: Structs &amp; Registros</h4>
+              <span>Tipos heterogêneos compostos</span>
+            </div>
+            <span class="badge-status recording">Em Gravação</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 8. FOOTER -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="brand">
+            <span class="brand-icon">&lt;C/&gt;</span>
+            <span>Try, Catch &amp; Learn</span>
+          </a>
+          <p class="footer-desc">
+            Recursos Educacionais Abertos (REA) voltados à democratização do ensino de programação na Universidade Tecnológica Federal do Paraná (UTFPR-CP) e comunidade externa.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <h4>Navegação</h4>
+          <a href="#trilha">Trilha de 6 Fases</a>
+          <a href="#materiais">Cadernos &amp; PDFs</a>
+          <a href="#sobre">A Certificadora Comum</a>
+          <a href="#equipe">Equipe do Projeto</a>
+          <a href="#videoaulas">Videoaulas (Aula 1)</a>
+        </div>
+
+        <div class="footer-links-group">
+          <h4>Repositórios Oficiais</h4>
+          <a href="https://github.com/RenanCaceres/Certificadora-Comum" target="_blank" rel="noopener noreferrer">Repositório GitHub</a>
+          <a href="https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Conte%C3%BAdo-Te%C3%B3rico" target="_blank" rel="noopener noreferrer">Conteúdo Teórico</a>
+          <a href="https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios" target="_blank" rel="noopener noreferrer">Gabarito de Exercícios</a>
+          <a href="https://www.utfpr.edu.br/cornelioprocopio" target="_blank" rel="noopener noreferrer">UTFPR Cornélio Procópio</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Try, Catch &amp; Learn • UTFPR Cornélio Procópio. Licença MIT Livre para Reuso.</p>
+        <p>Desenvolvido com carinho para o ensino aberto de computação.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>

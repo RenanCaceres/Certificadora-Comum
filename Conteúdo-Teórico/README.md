@@ -52,11 +52,20 @@ Estruturas de decisão `if/else` e `switch`: ensinando o código a escolher cami
 
 📄 [`Fase 2 - O Programa Aprende a Decidir.pdf`](<./Fase 2 - O Programa Aprende a Decidir.pdf>)
 
+<tr>
+<td align="center">📦</td>
+<td>
+
+**Fase 5 — Muitos Dados, Uma Só Caixa: Vetores e Matrizes &amp; Fase 6 — A Ficha Completa: Struct**
+Vetores 1D, matrizes 2D, structs, campos, funções com structs, ponteiros e 3 desafios finais.
+
+📄 [`Caderno_de_Missoes_III.pdf`](<./Caderno_de_Missoes_III.pdf>) · 📝 [`Gabarito_Comentado_III.pdf`](<./Gabarito_Comentado_III.pdf>) · 📚 [`Caderno_e_Gabarito_III_Completo.pdf`](<./Caderno_e_Gabarito_III_Completo.pdf>)
+
 </td>
 </tr>
 </table>
 
-> 🚧 **Em construção:** as apostilas das Fases 3 a 6 (Laços de Repetição, Modularização, Vetores e Matrizes, Struct) serão publicadas aqui conforme forem concluídas.
+> ℹ️ **Fases 5 e 6 adicionadas:** Caderno de Missões e Gabarito Comentado no padrão visual oficial **Try, Catch & Learn**.
 
 ---
 
