@@ -485,73 +485,20 @@
 
         <h2 class="section-headline reveal stagger-1">Videoaulas da Certificadora</h2>
         <p class="section-subhead reveal stagger-2">
-          As aulas completas estão sendo produzidas e gravadas pela equipe. Assista abaixo à <strong>Aula 1 (Algoritmos, Memória e Variáveis em C)</strong> já integrada diretamente do repositório local:
+          Selecione uma aula abaixo para abrir o player interativo e acessar o material teórico correspondente:
         </p>
 
-        <!-- Player Container (Course Player Experience) -->
-        <div class="player-container reveal-scale stagger-3">
-          <div class="player-header-bar">
-            <div class="player-header-info">
-              <span class="player-live-dot" id="playerLiveDot"></span>
-              <span class="player-lesson-tag">Aula 1 • Em Destaque</span>
-              <h3 class="player-lesson-title" id="playerLessonTitle">Algoritmos, Memória e Variáveis em C</h3>
-            </div>
-            <div class="player-meta-badges">
-              <span class="player-badge">15:41 min</span>
-              <span class="player-badge">1080p HD</span>
-            </div>
-          </div>
-
-          <div class="player-frame-box" id="playerFrameBox">
-            <video id="mainCourseVideo" preload="auto" playsinline controls poster="assets/img/video-poster.svg">
-              <source src="Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula1.mp4" type="video/mp4">
-              <source src="Conteúdo-Teórico/aulas/Aula1.mp4" type="video/mp4">
-              Seu navegador não suporta reprodução direta de vídeo MP4.
-            </video>
-
-            <!-- Big Center Play Button Overlay -->
-            <button class="player-big-play" id="btnBigPlay" type="button" aria-label="Iniciar reprodução da Aula 1">
-              <span class="player-big-play-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </span>
-              <span class="player-big-play-label">Clique para Assistir à Aula 1</span>
-            </button>
-          </div>
-
-          <!-- Player Quick Helper & Direct Open Link -->
-          <div class="player-footer-bar">
-            <div class="player-status-hint" id="playerStatusHint">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-              </svg>
-              <span>Dica: Clique no vídeo ou use <strong>Espaço</strong> para pausar/retomar.</span>
-            </div>
-            <a href="Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula1.mp4" target="_blank" class="player-direct-file-link" title="Abrir vídeo em arquivo direto ou nova aba">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-              <span>Abrir arquivo direto (.mp4)</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Upcoming Lessons Grid -->
-        <div class="upcoming-lessons-grid reveal stagger-4">
-          <div class="upcoming-card active-playable" id="cardLesson1" role="button" tabindex="0" title="Clique para reproduzir Aula 1">
+        <!-- Lessons Grid (Click Aula 1 to open player below) -->
+        <div class="upcoming-lessons-grid reveal stagger-3">
+          <div class="upcoming-card active-playable" id="cardLesson1" data-lesson="1" role="button" tabindex="0" aria-expanded="false" title="Clique para abrir o player da Aula 1 e acessar o conteúdo teórico">
             <div class="upcoming-info">
               <h4>Aula 1: Algoritmos &amp; Memória</h4>
-              <span>Fundamentos e Tipos Primitivos • 15:41</span>
+              <span>Fundamentos e Tipos Primitivos • 14:14</span>
             </div>
-            <span class="badge-status ready">▶ Reproduzir</span>
+            <span class="badge-status ready" id="badgeLesson1">▶ Assistir Aula</span>
           </div>
 
-          <div class="upcoming-card">
+          <div class="upcoming-card playable-theory" data-lesson="2" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 2">
             <div class="upcoming-info">
               <h4>Aula 2: Tomada de Decisão</h4>
               <span>if, else e switch-case</span>
@@ -559,7 +506,7 @@
             <span class="badge-status recording">Em Gravação</span>
           </div>
 
-          <div class="upcoming-card">
+          <div class="upcoming-card playable-theory" data-lesson="3" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 3">
             <div class="upcoming-info">
               <h4>Aula 3: Laços de Repetição</h4>
               <span>for, while e acumuladores</span>
@@ -567,7 +514,7 @@
             <span class="badge-status recording">Em Gravação</span>
           </div>
 
-          <div class="upcoming-card">
+          <div class="upcoming-card playable-theory" data-lesson="4" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 4">
             <div class="upcoming-info">
               <h4>Aula 4: Funções &amp; Escopo</h4>
               <span>Modularização e prototipagem</span>
@@ -575,7 +522,7 @@
             <span class="badge-status recording">Em Gravação</span>
           </div>
 
-          <div class="upcoming-card">
+          <div class="upcoming-card playable-theory" data-lesson="5" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 5">
             <div class="upcoming-info">
               <h4>Aula 5: Vetores &amp; Matrizes</h4>
               <span>Arranjos 1D e 2D em memória</span>
@@ -583,12 +530,103 @@
             <span class="badge-status recording">Em Gravação</span>
           </div>
 
-          <div class="upcoming-card">
+          <div class="upcoming-card playable-theory" data-lesson="6" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 6">
             <div class="upcoming-info">
               <h4>Aula 6: Structs &amp; Registros</h4>
               <span>Tipos heterogêneos compostos</span>
             </div>
             <span class="badge-status recording">Em Gravação</span>
+          </div>
+        </div>
+
+        <!-- Expandable Player Drawer (Opens below when clicking a lesson) -->
+        <div class="player-drawer-wrap" id="playerDrawerWrap" aria-hidden="true">
+          <div class="player-container">
+            <div class="player-header-bar">
+              <div class="player-header-info">
+                <span class="player-live-dot" id="playerLiveDot"></span>
+                <span class="player-lesson-tag" id="playerLessonTag">Aula 1 • Disponível</span>
+                <h3 class="player-lesson-title" id="playerLessonTitle">Fase 1: Primeiros Passos em C — Algoritmos, Memória e Variáveis</h3>
+              </div>
+              <div class="player-meta-badges">
+                <span class="player-badge" id="playerDurationBadge">14:14 min</span>
+                <span class="player-badge">1080p HD</span>
+                <button type="button" class="player-close-btn" id="btnClosePlayer" title="Fechar player" aria-label="Fechar player">&times; Fechar</button>
+              </div>
+            </div>
+
+            <!-- Prominent Theoretical Content Link Banner -->
+            <div class="player-theory-bar">
+              <div class="player-theory-text">
+                <span class="theory-icon">📘</span>
+                <div>
+                  <strong id="theoryBarTitle">Material Teórico Oficial — Fase 1 (Primeiros Passos em C)</strong>
+                  <span>Acompanhe os slides e explicações detalhadas desta aula em PDF</span>
+                </div>
+              </div>
+              <div class="player-theory-actions">
+                <a href="Conte%C3%BAdo-Te%C3%B3rico/Fase%201%20-%20Primeiros%20Passos%20em%20C.pdf" target="_blank" rel="noopener noreferrer" class="btn-theory-cta" id="btnTheoryLink">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
+                  <span>Clique aqui e acesse o conteúdo teórico</span>
+                </a>
+                <a href="https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase1-Primeiros-Passos" target="_blank" rel="noopener noreferrer" class="btn-theory-secondary" id="btnExercisesLink">
+                  <span>Ver Exercícios em C</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Video Box (Shown for Aula 1) -->
+            <div class="player-frame-box" id="playerFrameBox">
+              <video id="mainCourseVideo" preload="metadata" playsinline controls>
+                <source src="Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula1.mp4" type="video/mp4">
+                <source src="Conteúdo-Teórico/aulas/Aula1.mp4" type="video/mp4">
+                Seu navegador não suporta reprodução direta de vídeo MP4.
+              </video>
+
+              <!-- Big Center Play Button Overlay (Only before first play) -->
+              <button class="player-big-play" id="btnBigPlay" type="button" aria-label="Iniciar reprodução da Aula 1">
+                <span class="player-big-play-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </span>
+                <span class="player-big-play-label">Dar Play na Aula 1</span>
+              </button>
+            </div>
+
+            <!-- Recording Notice Box (Shown if user clicks Aula 2-6) -->
+            <div class="player-recording-notice" id="playerRecordingNotice" style="display: none;">
+              <div class="recording-notice-inner">
+                <span class="dot-coral"></span>
+                <h4>Videoaula em processo de gravação e edição</h4>
+                <p>Enquanto o vídeo desta fase está sendo finalizado pela equipe, o <strong>Conteúdo Teórico em PDF</strong> e os <strong>Exercícios Resolvidos em C</strong> já estão 100% disponíveis no botão azul acima!</p>
+              </div>
+            </div>
+
+            <!-- Player Quick Helper & Direct Open Link -->
+            <div class="player-footer-bar" id="playerFooterBar">
+              <div class="player-status-hint" id="playerStatusHint">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>Dica: Clique no vídeo ou use <strong>Espaço</strong> para pausar/retomar.</span>
+              </div>
+              <a href="Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula1.mp4" target="_blank" class="player-direct-file-link" title="Abrir vídeo em arquivo direto ou nova aba">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span>Abrir arquivo direto (.mp4)</span>
+              </a>
+            </div>
           </div>
         </div>
 
