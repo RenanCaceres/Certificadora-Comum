@@ -19,12 +19,14 @@
   <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
+  <!-- Skip Link para Acessibilidade via Teclado e Leitores de Tela (WCAG 2.1 AA) -->
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
 
   <!-- 1. FLOATING PILL NAVBAR -->
   <div class="nav-wrap" id="navbarWrap">
     <header class="nav-pill">
-      <a href="#" class="brand" aria-label="Ir para o topo">
-        <span class="brand-icon">&lt;C/&gt;</span>
+      <a href="#" class="brand" aria-label="Try, Catch &amp; Learn — Ir para o topo">
+        <span class="brand-icon" aria-hidden="true">&lt;C/&gt;</span>
         <span>Try, Catch &amp; Learn</span>
         <span class="brand-tag">UTFPR-CP</span>
       </a>
@@ -40,14 +42,14 @@
       <!-- Action Button -->
       <a href="#videoaulas" class="btn-pill">
         <span>Assistir Aulas</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
       <!-- Mobile Hamburger Toggle -->
-      <button class="menu-toggle" id="menuToggleBtn" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button class="menu-toggle" id="menuToggleBtn" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobileDrawer">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -57,7 +59,7 @@
 
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
-      <nav class="mobile-nav-links">
+      <nav class="mobile-nav-links" aria-label="Menu principal móvel">
         <a href="#sobre">A Certificadora</a>
         <a href="#trilha">Trilha de 6 Fases</a>
         <a href="#materiais">Cadernos &amp; PDFs</a>
@@ -67,7 +69,7 @@
     </div>
   </div>
 
-  <main>
+  <main id="conteudo-principal" tabindex="-1">
 
     <!-- 2. HERO SECTION -->
     <section class="hero">
@@ -490,7 +492,7 @@
 
         <!-- Lessons Grid (Click Aula 1 to open player below) -->
         <div class="upcoming-lessons-grid reveal stagger-3">
-          <div class="upcoming-card active-playable" id="cardLesson1" data-lesson="1" role="button" tabindex="0" aria-expanded="false" title="Clique para abrir o player da Aula 1 e acessar o conteúdo teórico">
+          <div class="upcoming-card active-playable" id="cardLesson1" data-lesson="1" role="button" tabindex="0" aria-expanded="false" aria-controls="playerDrawerWrap" title="Clique para abrir o player da Aula 1 e acessar o conteúdo teórico">
             <div class="upcoming-info">
               <h4>Aula 1: Algoritmos &amp; Memória</h4>
               <span>Fundamentos e Tipos Primitivos • 14:14</span>
@@ -498,7 +500,7 @@
             <span class="badge-status ready" id="badgeLesson1">▶ Assistir Aula</span>
           </div>
 
-          <div class="upcoming-card playable-theory" data-lesson="2" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 2">
+          <div class="upcoming-card playable-theory" data-lesson="2" role="button" tabindex="0" aria-expanded="false" aria-controls="playerDrawerWrap" title="Ver conteúdo teórico da Fase 2">
             <div class="upcoming-info">
               <h4>Aula 2: Tomada de Decisão</h4>
               <span>if, else e switch-case</span>
@@ -506,7 +508,7 @@
             <span class="badge-status recording">Em Gravação</span>
           </div>
 
-          <div class="upcoming-card playable-theory" data-lesson="3" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 3">
+          <div class="upcoming-card playable-theory" data-lesson="3" role="button" tabindex="0" aria-expanded="false" aria-controls="playerDrawerWrap" title="Ver conteúdo teórico da Fase 3">
             <div class="upcoming-info">
               <h4>Aula 3: Laços de Repetição</h4>
               <span>for, while e acumuladores</span>
@@ -514,7 +516,7 @@
             <span class="badge-status recording">Em Gravação</span>
           </div>
 
-          <div class="upcoming-card playable-theory" data-lesson="4" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 4">
+          <div class="upcoming-card playable-theory" data-lesson="4" role="button" tabindex="0" aria-expanded="false" aria-controls="playerDrawerWrap" title="Ver conteúdo teórico da Fase 4">
             <div class="upcoming-info">
               <h4>Aula 4: Funções &amp; Escopo</h4>
               <span>Modularização e prototipagem</span>
@@ -522,7 +524,7 @@
             <span class="badge-status recording">Em Gravação</span>
           </div>
 
-          <div class="upcoming-card playable-theory" data-lesson="5" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 5">
+          <div class="upcoming-card playable-theory" data-lesson="5" role="button" tabindex="0" aria-expanded="false" aria-controls="playerDrawerWrap" title="Ver conteúdo teórico da Fase 5">
             <div class="upcoming-info">
               <h4>Aula 5: Vetores &amp; Matrizes</h4>
               <span>Arranjos 1D e 2D em memória</span>
@@ -530,7 +532,7 @@
             <span class="badge-status recording">Em Gravação</span>
           </div>
 
-          <div class="upcoming-card playable-theory" data-lesson="6" role="button" tabindex="0" title="Ver conteúdo teórico da Fase 6">
+          <div class="upcoming-card playable-theory" data-lesson="6" role="button" tabindex="0" aria-expanded="false" aria-controls="playerDrawerWrap" title="Ver conteúdo teórico da Fase 6">
             <div class="upcoming-info">
               <h4>Aula 6: Structs &amp; Registros</h4>
               <span>Tipos heterogêneos compostos</span>
@@ -540,7 +542,7 @@
         </div>
 
         <!-- Expandable Player Drawer (Opens below when clicking a lesson) -->
-        <div class="player-drawer-wrap" id="playerDrawerWrap" aria-hidden="true">
+        <div class="player-drawer-wrap" id="playerDrawerWrap" role="region" aria-label="Player da Videoaula e Conteúdo Teórico" aria-hidden="true">
           <div class="player-container">
             <div class="player-header-bar">
               <div class="player-header-info">

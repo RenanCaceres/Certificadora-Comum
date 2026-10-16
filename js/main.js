@@ -13,6 +13,8 @@
       container = document.createElement('div');
       container.id = 'toastContainer';
       container.className = 'toast-container';
+      container.setAttribute('role', 'status');
+      container.setAttribute('aria-live', 'polite');
       document.body.appendChild(container);
     }
 
@@ -152,6 +154,7 @@
       menuToggle.addEventListener('click', () => {
         const isOpen = mobileDrawer.classList.toggle('open');
         menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        mobileDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
       });
 
       // Close menu when clicking link
@@ -159,7 +162,18 @@
         link.addEventListener('click', () => {
           mobileDrawer.classList.remove('open');
           menuToggle.setAttribute('aria-expanded', 'false');
+          mobileDrawer.setAttribute('aria-hidden', 'true');
         });
+      });
+
+      // Close mobile menu on Escape key
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+          mobileDrawer.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          mobileDrawer.setAttribute('aria-hidden', 'true');
+          menuToggle.focus();
+        }
       });
     }
   }

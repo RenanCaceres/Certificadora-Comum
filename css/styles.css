@@ -76,6 +76,37 @@ body {
   padding: 0 24px;
 }
 
+/* Acessibilidade: Skip Link & Foco Visível por Teclado (WCAG 2.1 AA) */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 10000;
+  background: var(--ultramarine);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(47, 55, 255, 0.5);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+video:focus-visible {
+  outline: 3px solid var(--ultramarine);
+  outline-offset: 3px;
+}
+
 /* ==========================================================================
    1. FLOATING PILL NAVBAR
    ========================================================================== */
@@ -1563,29 +1594,308 @@ body {
 }
 
 /* ==========================================================================
-   10. RESPONSIVE BREAKPOINTS
+   10. RESPONSIVE BREAKPOINTS (DESKTOP, TABLET & WEB-MOBILE / REA ACCESSIBILITY)
    ========================================================================== */
 @media (max-width: 992px) {
-  .hero-grid, .dark-grid { grid-template-columns: 1fr; }
-  .bento-col-7, .bento-col-5, .bento-col-4, .bento-col-8 { grid-column: span 12; }
-  .team-grid { grid-template-columns: repeat(2, 1fr); }
-  .upcoming-lessons-grid { grid-template-columns: 1fr; }
-  .hero-card-tilt { transform: none; }
+  .hero-grid, .dark-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .bento-col-7, .bento-col-5, .bento-col-4, .bento-col-8 {
+    grid-column: span 12;
+  }
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .upcoming-lessons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero-card-tilt {
+    transform: none;
+  }
+  .hero-card-tilt:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 768px) {
-  .nav-pill { padding: 0 14px; }
-  .nav-links { display: none; }
-  .nav-pill > .btn-pill { display: none; }
-  .brand-tag { display: none; }
-  .menu-toggle { display: inline-flex; }
-  .team-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-  .dark-section { border-radius: 32px 32px 0 0; }
-  .hero { padding: 110px 0 50px; }
-  .hero-title { font-size: 2.2rem; }
-  .section-headline { font-size: 1.85rem; }
-  .dark-headline { font-size: 1.85rem; }
-  .download-pill-row { flex-direction: column; }
-  .download-pill { width: 100%; justify-content: center; }
+  .shell {
+    padding: 0 18px;
+  }
+
+  /* Navbar Mobile */
+  .nav-wrap {
+    top: 10px;
+    padding: 0 12px;
+  }
+  .nav-pill {
+    padding: 0 10px 0 16px;
+    height: 56px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-pill > .btn-pill {
+    display: none;
+  }
+  .brand-tag {
+    display: none;
+  }
+  .menu-toggle {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .mobile-nav-links a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .mobile-btn-pill {
+    justify-content: center !important;
+  }
+
+  /* Hero Mobile */
+  .hero {
+    padding: 96px 0 48px;
+  }
+  .live-badge {
+    border-radius: 14px;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+  .hero-title {
+    font-size: clamp(1.95rem, 7vw, 2.4rem);
+    line-height: 1.15;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .hero-ctas .btn-pill,
+  .hero-ctas .btn-secondary-pill {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    text-align: center;
+  }
+  .code-widget-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+  .card-code-area,
+  .terminal-widget {
+    overflow-x: auto;
+    max-width: 100%;
+    font-size: 0.78rem;
+    padding: 14px;
+  }
+
+  /* Sections Spacing & Headlines */
+  .bento-section,
+  .team-section,
+  .video-hub {
+    padding: 64px 0 56px;
+  }
+  .dark-section {
+    border-radius: 28px 28px 0 0;
+    padding: 68px 0 60px;
+  }
+  .section-headline,
+  .dark-section h2 {
+    font-size: clamp(1.65rem, 6vw, 2.1rem);
+  }
+  .section-subhead {
+    font-size: 0.96rem;
+    margin-bottom: 30px;
+  }
+
+  /* Bento Cards & Pipeline */
+  .bento-grid {
+    gap: 18px;
+  }
+  .bento-card {
+    padding: 24px 18px;
+    border-radius: 22px;
+  }
+  .pipeline-item {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 14px;
+    min-height: 48px;
+  }
+  .download-pill-row {
+    flex-direction: column;
+  }
+  .download-pill {
+    width: 100%;
+    justify-content: center;
+    min-height: 46px;
+    text-align: center;
+  }
+
+  /* Dark Section Cards */
+  .citation-box {
+    padding: 16px;
+  }
+  .citation-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .btn-copy-citation {
+    min-height: 38px;
+    padding: 6px 14px;
+  }
+  .citation-text {
+    word-break: break-word;
+    font-size: 0.78rem;
+  }
+  .supervisor-card {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  /* Team Grid & Touch Targets */
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .team-card {
+    padding: 24px 18px 20px;
+  }
+  .btn-social {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Videoaulas & Expandable Player Drawer on Mobile */
+  .construction-banner {
+    border-radius: 16px;
+    padding: 10px 14px;
+    font-size: 0.76rem;
+    line-height: 1.4;
+    text-align: left;
+  }
+  .upcoming-lessons-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .upcoming-card {
+    padding: 14px 16px;
+    min-height: 64px;
+    gap: 10px;
+  }
+  .player-drawer-wrap.is-open {
+    max-height: 2200px;
+    margin-top: 20px;
+  }
+  .player-container {
+    border-radius: 20px;
+  }
+  .player-header-bar {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .player-lesson-title {
+    font-size: 0.92rem;
+    line-height: 1.35;
+    width: 100%;
+  }
+  .player-meta-badges {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .player-close-btn {
+    min-height: 36px;
+    padding: 6px 14px;
+  }
+  .player-theory-bar {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .player-theory-text {
+    align-items: flex-start;
+  }
+  .player-theory-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .btn-theory-cta,
+  .btn-theory-secondary {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    min-height: 46px;
+  }
+  .player-big-play-icon {
+    width: 60px;
+    height: 60px;
+  }
+  .player-big-play-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  .player-big-play-label {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+  }
+  .player-footer-bar {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Footer & Toasts Mobile */
+  .footer {
+    padding: 48px 0 28px;
+  }
+  .footer-top {
+    gap: 28px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .toast-container {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+  .toast-item {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
 }
+
+@media (max-width: 480px) {
+  .brand span:nth-child(2) {
+    font-size: 0.95rem;
+  }
+  .supervisor-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .card-metrics dd {
+    font-size: 1.05rem;
+  }
+  .upcoming-card {
+    flex-wrap: wrap;
+  }
+}
+
