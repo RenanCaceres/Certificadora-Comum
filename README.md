@@ -15,8 +15,8 @@
 
 <br>
 
-**Universidade Tecnológica Federal do Paraná — Campus Cornélio Procópio**
-Disciplina: **Certificadora de Competência Comum**
+**Universidade Tecnológica Federal do Paraná — Campus Cornélio Procópio**  
+Disciplina: **Certificadora de Competência Comum**  
 Supervisão: **Prof. Dr. André Luís dos Santos Domingues**
 
 </div>
@@ -27,14 +27,13 @@ Supervisão: **Prof. Dr. André Luís dos Santos Domingues**
 
 1. [Sobre o projeto](#-sobre-o-projeto)
 2. [Objetivo geral](#-objetivo-geral)
-3. [Objetivos específicos: a jornada em seis fases](#-objetivos-específicos-a-jornada-em-seis-fases)
-4. [Tópicos abordados](#-tópicos-abordados)
-5. [Público-alvo e abordagem didática](#-público-alvo-e-abordagem-didática)
-6. [Estrutura do repositório](#-estrutura-do-repositório)
-7. [Como utilizar os materiais](#-como-utilizar-os-materiais)
-8. [Equipe](#-equipe)
-9. [Licença e reuso](#-licença-e-reuso)
-10. [Como citar](#-como-citar)
+3. [A Jornada em Seis Fases](#-a-jornada-em-seis-fases)
+4. [Organização do Repositório (Os 5 Pilares)](#-organização-do-repositório-os-5-pilares)
+5. [Estrutura de Pastas e Arquivos](#-estrutura-de-pastas-e-arquivos)
+6. [Como Compilar e Executar](#-como-compilar-e-executar)
+7. [Equipe](#-equipe)
+8. [Licença e Reuso](#-licença-e-reuso)
+9. [Como Citar](#-como-citar)
 
 ---
 
@@ -44,7 +43,7 @@ Este repositório reúne os **Recursos Educacionais Abertos (REA)** desenvolvido
 
 A proposta parte de uma constatação simples: o primeiro contato com programação costuma ser o maior filtro de acesso à área de tecnologia. Ao transformar conceitos fundamentais em materiais **abertos, lúdicos e didaticamente estruturados**, buscamos reduzir essa barreira de entrada e devolver à comunidade externa o conhecimento produzido na universidade, em consonância com o princípio da extensão universitária.
 
-O nome do grupo faz referência ao bloco `try`/`catch` de tratamento de exceções presente em diversas linguagens: errar faz parte do processo, e o que importa é o que se aprende ao capturar o erro.
+O nome do grupo faz referência ao bloco `try`/`catch` de tratamento de exceções: errar faz parte do processo, e o que importa é o que se aprende ao capturar o erro.
 
 ---
 
@@ -54,18 +53,18 @@ Desenvolver **Recursos Educacionais Abertos (REA)** voltados à disciplina de **
 
 ---
 
-## 🗺️ Objetivos específicos: a jornada em seis fases
+## 🗺️ A Jornada em Seis Fases
 
-O conteúdo foi organizado como uma trilha progressiva, em que cada fase constrói sobre a anterior e culmina em um desafio final.
+O aprendizado é estruturado como uma trilha contínua onde cada fase expande a anterior:
 
-| Fase | Título | Descrição |
-|:----:|--------|-----------|
-| **1** | **Primeiros Passos em C** | As primeiras peças do quebra-cabeça: constantes, variáveis, expressões e comandos de entrada e saída, além dos laços de repetição que dão vida à lógica. |
-| **2** | **O Programa Aprende a Decidir** | Ensinando o código a "pensar" e escolher caminhos com `if/else` e `switch`. |
-| **3** | **Repita Comigo: Laços de Repetição** | Automatizando tarefas repetitivas com laços controlados por contador e por condição, sem perder o controle do fluxo. |
-| **4** | **Dividir para Programar: Modularização** | Organizando o código em blocos reutilizáveis com procedimentos e funções, como peças de Lego que se encaixam. |
-| **5** | **Muitos Dados, Uma Só Caixa: Vetores e Matrizes** | Lidando com múltiplos dados de um só tipo, de forma organizada e eficiente. |
-| **6** | **🏆 Boss Final: A Ficha Completa (Struct)** | Combinando diferentes tipos de dados em uma única estrutura, como uma "ficha" que guarda tudo o que importa sobre um registro. |
+| Fase | Título | Foco Conceitual |
+|:----:|--------|-----------------|
+| **1** | **Primeiros Passos em C** | Constantes, variáveis, tipos primitivos (`int`, `float`, `char`), expressões aritméticas e entrada/saída (`printf`/`scanf`). |
+| **2** | **O Programa Aprende a Decidir** | Tomada de decisões com `if`, `else`, encadeamento `else if` e seleção múltipla com `switch-case`. |
+| **3** | **Repita Comigo: Laços de Repetição** | Automatização de rotinas com `while`, `do-while`, `for`, contadores, acumuladores e desvios (`break`/`continue`). |
+| **4** | **Dividir para Programar: Modularização** | Procedimentos (`void`), funções com valor de retorno, parâmetros formais/argumentos, escopo e protótipos. |
+| **5** | **Muitos Dados, Uma Só Caixa: Vetores e Matrizes** | Coleções homogêneas: vetores unidimensionais (1D), matrizes bidimensionais (2D), busca e laços aninhados. |
+| **6** | **🏆 Boss Final: A Ficha Completa (Struct)** | Variáveis heterogêneas (`struct`), acesso com operador `.`, vetores de struct, passagem para funções e ponteiros (`->`). |
 
 ```mermaid
 flowchart LR
@@ -78,59 +77,99 @@ flowchart LR
 
 ---
 
-## 📚 Tópicos abordados
+## 🏛️ Organização do Repositório (Os 5 Pilares)
 
-- **Fundamentos de Algoritmos em C**: constantes, variáveis, expressões e comandos de entrada e saída, além dos laços de repetição que dão vida à lógica.
-- **Estruturas de Decisão**: ensinando o programa a "pensar" e escolher caminhos com `if/else` e `switch`.
-- **Estruturas de Repetição**: automatização de tarefas repetitivas com laços controlados por contador e por condição.
-- **Técnicas de Modularização**: organização do código em blocos reutilizáveis com procedimentos e funções.
-- **Variáveis Compostas Homogêneas**: vetores e matrizes para tratar múltiplos dados de um mesmo tipo de forma organizada e eficiente.
-- **Variáveis Compostas Heterogêneas (`struct`)**: combinação de tipos distintos em uma única estrutura, semelhante a uma ficha de registro.
+Para manter cada conteúdo em seu devido lugar e facilitar o estudo de alunos e professores, o repositório está organizado em cinco pilares independentes e complementares:
 
----
+```mermaid
+flowchart TD
+    Repo["📦 Try, Catch & Learn"]
+    Repo --> P1["📖 Conteúdo Teórico<br/>Ebooks, apostilas por fase e videoaulas"]
+    Repo --> P2["💻 Gabarito de Exercícios<br/>Soluções em C das missões e desafios"]
+    Repo --> P3["📽️ Slides das Videoaulas<br/>Apresentações 16:9 e exercícios dos slides"]
+    Repo --> P4["🏗️ Projeto Integrado<br/>Sistema contínuo evoluído fase a fase"]
+    Repo --> P5["🌐 Portal Web REA<br/>Plataforma web com player e downloads"]
+```
 
-## 👥 Público-alvo e abordagem didática
-
-Os materiais são pensados para **estudantes iniciantes e público externo à universidade**, com atenção especial a jovens e adolescentes em contato com programação pela primeira vez.
-
-Princípios que orientam a produção:
-
-- **Acessibilidade:** linguagem clara, sem pressupor conhecimento prévio.
-- **Ludicidade:** enunciados contextualizados e desafios que estimulam a curiosidade.
-- **Progressão:** cada fase introduz poucos conceitos novos e retoma os anteriores.
-- **Prática guiada:** teoria objetiva acompanhada de exercícios diretos e desafios de maior complexidade.
-- **Abertura:** conteúdo livre para uso, adaptação e redistribuição.
+1. **[📖 Conteúdo Teórico](./Conteúdo-Teórico/README.md):** Reúne o Ebook oficial do curso, as apostilas descritivas de cada fase em PDF, os cadernos oficiais de missões e gabaritos comentados, além de gravações de videoaulas em vídeo local (`aulas/Aula1.mp4`).
+2. **[💻 Gabarito de Exercícios](./Gabarito-Exercícios/README.md):** Códigos-fonte em C com as soluções de referência de todas as questões dos Cadernos de Missões (Fases 1 a 6), incluindo os desafios integradores e códigos extras com propósitos didáticos de depuração.
+3. **[📽️ Slides das Videoaulas](./Slides/README.md):** Apresentações visuais em alta resolução (formato widescreen 16:9) utilizadas nas aulas gravadas e a pasta de **[Exercícios Resolvidos dos Slides](./Slides/Exercicios-Resolvidos/README.md)** com os códigos C específicos passados durante os slides.
+4. **[🏗️ Projeto Integrado](./Projeto-Integrado/README.md):** Aplicação prática contínua em C (`main.c`) demonstrando a construção incremental de um sistema real de cadastro que evoluiu pelas fases da disciplina.
+5. **🌐 Portal Web REA:** Site interativo construído para o GitHub Pages (`index.html`, `js/`, `css/`, `assets/`), com player de videoaula integrado, player de playlist modular e central de downloads de PDFs.
 
 ---
 
-## 🗂️ Estrutura do repositório
+## 🗂️ Estrutura de Pastas e Arquivos
 
 ```text
 .
-├── README.md
-├── Gabarito-Exercícios/     # Resoluções em C dos exercícios propostos
-├── Conteúdo Teórico/        # Conteúdos Teóricos/Educacionais    
-├──      
-└── ...        
-
+├── Conteúdo-Teórico/                              # Ebooks, apostilas conceituais e cadernos
+│   ├── README.md                                  # Guia detalhado do conteúdo teórico
+│   ├── Ebook_Fundamentos_de_Programacao_C.pdf     # Ebook visual oficial integrado (16 pgs)
+│   ├── Fase 1 - Primeiros Passos em C.pdf         # Apostila descritiva Fase 1
+│   ├── Fase 2 - O Programa Aprende a Decidir.pdf  # Apostila descritiva Fase 2
+│   ├── Fase 3 - Repita Comigo Laços de...pdf      # Apostila descritiva Fase 3
+│   ├── Aula Fase 4 - Dividir Para Programar.pdf   # Apostila descritiva Fase 4
+│   ├── Caderno_de_Missoes_III.pdf                 # Caderno de Missões Fases 5 e 6 (26 pgs)
+│   ├── Gabarito_Comentado_III.pdf                 # Gabarito Comentado Fases 5 e 6 (30 pgs)
+│   ├── Caderno_e_Gabarito_III_Completo.pdf        # Edição Completa Integrada (51 pgs)
+│   └── aulas/                                     # Videoaulas gravadas em MP4
+│       └── Aula1.mp4                              # Videoaula 1: Introdução a Algoritmos e Variáveis
+│
+├── Gabarito-Exercícios/                           # Soluções em C dos Cadernos de Missões
+│   ├── README.md                                  # Guia completo de exercícios e compilação
+│   ├── Fase1-Primeiros-Passos/                    # Q1 a Q5: variáveis, tipos e expressões
+│   ├── Fase2-Decisoes/                            # Q6 a Q10: if, else, switch e erros comuns
+│   ├── Fase3-Lacos-de-Repeticao/                  # Q1 a Q10: while, do-while e for
+│   ├── Fase4-Modularizacao/                       # Q1 a Q10: procedimentos e funções
+│   ├── Fase5-Vetores-e-Matrizes/                  # Q1 a Q10: vetores 1D e matrizes 2D
+│   ├── Fase6-Struct/                              # Q1 a Q10: estruturas e ponteiros
+│   ├── Desafios/                                  # Desafios integradores (D1 a D3 por bloco)
+│   └── Extras/                                    # Demonstração de erros e fall-through
+│
+├── Slides/                                        # Apresentações visuais das videoaulas
+│   ├── README.md                                  # Guia de slides e apresentações
+│   ├── Fase 5 - Muitos dados, uma só caixa...pdf  # Slides 16:9 de Vetores e Matrizes
+│   ├── Fase 6 - Struct.pdf                        # Slides 16:9 de Structs
+│   └── Exercicios-Resolvidos/                     # Códigos em C das missões dos slides
+│       ├── README.md                              # Documentação dos exercícios dos slides
+│       ├── Fase5-Vetores-e-Matrizes/              # Missões 1 a 4 dos slides de vetores/matrizes
+│       └── Fase6-Struct/                          # Missões 1 a 4 dos slides de structs
+│
+├── Projeto-Integrado/                             # Sistema integrador contínuo
+│   ├── README.md                                  # Documentação da aplicação
+│   └── main.c                                     # Código do sistema de cadastro modular
+│
+├── assets/                                        # Imagens, favicon e fotos da equipe
+├── css/                                           # Estilos visuais do portal web
+├── js/                                            # Lógica do catálogo e player de videoaulas
+├── index.html                                     # Portal web REA (GitHub Pages)
+├── LICENSE                                        # Licença MIT de uso livre
+└── README.md                                      # Este documento
 ```
-
-> 💡 Ajuste a árvore acima conforme a organização final do repositório.
 
 ---
 
-## 🚀 Como utilizar os materiais
+## 🚀 Como Compilar e Executar
 
-Os exemplos e gabaritos são escritos em **C padrão** e podem ser compilados com qualquer compilador compatível, como o GCC:
+Todos os códigos em C do projeto seguem o padrão ANSI C / C99 / C11 e podem ser compilados diretamente pelo GCC, Clang ou compiladores online como o [Online GDB](https://www.onlinegdb.com/):
 
 ```bash
-# Clonar o repositório
+# 1. Clonar o repositório
 git clone https://github.com/RenanCaceres/Certificadora-Comum.git
 cd Certificadora-Comum
 
-# Compilar e executar um exercício
-gcc -Wall -Wextra -o exercicio arquivo.c
-./exercicio
+# 2. Compilar uma missão do Caderno de Missões
+gcc -Wall -Wextra Gabarito-Exercícios/Fase1-Primeiros-Passos/q01_ficha_do_heroi.c -o missao
+./missao
+
+# 3. Compilar um exercício dos Slides de videoaulas
+gcc -Wall -Wextra Slides/Exercicios-Resolvidos/Fase5-Vetores-e-Matrizes/m01_tesouro_cinco_baus.c -o slide_ex
+./slide_ex
+
+# 4. Compilar o Projeto Integrado
+gcc -Wall -Wextra Projeto-Integrado/main.c -o projeto_integrado
+./projeto_integrado
 ```
 
 ---
@@ -139,25 +178,25 @@ gcc -Wall -Wextra -o exercicio arquivo.c
 
 **Grupo Try, Catch & Learn**
 
-| Integrante |
-|------------|
-| Lauren Marçulo |
-| Lorena Eduarda Barros Martinelli |
-| Manuella Vieira Reginato |
-| Renan Cáceres Anselmo |
+| Integrante | Papel Principal |
+|------------|-----------------|
+| **Lauren Marçulo** | Desenvolvimento & Conteúdo Didático (Fase 5) |
+| **Lorena Eduarda Barros Martinelli** | Design Pedagógico & Apresentação (Fase 6) |
+| **Manuella Vieira Reginato** | Curadoria de Exercícios & Documentação |
+| **Renan Cáceres Anselmo** | Arquitetura, Desenvolvimento & Código em C |
 
-**Supervisão:** Prof. Dr. André Luís dos Santos Domingues
+**Supervisão:** Prof. Dr. André Luís dos Santos Domingues  
 **Instituição:** Universidade Tecnológica Federal do Paraná (UTFPR), Campus Cornélio Procópio
 
 ---
 
-## 📜 Licença e reuso
+## 📜 Licença e Reuso
 
-Por se tratar de **Recursos Educacionais Abertos**, todo o conteúdo deste repositório (materiais didáticos, listas de exercícios e gabaritos em C) é distribuído sob a licença [**MIT**](LICENSE). Você pode usar, copiar, modificar e redistribuir o material, inclusive para fins comerciais, desde que mantenha o aviso de copyright e o texto da licença em todas as cópias ou partes substanciais.
+Por se tratar de **Recursos Educacionais Abertos (REA)**, todo o conteúdo deste repositório (materiais didáticos, cadernos, apostilas, slides, resoluções e códigos em C) é distribuído sob a licença [**MIT**](LICENSE). Você é livre para estudar, copiar, modificar, distribuir e adaptar os materiais para salas de aula, oficinas e projetos pessoais.
 
 ---
 
-## 🔖 Como citar
+## 🔖 Como Citar
 
 ```text
 TRY, CATCH & LEARN. Recursos Educacionais Abertos para Fundamentos da Programação em C.

@@ -66,6 +66,7 @@ int main() {
     return 0;
 }`,
           resources: [
+            { label: "Ebook Oficial: Fundamentos em C (PDF)", url: "Conteúdo-Teórico/Ebook_Fundamentos_de_Programacao_C.pdf" },
             { label: "Acessar Online GDB", url: "https://www.onlinegdb.com/" },
             { label: "Documentação GNU GCC", url: "https://gcc.gnu.org/" }
           ]
@@ -446,6 +447,8 @@ int main() {
           resources: [
             { label: "Caderno de Missões III (PDF)", url: "Conteúdo-Teórico/Caderno_de_Missoes_III.pdf" },
             { label: "Gabarito Comentado III (PDF)", url: "Conteúdo-Teórico/Gabarito_Comentado_III.pdf" },
+            { label: "Slides da Videoaula (PDF)", url: "Slides/Fase 5 - Muitos dados, uma só caixa vetores e matrizes.pdf" },
+            { label: "Exercícios dos Slides (.C)", url: "Slides/Exercicios-Resolvidos/Fase5-Vetores-e-Matrizes/" },
             { label: "Soluções em C (Fase 5)", url: "Gabarito-Exercícios/Fase5-Vetores-e-Matrizes/" }
           ]
         }
@@ -499,6 +502,8 @@ int main() {
           resources: [
             { label: "Caderno de Missões III (PDF)", url: "Conteúdo-Teórico/Caderno_de_Missoes_III.pdf" },
             { label: "Gabarito Comentado III (PDF)", url: "Conteúdo-Teórico/Gabarito_Comentado_III.pdf" },
+            { label: "Slides da Videoaula (PDF)", url: "Slides/Fase 6 - Struct.pdf" },
+            { label: "Exercícios dos Slides (.C)", url: "Slides/Exercicios-Resolvidos/Fase6-Struct/" },
             { label: "Soluções em C (Fase 6)", url: "Gabarito-Exercícios/Fase6-Struct/" }
           ]
         }

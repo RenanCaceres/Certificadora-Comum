@@ -1,56 +1,90 @@
-# Gabarito - Caderno de Missões: Programação em C (Fases 1 a 6)
+# 💻 Gabarito Oficial — Caderno de Missões em C (Fases 1 a 6)
 
-Soluções de referência de todas as questões e desafios do projeto de extensão.
-Cada solução é **uma** resposta possível; variações com o mesmo comportamento
-(por exemplo, `while` no lugar de `for`, ou `x = x + 1` no lugar de `x++`)
-também estão corretas.
+<div align="center">
 
-## Estrutura
+### Resoluções de referência em linguagem C de todas as questões e desafios práticos
 
-- `Fase1-Primeiros-Passos/`: Q1 a Q5 — variáveis, constantes, expressões,
-  entrada e saída, laços de repetição
-- `Fase2-Decisoes/`: Q6 a Q10 — `if`, `else`, `else if`, `switch`, depuração
-- `Fase3-Lacos-de-Repeticao/`: Q1 a Q10 — `while`, `do while`, `for`,
-  contadores, `break`, `continue`
-- `Fase4-Modularizacao/`: Q1 a Q10 — procedimentos, funções, parâmetros,
-  valor de retorno
-- `Fase5-Vetores-e-Matrizes/`: Q1 a Q10 — vetores (1D), matrizes (2D), índices, busca, maior/menor, acumulador
-- `Fase6-Struct/`: Q1 a Q10 — `struct`, campos, operador `.`, vetor de struct, structs em funções e ponteiros (`->`)
-- `Desafios/`: desafios finais, um por arquivo
-  - `d1_escada_do_castelo_niveis_1_2.c` e `d1_escada_do_castelo_nivel_3.c`
-    — Fases 1-2 · laços aninhados
-  - `d2_batalha_contra_o_dragao.c` — Fases 1-2 · laço + `switch` + `if`
-  - `d3_numero_secreto.c` — Fases 1-2 · laço com `break`
-  - `d1_padrao_do_escudo.c` — Fases 3-4 · laços aninhados + condição composta
-  - `d2_base_secreta.c` — Fases 3-4 · `while` + contador de tentativas
-  - `d3_caixa_eletronico_da_vila.c` — Fases 3-4 · menu com funções e
-    procedimentos
-  - `d1_caravana_de_mercadores.c` — Fases 5-6 · vetor + múltiplas estatísticas em um laço só
-  - `d2_jogo_da_velha_matematico.c` — Fases 5-6 · matriz 3x3 + funções + diagonais
-  - `d3_cofre_de_quatro_pinos.c` — Fases 5-6 · comparação posicional de vetores + `break`
-- `Extras/`: material de apoio que não é solução direta de uma missão
-  - `q10_caca_aos_erros_ORIGINAL_COM_ERROS.c` — código com defeito da
-    Questão 10 (Fase 2), **não compila de propósito**
-  - `q09_experimento_sem_break.c` — mesma solução da Questão 9 (Fase 2)
-    sem o `break` do primeiro `case`, para demonstrar o *fall-through*;
-    **gera aviso de propósito**
+![Linguagem](https://img.shields.io/badge/linguagem-C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Compilador](https://img.shields.io/badge/compilador-GCC-yellow?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-100%25%20Compil%C3%A1vel-2ea44f?style=for-the-badge)
 
-> Os arquivos `d1_*`, `d2_*` e `d3_*` de cada bloco (Fases 1-2, 3-4, 5-6) têm o
-> mesmo prefixo porque cada bloco de fases tem seus próprios
-> três desafios finais — o nome completo do arquivo (e não só o número)
-> identifica qual desafio é qual.
+</div>
 
-## Como compilar e executar
+---
 
+## 🧭 Sobre este diretório
+
+Aqui estão reunidas as **soluções oficiais em C** de todas as missões e desafios práticos dos Cadernos de Missões da disciplina de Fundamentos da Programação em C (**Try, Catch & Learn**).
+
+Cada código representa **uma** solução de referência eficiente e idiomática. Em programação há múltiplas maneiras corretas de resolver o mesmo problema (por exemplo, usar `while` em vez de `for`, ou modularizar partes adicionais); contanto que o comportamento e as restrições sejam atendidos, a solução é válida.
+
+> 📄 **Documentos Teóricos:** Os cadernos originais de enunciados e comentários em PDF estão localizados na pasta [**`Conteúdo-Teórico/`**](../Conteúdo-Teórico/README.md).
+> 📽️ **Exercícios dos Slides:** Se você procura os exercícios específicos das apresentações das videoaulas, confira [**`Slides/Exercicios-Resolvidos/`**](../Slides/Exercicios-Resolvidos/README.md).
+
+---
+
+## 🗂️ Estrutura de Pastas e Conteúdo
+
+| Pasta | Fases / Escopo | Descrição dos Conceitos e Exercícios |
+|-------|:--------------:|---------------------------------------|
+| [`Fase1-Primeiros-Passos/`](./Fase1-Primeiros-Passos/) | **Fase 1** | **Q1 a Q5**: variáveis, constantes, tipos primitivos, expressões, entrada/saída formatada e primeiros laços. |
+| [`Fase2-Decisoes/`](./Fase2-Decisoes/) | **Fase 2** | **Q6 a Q10**: controle de fluxo, `if`, `else`, `else if`, `switch-case`, `break` e caça aos erros comuns. |
+| [`Fase3-Lacos-de-Repeticao/`](./Fase3-Lacos-de-Repeticao/) | **Fase 3** | **Q1 a Q10**: laços `while`, `do-while` e `for`, variáveis contadoras, acumuladores e desvios de fluxo. |
+| [`Fase4-Modularizacao/`](./Fase4-Modularizacao/) | **Fase 4** | **Q1 a Q10**: procedimentos `void`, funções com retorno, parâmetros, escopo de variáveis e protótipos. |
+| [`Fase5-Vetores-e-Matrizes/`](./Fase5-Vetores-e-Matrizes/) | **Fase 5** | **Q1 a Q10**: vetores (1D), matrizes (2D), índices base 0, laços aninhados, busca e agregações. |
+| [`Fase6-Struct/`](./Fase6-Struct/) | **Fase 6** | **Q1 a Q10**: estruturas heterogêneas (`struct`), operador `.`, vetores de struct, passagem para funções e ponteiros (`->`). |
+| [`Desafios/`](./Desafios/) | **Fases 1 a 6** | Desafios finais integradores de cada bloco de fases (veja detalhamento abaixo). |
+| [`Extras/`](./Extras/) | **Apoio** | Códigos didáticos especiais para demonstração de erros intencionais e fall-through. |
+
+---
+
+## 🏆 Desafios Finais Integradores (`Desafios/`)
+
+Os desafios finais consolidam o conhecimento adquirido ao final de cada par de fases:
+
+### ⚔️ Bloco 1 — Fases 1 e 2
+- `d1_escada_do_castelo_niveis_1_2.c` e `d1_escada_do_castelo_nivel_3.c` — Laços aninhados e padrões visuais.
+- `d2_batalha_contra_o_dragao.c` — Simulação de batalha com laços, `switch` e lógica de dano/vida.
+- `d3_numero_secreto.c` — Jogo de adivinhação com controle de tentativas e interrupção precoce (`break`).
+
+### 🛡️ Bloco 2 — Fases 3 e 4
+- `d1_padrao_do_escudo.c` — Desenho matricial em terminal com laços aninhados e condição composta.
+- `d2_base_secreta.c` — Sistema de acesso com `while`, senha mascarada e contador de tentativas.
+- `d3_caixa_eletronico_da_vila.c` — Menu bancário modularizado com procedimentos e funções reutilizáveis.
+
+### 👑 Bloco 3 — Fases 5 e 6
+- `d1_caravana_de_mercadores.c` — Vetor com 4 estatísticas simultâneas (soma, média com cast float, maior e menor peso) em passagem única.
+- `d2_jogo_da_velha_matematico.c` — Matriz 3x3 com funções de verificação das diagonais principal e secundária.
+- `d3_cofre_de_quatro_pinos.c` — Busca posicional comparando dois vetores índice a índice com flag de vitória.
+
+---
+
+## 🧪 Pasta Extras (`Extras/`)
+
+- `q10_caca_aos_erros_ORIGINAL_COM_ERROS.c` — Código com defeitos intencionais da Questão 10 da Fase 2, para o estudante praticar depuração (*não compila de propósito*).
+- `q09_experimento_sem_break.c` — Variação da Questão 9 da Fase 2 sem o comando `break` no primeiro `case`, para demonstrar o efeito de cascata (*fall-through*).
+
+---
+
+## ⚙️ Como Compilar e Executar
+
+Todos os arquivos (com exceção do arquivo com erros intencionais em `Extras/`) compilam com `gcc -Wall -Wextra` sem nenhum aviso:
+
+```bash
+# Compilar um exercício
+gcc -Wall -Wextra Fase1-Primeiros-Passos/q01_ficha_do_heroi.c -o exercicio
+
+# Executar no Linux / macOS
+./exercicio
+
+# Executar no Windows (cmd ou powershell)
+exercicio.exe
 ```
-gcc -Wall -Wextra arquivo.c -o programa
-./programa            # Windows: programa.exe
-```
 
-**Observações:**
-- `q10_..._ORIGINAL_COM_ERROS.c` não compila de propósito: é o código com
-  defeito da Questão 10 da Fase 2, que o aluno precisa corrigir.
-- `q09_experimento_sem_break.c` gera um aviso de *fall-through* também de
-  propósito, para mostrar o que acontece sem o `break`.
-- Todos os demais arquivos foram compilados com `gcc -Wall -Wextra` sem
-  nenhum aviso.
+---
+
+<div align="center">
+
+⬅️ [Voltar ao README principal](../README.md)
+
+</div>
