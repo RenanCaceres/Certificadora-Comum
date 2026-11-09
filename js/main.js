@@ -263,7 +263,7 @@
         title: 'Fase 5: Muitos Dados, Uma Só Caixa — Vetores e Matrizes',
         duration: 'Em Gravação',
         theoryTitle: 'Material Teórico Oficial — Fase 5 (Vetores e Matrizes)',
-        theoryUrl: 'Conte%C3%BAdo-Te%C3%B3rico/Fase%205%20-%20Muitos%20dados,%20uma%20s%C3%B3%20caixa%20vetores%20e%20matrizes.pdf',
+        theoryUrl: 'Slides/Fase%205%20-%20Muitos%20dados,%20uma%20s%C3%B3%20caixa%20vetores%20e%20matrizes.pdf',
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase5-Vetores-e-Matrizes',
         hasVideo: false
       },
@@ -272,7 +272,7 @@
         title: 'Fase 6: Tipos Compostos — Structs e Registros Heterogêneos',
         duration: 'Em Gravação',
         theoryTitle: 'Material Teórico Oficial — Fase 6 (Structs e Registros)',
-        theoryUrl: 'Conte%C3%BAdo-Te%C3%B3rico/Fase%206%20-%20Struct%20.pdf',
+        theoryUrl: 'Slides/Fase%206%20-%20Struct%20.pdf',
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase6-Struct',
         hasVideo: false
       }
@@ -280,7 +280,27 @@
 
     if (!video) return;
 
+    const videoSources = [
+      'Conteúdo-Teórico/aulas/Aula1.mp4',
+      'Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula1.mp4',
+      'aulas/Aula1.mp4'
+    ];
+    let currentSrcIndex = 0;
+
+    video.addEventListener('error', () => {
+      if (currentSrcIndex < videoSources.length - 1) {
+        currentSrcIndex++;
+        console.warn('Falha ao carregar fonte do vídeo. Tentando fallback:', videoSources[currentSrcIndex]);
+        video.src = videoSources[currentSrcIndex];
+        video.load();
+      }
+    });
+
     function startPlayback() {
+      if (!video.src && !video.currentSrc) {
+        video.src = videoSources[0];
+        video.load();
+      }
       const promise = video.play();
       if (promise !== undefined) {
         promise.then(() => {
@@ -290,8 +310,12 @@
           if (badgeLesson1) badgeLesson1.textContent = '▶ Reproduzindo';
         }).catch(err => {
           console.warn('Playback error or blocked interaction:', err);
+          if (bigPlayBtn) bigPlayBtn.classList.remove('playing');
+          if (badgeLesson1 && drawerWrap && drawerWrap.classList.contains('is-open')) {
+            badgeLesson1.textContent = '▶ Assistir Aula';
+          }
           video.controls = true;
-          window.showToast && window.showToast('Clique no botão de reproduzir na barra do vídeo.', 'info');
+          window.showToast && window.showToast('Clique no botão de reproduzir para iniciar.', 'info');
         });
       }
     }
@@ -338,6 +362,11 @@
       drawerWrap.classList.add('is-open');
       drawerWrap.setAttribute('aria-hidden', 'false');
 
+      // Unfocus card so subsequent Spacebar presses don't re-trigger card
+      if (document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('upcoming-card')) {
+        document.activeElement.blur();
+      }
+
       setTimeout(() => {
         drawerWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 80);
@@ -371,6 +400,11 @@
       });
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === ' ' && card.classList.contains('is-selected') && drawerWrap.classList.contains('is-open')) {
+            e.preventDefault();
+            togglePlayback();
+            return;
+          }
           e.preventDefault();
           openLessonDrawer(lessonId, lessonId === '1');
         }
@@ -388,11 +422,17 @@
     // Frame click toggles play/pause
     if (playerFrame) {
       playerFrame.addEventListener('click', (e) => {
-        const rect = playerFrame.getBoundingClientRect();
-        const clickY = e.clientY - rect.top;
-        if (clickY > rect.height - 48 && !video.paused) {
+        // Clicks on big play button handle themselves
+        if (e.target && (e.target.id === 'btnBigPlay' || e.target.closest('#btnBigPlay'))) {
           return;
         }
+        const rect = playerFrame.getBoundingClientRect();
+        const clickY = e.clientY - rect.top;
+        // If clicking in bottom 56px (native controls bar area), leave it to native browser controls
+        if (clickY >= rect.height - 56) {
+          return;
+        }
+        // User clicked the video screen: toggle play/pause
         togglePlayback();
       });
     }
@@ -426,8 +466,13 @@
 
     // Spacebar keyboard shortcut
     window.addEventListener('keydown', (e) => {
-      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-      if (e.code === 'Space' && (document.activeElement === video || (playerFrame && playerFrame.contains(document.activeElement)))) {
+      if (e.code !== 'Space' && e.key !== ' ') return;
+      // Never intercept space if typing in an input, textarea, select or editable area
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) || document.activeElement.isContentEditable) {
+        return;
+      }
+      // If the lesson drawer is open and the video player is visible, toggle playback
+      if (drawerWrap && drawerWrap.classList.contains('is-open') && playerFrame && playerFrame.style.display !== 'none') {
         e.preventDefault();
         togglePlayback();
       }

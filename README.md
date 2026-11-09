@@ -129,12 +129,20 @@ flowchart TD
 │
 ├── Slides/                                        # Apresentações visuais das videoaulas
 │   ├── README.md                                  # Guia de slides e apresentações
+│   ├── Fase 1 -Primeiros Passos em C.pdf          # Slides 16:9 de Primeiros Passos
+│   ├── Fase 2 - O Programa Aprende a Decidir.pdf  # Slides 16:9 de Decisões
+│   ├── Fase 3 -Repetição.pdf                      # Slides 16:9 de Laços de Repetição
+│   ├── Fase 4 - Modularização.pdf                 # Slides 16:9 de Modularização
 │   ├── Fase 5 - Muitos dados, uma só caixa...pdf  # Slides 16:9 de Vetores e Matrizes
 │   ├── Fase 6 - Struct.pdf                        # Slides 16:9 de Structs
 │   └── Exercicios-Resolvidos/                     # Códigos em C das missões dos slides
 │       ├── README.md                              # Documentação dos exercícios dos slides
-│       ├── Fase5-Vetores-e-Matrizes/              # Missões 1 a 4 dos slides de vetores/matrizes
-│       └── Fase6-Struct/                          # Missões 1 a 4 dos slides de structs
+│       ├── Fase1-Primeiros-Passos/                # Missões 1 a 3 dos slides da Fase 1
+│       ├── Fase2-Decisoes/                        # Missões 1 a 3 dos slides da Fase 2
+│       ├── Fase3-Lacos-de-Repeticao/              # Missões 1 a 4 dos slides da Fase 3
+│       ├── Fase4-Modularizacao/                   # Missões 1 a 3 dos slides da Fase 4
+│       ├── Fase5-Vetores-e-Matrizes/              # Missões 1 a 4 dos slides da Fase 5
+│       └── Fase6-Struct/                          # Missões 1 a 4 dos slides da Fase 6
 │
 ├── Projeto-Integrado/                             # Sistema integrador contínuo
 │   ├── README.md                                  # Documentação da aplicação

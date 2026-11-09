@@ -144,6 +144,8 @@ int main() {
 }`,
           resources: [
             { label: "Apostila Fase 1 (PDF)", url: "Conteúdo-Teórico/Fase 1 - Primeiros Passos em C.pdf" },
+            { label: "Slides da Videoaula (PDF)", url: "Slides/Fase 1 -Primeiros Passos em C.pdf" },
+            { label: "Exercícios dos Slides (.C)", url: "Slides/Exercicios-Resolvidos/Fase1-Primeiros-Passos/" },
             { label: "Repositório Gabarito Fase 1", url: "Gabarito-Exercícios/Fase1-Primeiros-Passos/" }
           ]
         },
@@ -270,6 +272,8 @@ int main() {
 }`,
           resources: [
             { label: "Apostila Fase 2 (PDF)", url: "Conteúdo-Teórico/Fase 2 - O Programa Aprende a Decidir.pdf" },
+            { label: "Slides da Videoaula (PDF)", url: "Slides/Fase 2 - O Programa Aprende a Decidir.pdf" },
+            { label: "Exercícios dos Slides (.C)", url: "Slides/Exercicios-Resolvidos/Fase2-Decisoes/" },
             { label: "Gabarito Fase 2", url: "Gabarito-Exercícios/Fase2-Decisoes/" }
           ]
         }
@@ -312,6 +316,8 @@ int main() {
 }`,
           resources: [
             { label: "Apostila Fase 3 (PDF)", url: "Conteúdo-Teórico/Fase 3 - Repita Comigo Laços de Repetição.pdf" },
+            { label: "Slides da Videoaula (PDF)", url: "Slides/Fase 3 -Repetição.pdf" },
+            { label: "Exercícios dos Slides (.C)", url: "Slides/Exercicios-Resolvidos/Fase3-Lacos-de-Repeticao/" },
             { label: "Gabarito Fase 3", url: "Gabarito-Exercícios/Fase3-Lacos-de-Repeticao/" }
           ]
         }
@@ -359,6 +365,8 @@ int main() {
 }`,
           resources: [
             { label: "Apostila Fase 4 (PDF)", url: "Conteúdo-Teórico/Aula Fase 4 - Dividir Para Programar.pdf" },
+            { label: "Slides da Videoaula (PDF)", url: "Slides/Fase 4 - Modularização.pdf" },
+            { label: "Exercícios dos Slides (.C)", url: "Slides/Exercicios-Resolvidos/Fase4-Modularizacao/" },
             { label: "Gabarito Fase 4", url: "Gabarito-Exercícios/Fase4-Modularizacao/" }
           ]
         },
