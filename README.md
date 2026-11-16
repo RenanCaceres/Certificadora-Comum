@@ -105,7 +105,7 @@ flowchart TD
 .
 ├── Conteúdo-Teórico/                              # Ebooks, apostilas conceituais e cadernos
 │   ├── README.md                                  # Guia detalhado do conteúdo teórico
-│   ├── Ebook_Fundamentos_de_Programacao_C.pdf     # Ebook visual oficial integrado (16 pgs)
+│   ├── Ebook_Fundamentos_de_Programacao_C.pdf     # Ebook visual oficial integrado (35 pgs)
 │   ├── Fase 1 - Primeiros Passos em C.pdf         # Apostila descritiva Fase 1
 │   ├── Fase 2 - O Programa Aprende a Decidir.pdf  # Apostila descritiva Fase 2
 │   ├── Fase 3 - Repita Comigo Laços de...pdf      # Apostila descritiva Fase 3

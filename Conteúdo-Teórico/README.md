@@ -35,15 +35,15 @@ flowchart LR
 Disponibilizamos o ebook canônico da certificadora, diagramado com tipografia editorial de alta legibilidade, modelos visuais de memória e 100% livre de jargões inacessíveis:
 
 - 📘 **[Ebook: Fundamentos de Programação em C — Try, Catch & Learn](./Ebook_Fundamentos_de_Programacao_C.pdf)**
-  - **16 Páginas Temáticas A4** com capa cinematográfica, apresentação dos autores (Lauren, Lorena, Manuella, Renan), supervisão acadêmica (Prof. Dr. André Domingues), sumário geral e 13 capítulos exaustivos cobrindo desde a história mecânica de Jacquard/Ada Lovelace até matrizes e structs heterogêneas.
-  - Diagramas técnicos de alta resolução integrados: Linha do Tempo, Pipeline GCC, Guia do OnlineGDB, Gavetas de Memória RAM, Fluxo de Decisão `if/else`, Anatomia do `for`, Layout de Vetor 1D, Grade de Matriz 2D e Ficha Cadastral da Struct.
+  - **35 Páginas A4 (Edição Completa Expandida)** com capa oficial, apresentação institucional dos autores (Lauren, Lorena, Manuella, Renan), supervisão acadêmica (Prof. Dr. André Domingues), sumário detalhado e 14 capítulos cobrindo desde a história mecânica de Jacquard/Ada Lovelace/Turing/Ritchie até vetores, matrizes, structs heterogêneas, testes de mesa e referências bibliográficas reais segundo a norma ABNT NBR 6023.
+  - **11 Diagramas Vetoriais Nativos (HTML/CSS/SVG):** Linha do Tempo, Pipeline GCC, Guia do OnlineGDB e Debugger, Gavetas de Memória RAM, Comparativo `printf` vs. `scanf` (`&`), Fluxo de Decisão `if/else`, Anatomia do `for`, Pilha de Memória (*Stack Frame*) em Funções, Layout de Vetor 1D, Grade de Matriz 2D (Diagonais Principal e Secundária) e Ficha Cadastral da Struct.
 
 ---
 
 ## 📚 Materiais Didáticos por Fase
 
 ### 📘 Ebook Oficial do Curso
-- 📄 [**`Ebook_Fundamentos_de_Programacao_C.pdf`**](./Ebook_Fundamentos_de_Programacao_C.pdf) (16 pgs) — *Fundamentos de Programação em C: Da Memória RAM às Estruturas Heterogêneas*. Guia visual completo desenvolvido para desmistificar a lógica de programação com analogias claras, diagramas e modelos conceituais.
+- 📄 [**`Ebook_Fundamentos_de_Programacao_C.pdf`**](./Ebook_Fundamentos_de_Programacao_C.pdf) (35 pgs) — *Fundamentos de Programação em C: Da História da Computação e Memória RAM às Matrizes e Structs*. Livro-texto aberto completo com testes de mesa passo a passo, diagramas vetoriais e bibliografia ABNT NBR 6023.
 
 ---
 
@@ -117,9 +117,18 @@ Disponibilizamos o ebook canônico da certificadora, diagramado com tipografia e
 
 ## 🎬 Videoaulas Gravadas
 
-A pasta [`aulas/`](./aulas/) armazena arquivos de vídeo locais produzidos pela equipe do projeto:
+A pasta [`aulas/`](./aulas/) armazena os arquivos de vídeo locais produzidos pela equipe do projeto. O portal web REA detecta automaticamente a presença de cada vídeo via JavaScript dinâmico:
 
-- 🎥 **Aula 1 (`aulas/Aula1.mp4`):** Videoaula sobre Introdução a Algoritmos, Variáveis e Primeiros Passos em C, integrada ao player do portal web.
+| Aula / Fase | Arquivo Esperado | Status no Player |
+|---|---|---|
+| **Aula 1: Primeiros Passos em C** | `aulas/Aula1.mp4` | 🟢 Disponível |
+| **Aula 2: Tomada de Decisão** | `aulas/Aula2.mp4` | 🟡 Em Construção (detecta automaticamente ao adicionar) |
+| **Aula 3: Laços de Repetição** | `aulas/Aula3.mp4` | 🟡 Em Construção (detecta automaticamente ao adicionar) |
+| **Aula 4: Funções & Modularização** | `aulas/Aula4.mp4` | 🟡 Em Construção (detecta automaticamente ao adicionar) |
+| **Aula 5: Vetores & Matrizes** | `aulas/Aula5.mp4` | 🟡 Em Construção (detecta automaticamente ao adicionar) |
+| **Aula 6: Structs & Registros** | `aulas/Aula6.mp4` | 🟡 Em Construção (detecta automaticamente ao adicionar) |
+
+> **💡 Como Adicionar Novas Aulas:** Basta salvar o arquivo de vídeo em formato `.mp4` na pasta `Conteúdo-Teórico/aulas/` com o nome correspondente (ex: `Aula2.mp4`, `Aula3.mp4`, etc.). O site reconhece o arquivo imediatamente, libera a reprodução na tela e altera o status para *▶ Assistir Aula*. Enquanto o arquivo não estiver presente, o portal exibirá a mensagem de *Em Construção* e manterá os botões de apostila teórica e exercícios 100% acessíveis.
 
 ---
 
