@@ -1,6 +1,16 @@
 #include <stdio.h>
 
-#define TAM_TEXTO 50
+#define MAX_CADASTROS 50
+
+typedef struct {
+    char nome[100];
+    int idade;
+    char cidadeNascimento[50];
+    char rua[50];
+    char bairro[50];
+    int numeroCasa;
+    char cep[10];
+} Pessoa;
 
 int lerIdade(void) {
     int idade;
@@ -16,48 +26,6 @@ int lerIdade(void) {
     return idade;
 }
 
-void cadastrarPessoa(int numeroCadastro) {
-    char nome[TAM_TEXTO];
-    char cidadeNascimento[TAM_TEXTO];
-    char rua[TAM_TEXTO];
-    char bairro[TAM_TEXTO];
-    char cep[10];
-    int idade;
-    int numeroCasa;
-
-    printf("--- CADASTRO %d ---\n", numeroCadastro);
-
-    printf("Nome: ");
-    scanf("%49s", nome);
-
-    idade = lerIdade();
-
-    printf("Cidade de nascimento: ");
-    scanf("%49s", cidadeNascimento);
-
-    printf("Rua: ");
-    scanf("%49s", rua);
-
-    printf("Bairro: ");
-    scanf("%49s", bairro);
-
-    printf("Numero da casa: ");
-    scanf("%d", &numeroCasa);
-
-    printf("CEP: ");
-    scanf("%9s", cep);
-
-    printf("\nCadastro realizado com sucesso!\n");
-    printf("\n--- DADOS CADASTRADOS ---\n");
-    printf("Nome: %s\n", nome);
-    printf("Idade: %d\n", idade);
-    printf("Cidade de nascimento: %s\n", cidadeNascimento);
-    printf("Rua: %s\n", rua);
-    printf("Bairro: %s\n", bairro);
-    printf("Numero: %d\n", numeroCasa);
-    printf("CEP: %s\n", cep);
-}
-
 char perguntarSeRepete(void) {
     char resposta;
 
@@ -67,18 +35,80 @@ char perguntarSeRepete(void) {
     return resposta;
 }
 
+void cadastrarPessoa(Pessoa pessoas[], int i) {
+    printf("\n--- CADASTRO %d ---\n", i + 1);
+
+    printf("Nome: ");
+    scanf(" %99[^\n]", pessoas[i].nome);
+
+    pessoas[i].idade = lerIdade();
+
+    printf("Cidade de nascimento: ");
+    scanf(" %49[^\n]", pessoas[i].cidadeNascimento);
+
+    printf("Rua: ");
+    scanf(" %49[^\n]", pessoas[i].rua);
+
+    printf("Bairro: ");
+    scanf(" %49[^\n]", pessoas[i].bairro);
+
+    printf("Numero da casa: ");
+    scanf("%d", &pessoas[i].numeroCasa);
+
+    printf("CEP: ");
+    scanf("%9s", pessoas[i].cep);
+
+    printf("\nCadastro realizado com sucesso!\n");
+}
+
+void listarPessoas(Pessoa pessoas[], int total) {
+    int i;
+    int somaIdades = 0;
+
+    printf("\n========================================\n");
+    printf("        DADOS DE TODAS AS PESSOAS       \n");
+    printf("========================================\n");
+
+    for (i = 0; i < total; i++) {
+        printf("\n--- Pessoa %d ---\n", i + 1);
+        printf("Nome: %s\n", pessoas[i].nome);
+        printf("Idade: %d\n", pessoas[i].idade);
+        printf("Cidade de nascimento: %s\n", pessoas[i].cidadeNascimento);
+        printf("Rua: %s\n", pessoas[i].rua);
+        printf("Bairro: %s\n", pessoas[i].bairro);
+        printf("Numero: %d\n", pessoas[i].numeroCasa);
+        printf("CEP: %s\n", pessoas[i].cep);
+
+        somaIdades += pessoas[i].idade;
+    }
+
+    printf("\n----------------------------------------\n");
+    printf("Total de pessoas cadastradas: %d\n", total);
+    if (total > 0) {
+        printf("Media de idade: %.1f anos\n", (float)somaIdades / total);
+    }
+}
+
 int main(void) {
+    Pessoa pessoas[MAX_CADASTROS];
     int totalCadastros = 0;
     char repetir;
 
     do {
+        if (totalCadastros >= MAX_CADASTROS) {
+            printf("\nLimite maximo de cadastros atingido (%d pessoas)!\n", MAX_CADASTROS);
+            break;
+        }
+
+        cadastrarPessoa(pessoas, totalCadastros);
         totalCadastros++;
-        cadastrarPessoa(totalCadastros);
+
         repetir = perguntarSeRepete();
     } while (repetir == 's' || repetir == 'S');
 
-    printf("\nTotal de pessoas cadastradas: %d\n", totalCadastros);
-    printf("Programa encerrado.\n");
+    listarPessoas(pessoas, totalCadastros);
+
+    printf("\nPrograma encerrado.\n");
 
     return 0;
 }

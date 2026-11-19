@@ -20,6 +20,7 @@ A cada nova fase da disciplina, o código foi refatorado e expandido:
 1. **Fases 1 e 2:** Cadastro sequencial de dados primitivos, leitura com `scanf`, máscaras de exibição e primeiras validações com `if/else`.
 2. **Fase 3:** Introdução de repetição contínua (`do-while`) para permitir múltiplos cadastros e validação de idade com laço `while`.
 3. **Fase 4:** Refatoração modular completa, separando responsabilidades em procedimentos (`cadastrarPessoa`) e funções com retorno (`lerIdade`, `perguntarSeRepete`).
+4. **Fases 5 e 6 (Finalização):** Introdução de **`struct Pessoa`** com **vetor de estruturas** (`Pessoa pessoas[MAX_CADASTROS]`). Elimina a necessidade de múltiplos vetores paralelos com colchetes duplos, armazenando todos os dados na memória para listagem completa e cálculo da média de idade ao final com um laço `for`.
 
 ---
 
