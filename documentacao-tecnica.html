@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentação técnica do projeto educacional Try, Catch & Learn.">
+  <title>Documentação Técnica | Try, Catch & Learn</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --surface: #ffffff;
+      --text: #202638;
+      --muted: #657087;
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --border: #e2e7f0;
+      --code-bg: #171c2b;
+      --code-text: #e6eaf5;
+      --accent-bg: #eef2ff;
+      --shadow: 0 12px 35px rgba(30, 41, 59, .07);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .hero {
+      padding: 64px 24px 54px;
+      color: #fff;
+      background: linear-gradient(135deg, #24245c, #4f46e5 65%, #766cf5);
+    }
+    .hero-inner, .layout {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #d9dcff;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 800px;
+      margin: 0;
+      font-size: clamp(2.1rem, 5vw, 3.6rem);
+      line-height: 1.12;
+      letter-spacing: -.04em;
+    }
+    .hero p {
+      max-width: 760px;
+      margin: 20px 0 0;
+      color: #e8e9ff;
+      font-size: 1.08rem;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 28px;
+      color: #e1e3ff;
+      font-size: .92rem;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+      padding: 36px 0 64px;
+    }
+    aside {
+      position: sticky;
+      top: 20px;
+      padding: 22px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    aside h2 {
+      margin: 0 0 12px;
+      font-size: .92rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    aside ol { margin: 0; padding-left: 20px; }
+    aside li { margin: 7px 0; font-size: .9rem; }
+    aside a { color: #39415a; }
+    main {
+      min-width: 0;
+      padding: clamp(22px, 4vw, 46px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    section { margin: 0 0 42px; }
+    section:last-child { margin-bottom: 0; }
+    h2 {
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 1.55rem;
+      line-height: 1.3;
+    }
+    h3 {
+      margin: 26px 0 10px;
+      color: #303a55;
+      font-size: 1.12rem;
+    }
+    p { margin: 0 0 14px; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 6px 0; }
+    .intro-card {
+      margin: 22px 0;
+      padding: 18px 20px;
+      background: var(--accent-bg);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+    }
+    .table-wrap { overflow-x: auto; margin: 18px 0 22px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .94rem;
+    }
+    th, td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f0f2fa; color: #303a55; }
+    tr:nth-child(even) td { background: #fbfcff; }
+    pre {
+      overflow-x: auto;
+      margin: 16px 0 22px;
+      padding: 20px;
+      color: var(--code-text);
+      background: var(--code-bg);
+      border-radius: 12px;
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+    code {
+      font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+    }
+    p code, li code, td code {
+      padding: 2px 5px;
+      background: #eef0f7;
+      border-radius: 5px;
+      color: #353b55;
+      font-size: .9em;
+    }
+    .link-card {
+      display: block;
+      margin: 10px 0;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow-wrap: anywhere;
+    }
+    footer {
+      padding: 26px 20px 38px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .88rem;
+    }
+    .top-link { display: inline-block; margin-top: 16px; font-size: .9rem; }
+    @media (max-width: 820px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; }
+      aside ol { columns: 2; }
+    }
+    @media (max-width: 520px) {
+      .hero { padding: 46px 20px 40px; }
+      .hero-inner, .layout { width: min(100% - 28px, 1120px); }
+      .layout { padding-top: 18px; }
+      main { padding: 22px 18px; }
+      aside ol { columns: 1; }
+      th, td { padding: 9px 10px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .hero { padding: 28px; background: #fff; color: #111; border-bottom: 2px solid #333; }
+      .eyebrow, .hero p, .meta { color: #333; }
+      .layout { display: block; width: 100%; padding: 0; }
+      aside { display: none; }
+      main { border: 0; box-shadow: none; padding: 20px 0; }
+      a { color: #111; text-decoration: underline; }
+      pre { white-space: pre-wrap; }
+      section { break-inside: avoid; }
+      footer { padding: 10px; }
+    }
+  </style>
+</head>
+<body id="top">
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Try, Catch &amp; Learn</p>
+      <h1>Documentação Técnica</h1>
+      <p>Recursos Educacionais Abertos para o ensino dos Fundamentos da Programação em C.</p>
+      <div class="meta">
+        <span><strong>Instituição:</strong> Universidade Tecnológica Federal do Paraná — Campus Cornélio Procópio</span>
+        <span><strong>Disciplina:</strong> Certificadora de Competência Comum</span>
+        <span><strong>Ano:</strong> 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside aria-label="Sumário da documentação">
+      <h2>Sumário</h2>
+      <ol>
+        <li><a href="#introducao">Introdução</a></li>
+        <li><a href="#objetivos">Objetivos do sistema</a></li>
+        <li><a href="#visao-geral">Visão geral da solução</a></li>
+        <li><a href="#tecnologias">Tecnologias e ferramentas</a></li>
+        <li><a href="#arquitetura">Arquitetura e organização</a></li>
+        <li><a href="#plataforma">Plataforma web</a></li>
+        <li><a href="#conteudos">Conteúdos educacionais</a></li>
+        <li><a href="#projeto-c">Projeto Integrado em C</a></li>
+        <li><a href="#publicacao">Publicação e hospedagem</a></li>
+        <li><a href="#testes">Testes e validação</a></li>
+        <li><a href="#manutencao">Manutenção e evolução</a></li>
+        <li><a href="#licenca">Licença e disponibilização</a></li>
+        <li><a href="#referencias">Referências e acessos</a></li>
+      </ol>
+    </aside>
+
+    <main>
+      <section id="introducao">
+        <h2>1. Introdução</h2>
+        <p>O projeto Try, Catch &amp; Learn consiste no desenvolvimento de Recursos Educacionais Abertos (REA) voltados ao ensino dos fundamentos da programação na linguagem C. A proposta é disponibilizar materiais didáticos acessíveis, organizados e gratuitos, destinados principalmente a estudantes iniciantes e ao público externo à universidade.</p>
+        <p>Para isso, foi desenvolvida uma plataforma web que reúne conteúdos teóricos, apresentações, exercícios, resoluções comentadas, videoaulas e um projeto integrado em C. Os materiais foram organizados em seis fases de aprendizagem, permitindo que os estudantes avancem gradualmente pelos principais conceitos da programação.</p>
+        <p>Esta documentação apresenta os aspectos técnicos do projeto, incluindo suas tecnologias, organização do repositório, estrutura da aplicação web, funcionamento dos recursos e orientações para execução e manutenção.</p>
+      </section>
+
+      <section id="objetivos">
+        <h2>2. Objetivos do sistema</h2>
+        <p>O objetivo principal é disponibilizar uma plataforma de apoio ao aprendizado de Fundamentos da Programação em C, centralizando os recursos educacionais produzidos durante o projeto.</p>
+        <p>Entre os objetivos específicos estão:</p>
+        <ul>
+          <li>Organizar os conteúdos em uma sequência progressiva de aprendizagem.</li>
+          <li>Disponibilizar materiais teóricos e apresentações das seis fases do curso.</li>
+          <li>Reunir exercícios práticos e seus respectivos gabaritos em C.</li>
+          <li>Disponibilizar videoaulas e materiais complementares.</li>
+          <li>Apresentar um projeto integrado que demonstre a aplicação dos conceitos estudados.</li>
+          <li>Permitir o acesso público aos recursos por meio do GitHub Pages.</li>
+        </ul>
+      </section>
+
+      <section id="visao-geral">
+        <h2>3. Visão geral da solução</h2>
+        <p>A solução é composta por dois elementos principais:</p>
+        <h3>3.1. Plataforma web</h3>
+        <p>O portal Try, Catch &amp; Learn funciona como ponto central de acesso aos materiais. Ele apresenta a proposta do projeto, a trilha de aprendizagem, os materiais disponíveis, informações sobre a equipe e a área de videoaulas.</p>
+        <p>A aplicação foi desenvolvida utilizando HTML, CSS e JavaScript, sem depender de um servidor de aplicação próprio para disponibilizar suas páginas estáticas.</p>
+        <h3>3.2. Repositório educacional</h3>
+        <p>O repositório GitHub armazena os arquivos que compõem o projeto, incluindo os códigos-fonte da plataforma, documentos em PDF, apresentações, exercícios resolvidos, videoaulas e o Projeto Integrado em C.</p>
+        <p>Essa organização permite que os materiais sejam consultados individualmente ou por meio da plataforma web.</p>
+      </section>
+
+      <section id="tecnologias">
+        <h2>4. Tecnologias e ferramentas utilizadas</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tecnologia ou ferramenta</th><th>Finalidade</th></tr></thead>
+            <tbody>
+              <tr><td>C</td><td>Desenvolvimento dos exemplos, exercícios e Projeto Integrado.</td></tr>
+              <tr><td>HTML5</td><td>Estruturação das páginas da plataforma.</td></tr>
+              <tr><td>CSS3</td><td>Estilização, organização visual e responsividade do site.</td></tr>
+              <tr><td>JavaScript</td><td>Implementação dos comportamentos e recursos interativos da plataforma.</td></tr>
+              <tr><td>Git e GitHub</td><td>Versionamento, armazenamento e colaboração no projeto.</td></tr>
+              <tr><td>GitHub Pages</td><td>Hospedagem e publicação da plataforma web.</td></tr>
+              <tr><td>GCC</td><td>Compilação dos programas desenvolvidos em C.</td></tr>
+              <tr><td>Online GDB</td><td>Execução e demonstração de códigos C em ambiente online.</td></tr>
+              <tr><td>Canva</td><td>Elaboração de apresentações e materiais visuais.</td></tr>
+              <tr><td>Trello</td><td>Organização e acompanhamento das atividades da equipe.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="arquitetura">
+        <h2>5. Arquitetura e organização do projeto</h2>
+        <p>O projeto possui uma estrutura baseada em arquivos estáticos para a plataforma web e diretórios específicos para os materiais educacionais e códigos em C.</p>
+        <h3>5.1. Estrutura do repositório</h3>
+        <pre><code>Certificadora-Comum/
+│
+├── Conteúdo-Teórico/
+│   ├── README.md
+│   ├── arquivos PDF
+│   └── aulas/
+│
+├── Gabarito-Exercícios/
+│   ├── README.md
+│   ├── Fase1-Primeiros-Passos/
+│   ├── Fase2-Decisoes/
+│   ├── Fase3-Lacos-de-Repeticao/
+│   ├── Fase4-Modularizacao/
+│   ├── Fase5-Vetores-e-Matrizes/
+│   ├── Fase6-Struct/
+│   ├── Desafios/
+│   └── Extras/
+│
+├── Projeto-Integrado/
+│   ├── README.md
+│   └── main.c
+│
+├── Slides/
+│   ├── README.md
+│   └── Exercicios-Resolvidos/
+│
+├── assets/
+│   └── img/
+│
+├── css/
+├── js/
+├── aulas/
+├── index.html
+├── ebook.html
+├── README.md
+└── LICENSE</code></pre>
+        <h3>5.2. Descrição dos diretórios</h3>
+        <p><strong>Conteúdo-Teórico:</strong> reúne o e-book, os materiais teóricos referentes às fases do curso e os recursos complementares utilizados durante o aprendizado.</p>
+        <p><strong>Gabarito-Exercícios:</strong> armazena as resoluções dos exercícios propostos, organizadas de acordo com as seis fases. Também contém desafios integradores e exemplos extras.</p>
+        <p><strong>Slides:</strong> contém as apresentações utilizadas nas aulas e os códigos em C correspondentes aos exercícios demonstrados nos slides.</p>
+        <p><strong>Projeto-Integrado:</strong> reúne a aplicação desenvolvida em C para demonstrar, de maneira prática, a utilização dos conceitos estudados ao longo das fases.</p>
+        <p><strong>assets:</strong> armazena os recursos visuais utilizados pela plataforma, como imagens e elementos gráficos.</p>
+        <p><strong>css:</strong> contém os arquivos responsáveis pela apresentação visual e pelas animações da plataforma.</p>
+        <p><strong>js:</strong> contém os scripts responsáveis pelos comportamentos e recursos interativos do site.</p>
+        <p><strong>aulas:</strong> diretório destinado aos arquivos de videoaulas.</p>
+      </section>
+
+      <section id="plataforma">
+        <h2>6. Desenvolvimento da plataforma web</h2>
+        <h3>6.1. Página principal</h3>
+        <p>O arquivo <code>index.html</code> representa a página principal da plataforma. Ele organiza as seções de apresentação do projeto, trilha de aprendizagem, materiais educacionais, equipe e videoaulas.</p>
+        <p>A navegação é estruturada por links internos que direcionam o usuário às diferentes seções da página. Também existe uma navegação específica para dispositivos móveis.</p>
+        <h3>6.2. Estilização</h3>
+        <p>Os arquivos CSS são responsáveis pela identidade visual da plataforma, incluindo cores, tipografia, espaçamentos, organização dos elementos, adaptação a diferentes tamanhos de tela e animações.</p>
+        <p>O arquivo <code>css/styles.css</code> concentra os estilos principais, enquanto <code>css/animations.css</code> reúne os efeitos de animação.</p>
+        <h3>6.3. Interatividade</h3>
+        <p>O arquivo <code>js/main.js</code> é incluído na página principal e concentra a lógica JavaScript utilizada pela plataforma.</p>
+        <p>Entre os recursos presentes na interface estão a navegação móvel e a área de videoaulas, que permite selecionar uma aula, abrir o player e acessar materiais teóricos e exercícios relacionados.</p>
+        <h3>6.4. E-book</h3>
+        <p>O arquivo <code>ebook.html</code> contém a estrutura da versão online do e-book de Fundamentos da Programação em C. O documento utiliza HTML e CSS para organizar o conteúdo em formato adequado à leitura e à apresentação em páginas.</p>
+      </section>
+
+      <section id="conteudos">
+        <h2>7. Organização dos conteúdos educacionais</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Fase</th><th>Conteúdo</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Primeiros Passos em C: constantes, variáveis, expressões e entrada e saída de dados.</td></tr>
+              <tr><td>2</td><td>O Programa Aprende a Decidir: estruturas <code>if</code>, <code>else</code> e <code>switch</code>.</td></tr>
+              <tr><td>3</td><td>Repita Comigo: Laços de Repetição: estruturas <code>for</code>, <code>while</code> e <code>do-while</code>.</td></tr>
+              <tr><td>4</td><td>Dividir para Programar: Modularização: procedimentos e funções.</td></tr>
+              <tr><td>5</td><td>Muitos Dados, Uma Só Caixa: Vetores e Matrizes.</td></tr>
+              <tr><td>6</td><td>Boss Final: A Ficha Completa: estruturas heterogêneas com <code>struct</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cada fase possui materiais de apoio e atividades práticas, permitindo que os conceitos sejam estudados e aplicados progressivamente.</p>
+      </section>
+
+      <section id="projeto-c">
+        <h2>8. Projeto Integrado em C</h2>
+        <p>O Projeto Integrado tem como finalidade demonstrar a aplicação prática dos conceitos apresentados durante o curso.</p>
+        <p>A aplicação consiste em um sistema de cadastro de pessoas, desenvolvido em linguagem C. Sua evolução acompanha os conteúdos estudados, incorporando estruturas de decisão, repetição, modularização e variáveis compostas.</p>
+        <p>O código-fonte principal está localizado em <code>Projeto-Integrado/main.c</code>, acompanhado de um arquivo README com informações específicas sobre a aplicação.</p>
+        <h3>8.1. Compilação e execução</h3>
+        <p>Para compilar e executar o projeto, é necessário possuir um compilador C compatível, como o GCC. Após clonar o repositório, podem ser utilizados os seguintes comandos:</p>
+        <pre><code>gcc -Wall -Wextra Projeto-Integrado/main.c -o projeto_integrado</code></pre>
+        <p>Para executar no Linux ou macOS:</p>
+        <pre><code>./projeto_integrado</code></pre>
+        <p>No Windows, utilizando um ambiente com GCC configurado:</p>
+        <pre><code>projeto_integrado.exe</code></pre>
+        <p>Os exercícios individuais também podem ser compilados separadamente, utilizando seus respectivos caminhos dentro do repositório.</p>
+      </section>
+
+      <section id="publicacao">
+        <h2>9. Publicação e hospedagem</h2>
+        <p>A plataforma web é disponibilizada por meio do GitHub Pages, serviço de hospedagem integrado ao GitHub que permite publicar páginas estáticas diretamente a partir de um repositório.</p>
+        <p>O endereço público da plataforma é:</p>
+        <div class="link-card"><a href="https://renancaceres.github.io/Certificadora-Comum/" target="_blank" rel="noopener noreferrer">https://renancaceres.github.io/Certificadora-Comum/</a></div>
+        <p>Para atualizar a publicação, os arquivos modificados devem ser enviados ao repositório remoto. A atualização do site ocorre conforme a configuração de publicação do GitHub Pages.</p>
+      </section>
+
+      <section id="testes">
+        <h2>10. Testes e validação</h2>
+        <p>A validação do projeto deve considerar tanto a plataforma web quanto os materiais e programas disponibilizados.</p>
+        <p>Os principais pontos de verificação são:</p>
+        <ul>
+          <li>Abertura e navegação entre as seções da página.</li>
+          <li>Funcionamento dos links para os materiais e arquivos PDF.</li>
+          <li>Acesso aos diretórios e arquivos do repositório.</li>
+          <li>Reprodução das videoaulas disponibilizadas.</li>
+          <li>Funcionamento da navegação em diferentes tamanhos de tela.</li>
+          <li>Compilação e execução dos exercícios em C.</li>
+          <li>Compilação e execução do Projeto Integrado.</li>
+          <li>Verificação dos caminhos dos arquivos utilizados pela plataforma.</li>
+        </ul>
+        <div class="intro-card">Os resultados dos testes devem ser registrados após a execução das verificações, indicando eventuais problemas encontrados e as correções realizadas.</div>
+      </section>
+
+      <section id="manutencao">
+        <h2>11. Manutenção e evolução</h2>
+        <p>A manutenção do projeto deve preservar a organização dos diretórios e a correspondência entre os materiais educacionais e as referências disponibilizadas na plataforma.</p>
+        <p>Para adicionar ou atualizar conteúdos, recomenda-se:</p>
+        <ol>
+          <li>Inserir os arquivos no diretório correspondente à sua finalidade.</li>
+          <li>Manter a organização dos materiais por fase.</li>
+          <li>Atualizar os links no HTML quando novos arquivos forem disponibilizados.</li>
+          <li>Verificar os caminhos dos arquivos após qualquer alteração na estrutura.</li>
+          <li>Testar a navegação e os recursos interativos.</li>
+          <li>Enviar as alterações ao GitHub e verificar a publicação no GitHub Pages.</li>
+        </ol>
+        <p>A estrutura modular dos arquivos permite que os materiais e recursos sejam atualizados sem a necessidade de reconstruir toda a plataforma.</p>
+      </section>
+
+      <section id="licenca">
+        <h2>12. Licença e disponibilização</h2>
+        <p>O projeto é disponibilizado sob a licença MIT, conforme o arquivo <code>LICENSE</code> presente no repositório.</p>
+        <p>A licença permite o uso, a cópia, a modificação e a redistribuição dos materiais, respeitando as condições estabelecidas no texto da licença.</p>
+      </section>
+
+      <section id="referencias">
+        <h2>13. Referências e acessos</h2>
+        <div class="link-card"><strong>Repositório GitHub</strong><br><a href="https://github.com/RenanCaceres/Certificadora-Comum" target="_blank" rel="noopener noreferrer">https://github.com/RenanCaceres/Certificadora-Comum</a></div>
+        <div class="link-card"><strong>Plataforma publicada</strong><br><a href="https://renancaceres.github.io/Certificadora-Comum/" target="_blank" rel="noopener noreferrer">https://renancaceres.github.io/Certificadora-Comum/</a></div>
+        <p><strong>Instituição:</strong> Universidade Tecnológica Federal do Paraná — Campus Cornélio Procópio.</p>
+        <p><strong>Grupo responsável:</strong> Try, Catch &amp; Learn.</p>
+      </section>
+      <a class="top-link" href="#top">↑ Voltar ao início</a>
+    </main>
+  </div>
+
+  <footer>
+    Try, Catch &amp; Learn · Certificadora de Competência Comum · 2026
+  </footer>
+</body>
+</html>
