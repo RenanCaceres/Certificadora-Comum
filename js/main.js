@@ -246,9 +246,9 @@
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase2-Decisoes'
       },
       '3': {
-        tag: 'Aula 3 • Em Construção',
+        tag: 'Aula 3 • Disponível',
         title: 'Fase 3: Repita Comigo — Laços de Repetição (for, while, do-while)',
-        duration: 'Em Construção',
+        duration: '12:26 min',
         theoryTitle: 'Material Teórico Oficial — Fase 3 (Laços de Repetição)',
         theoryUrl: 'Conte%C3%BAdo-Te%C3%B3rico/Fase%203%20-%20Repita%20Comigo%20La%C3%A7os%20de%20Repeti%C3%A7%C3%A3o.pdf',
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase3-Lacos-de-Repeticao'
@@ -262,9 +262,9 @@
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase4-Modularizacao'
       },
       '5': {
-        tag: 'Aula 5 • Em Construção',
+        tag: 'Aula 5 • Disponível',
         title: 'Fase 5: Muitos Dados, Uma Só Caixa — Vetores e Matrizes',
-        duration: 'Em Construção',
+        duration: '12:19 min',
         theoryTitle: 'Material Teórico Oficial — Fase 5 (Vetores e Matrizes)',
         theoryUrl: 'Slides/Fase%205%20-%20Muitos%20dados,%20uma%20s%C3%B3%20caixa%20vetores%20e%20matrizes.pdf',
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase5-Vetores-e-Matrizes'
