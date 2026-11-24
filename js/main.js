@@ -213,6 +213,7 @@
     const lessonTag = document.getElementById('playerLessonTag');
     const lessonTitle = document.getElementById('playerLessonTitle');
     const durationBadge = document.getElementById('playerDurationBadge');
+    const watchBadge = document.getElementById('playerWatchBadge');
     const theoryBarTitle = document.getElementById('theoryBarTitle');
     const btnTheoryLink = document.getElementById('btnTheoryLink');
     const btnExercisesLink = document.getElementById('btnExercisesLink');
@@ -222,11 +223,99 @@
     const recordingNoticeDesc = document.getElementById('recordingNoticeDesc');
 
     const lessonCards = document.querySelectorAll('.upcoming-card[data-lesson]');
+    const T = window.TCLCert || null;
 
     let currentLessonId = '1';
     let currentVideoSources = [];
     let currentSrcIndex = 0;
     const videoAvailabilityCache = {};
+
+    // Controle rigoroso de tempo assistido (anti-skip para certificação)
+    let maxWatchedTime = 0;
+    let lastValidTime = 0;
+    let lastWallMs = performance.now();
+    let lastSavedMs = 0;
+    let lastSkipToastMs = 0;
+    let isRevertingSeek = false;
+    let pendingResumeLessonId = null;
+
+    function isLessonDone(lessonId) {
+      return Boolean(T && T.isLessonCompleted(lessonId));
+    }
+
+    function updateWatchBadgeUI(lessonId, curMaxTime, duration) {
+      if (!watchBadge) return;
+      if (isLessonDone(lessonId)) {
+        watchBadge.textContent = '✓ Aula Concluída (100%)';
+        watchBadge.classList.add('is-done');
+        return;
+      }
+      watchBadge.classList.remove('is-done');
+      if (duration && isFinite(duration) && duration > 0) {
+        const pct = Math.min(99, Math.floor((Math.max(0, curMaxTime) / duration) * 100));
+        watchBadge.textContent = `🔒 ${pct}% assistido`;
+      } else {
+        watchBadge.textContent = '🔒 Modo Certificação';
+      }
+    }
+
+    function showSkipBlockedToast() {
+      const now = performance.now();
+      if (now - lastSkipToastMs > 3000) {
+        lastSkipToastMs = now;
+        window.showToast &&
+          window.showToast(
+            'Não é permitido pular partes ainda não assistidas. Assista até o final para liberar o certificado.',
+            'error',
+            3600
+          );
+      }
+    }
+
+    function persistCurrentWatchProgress() {
+      if (!T || !currentLessonId) return;
+      if (video.getAttribute('data-loaded-lesson') !== currentLessonId) return;
+      if (!isLessonDone(currentLessonId) && maxWatchedTime > 0) {
+        T.updateLessonWatchTime(currentLessonId, maxWatchedTime, video.duration || 0);
+      }
+    }
+
+    function completeCurrentLesson() {
+      if (!T || !currentLessonId) return;
+      if (isLessonDone(currentLessonId)) return;
+
+      const result = T.markLessonCompleted(currentLessonId, video.duration || maxWatchedTime);
+      updateWatchBadgeUI(currentLessonId, video.duration || maxWatchedTime, video.duration || maxWatchedTime);
+      updateCardStatus(currentLessonId, true);
+
+      if (window.refreshCertificateHubUI) {
+        window.refreshCertificateHubUI();
+      }
+
+      if (result && result.justCompletedCourse) {
+        window.showToast &&
+          window.showToast(
+            '🎉 Parabéns! Você concluiu todas as aulas! Seu certificado de 10 horas foi liberado logo abaixo!',
+            'success',
+            6000
+          );
+        const certSec = document.getElementById('certificado');
+        if (certSec) {
+          setTimeout(() => {
+            certSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 900);
+        }
+      } else {
+        const label = currentLessonId === '7' ? 'Projeto Integrado concluído!' : `Aula ${currentLessonId} concluída!`;
+        const summary = T.getCompletionSummary();
+        window.showToast &&
+          window.showToast(
+            `${label} Progresso para certificado: ${summary.completedCount}/${summary.totalCount} aulas.`,
+            'success',
+            4200
+          );
+      }
+    }
 
     const lessonsData = {
       '1': {
@@ -367,11 +456,14 @@
       return videoAvailabilityCache[lessonId];
     }
 
-    // Atualiza visualmente o card da aula na grade
+    // Atualiza visualmente o card da aula na grade (incluindo status de conclusão)
     function updateCardStatus(id, exists) {
       const card = document.querySelector(`.upcoming-card[data-lesson="${id}"]`);
       if (!card) return;
       const badge = card.querySelector('.badge-status');
+      const done = isLessonDone(id);
+
+      card.classList.toggle('is-completed', Boolean(exists && done));
 
       if (exists) {
         card.classList.add('active-playable');
@@ -379,8 +471,14 @@
         const titleStr = id === '7' ? 'Clique para abrir o player do Projeto Integrado' : `Clique para abrir o player da Aula ${id}`;
         card.setAttribute('title', titleStr);
         if (badge) {
-          badge.className = 'badge-status ready';
-          if (!card.classList.contains('is-playing')) {
+          if (card.classList.contains('is-playing')) {
+            badge.className = 'badge-status ready';
+            badge.textContent = '▶ Reproduzindo';
+          } else if (done) {
+            badge.className = 'badge-status completed';
+            badge.textContent = '✓ Concluída';
+          } else {
+            badge.className = 'badge-status ready';
             badge.textContent = '▶ Assistir Aula';
           }
         }
@@ -406,7 +504,7 @@
       }
     });
 
-    // Detecta duração real da mídia quando disponível
+    // Detecta duração real da mídia e retoma de onde o aluno parou (se aplicável)
     video.addEventListener('loadedmetadata', () => {
       if (video.duration && isFinite(video.duration) && video.duration > 0) {
         const mins = Math.floor(video.duration / 60);
@@ -415,10 +513,92 @@
         if (durationBadge && playerFrame.style.display !== 'none') {
           durationBadge.textContent = formatted;
         }
+
+        if (pendingResumeLessonId === currentLessonId && !isLessonDone(currentLessonId)) {
+          pendingResumeLessonId = null;
+          if (maxWatchedTime > 3 && maxWatchedTime < video.duration - 4) {
+            isRevertingSeek = true;
+            video.currentTime = maxWatchedTime;
+            lastValidTime = maxWatchedTime;
+            lastWallMs = performance.now();
+            setTimeout(() => { isRevertingSeek = false; }, 150);
+          }
+        }
+
+        updateWatchBadgeUI(currentLessonId, maxWatchedTime, video.duration);
+      }
+    });
+
+    // Bloqueia velocidade abusiva (>2x) enquanto aula não estiver concluída
+    video.addEventListener('ratechange', () => {
+      if (!isLessonDone(currentLessonId) && video.playbackRate > 2) {
+        video.playbackRate = 2;
+        window.showToast && window.showToast('Velocidade máxima permitida para certificação: 2x.', 'info', 2600);
+      }
+    });
+
+    // Bloqueia avanço manual (seek para frente) em trechos ainda não assistidos
+    function enforceNoSkipForward() {
+      if (isRevertingSeek || isLessonDone(currentLessonId)) return;
+      if (video.currentTime > maxWatchedTime + 1.0) {
+        isRevertingSeek = true;
+        video.currentTime = maxWatchedTime;
+        lastValidTime = maxWatchedTime;
+        lastWallMs = performance.now();
+        setTimeout(() => { isRevertingSeek = false; }, 120);
+        showSkipBlockedToast();
+      }
+    }
+
+    video.addEventListener('seeking', enforceNoSkipForward);
+    video.addEventListener('seeked', enforceNoSkipForward);
+
+    // Acompanha avanço legítimo em tempo real (protegido contra saltos via console/timeline)
+    video.addEventListener('timeupdate', () => {
+      if (isRevertingSeek || !video.duration || !isFinite(video.duration) || video.duration <= 0) return;
+
+      if (isLessonDone(currentLessonId)) {
+        updateWatchBadgeUI(currentLessonId, video.duration, video.duration);
+        return;
+      }
+
+      const nowMs = performance.now();
+      const deltaWallSec = Math.max(0, (nowMs - lastWallMs) / 1000);
+      const effectiveRate = Math.min(video.playbackRate || 1, 2);
+      const maxAllowedJump = Math.max(2.5, deltaWallSec * effectiveRate + 1.5);
+
+      if (video.currentTime > maxWatchedTime + maxAllowedJump) {
+        isRevertingSeek = true;
+        video.currentTime = maxWatchedTime;
+        lastValidTime = maxWatchedTime;
+        lastWallMs = nowMs;
+        setTimeout(() => { isRevertingSeek = false; }, 120);
+        showSkipBlockedToast();
+        return;
+      }
+
+      if (!video.paused && !video.seeking) {
+        if (video.currentTime > maxWatchedTime) {
+          maxWatchedTime = video.currentTime;
+        }
+        lastValidTime = video.currentTime;
+        lastWallMs = nowMs;
+        updateWatchBadgeUI(currentLessonId, maxWatchedTime, video.duration);
+
+        if (nowMs - lastSavedMs >= 3000) {
+          lastSavedMs = nowMs;
+          persistCurrentWatchProgress();
+        }
+
+        // Conclui quando chega legitimamente ao final do vídeo
+        if (video.duration > 5 && maxWatchedTime >= video.duration - 1.5) {
+          completeCurrentLesson();
+        }
       }
     });
 
     function startPlayback() {
+      lastWallMs = performance.now();
       const promise = video.play();
       if (promise !== undefined) {
         promise.then(() => {
@@ -428,16 +608,15 @@
           if (currentCard) {
             currentCard.classList.add('is-playing');
             const badge = currentCard.querySelector('.badge-status');
-            if (badge) badge.textContent = '▶ Reproduzindo';
+            if (badge) {
+              badge.className = 'badge-status ready';
+              badge.textContent = '▶ Reproduzindo';
+            }
           }
         }).catch(err => {
           console.warn('Playback error or blocked interaction:', err);
           if (bigPlayBtn) bigPlayBtn.classList.remove('playing');
-          const currentCard = document.querySelector(`.upcoming-card[data-lesson="${currentLessonId}"]`);
-          if (currentCard && drawerWrap && drawerWrap.classList.contains('is-open')) {
-            const badge = currentCard.querySelector('.badge-status');
-            if (badge) badge.textContent = '▶ Assistir Aula';
-          }
+          updateCardStatus(currentLessonId, true);
           video.controls = true;
           window.showToast && window.showToast('Clique no botão de reproduzir para iniciar.', 'info');
         });
@@ -456,7 +635,25 @@
     async function openLessonDrawer(lessonId, autoPlayVideo) {
       const data = lessonsData[lessonId];
       if (!data || !drawerWrap) return;
+
+      // Salva progresso da aula anterior antes de trocar
+      persistCurrentWatchProgress();
+
+      const prevCard = document.querySelector(`.upcoming-card[data-lesson="${currentLessonId}"]`);
+      if (prevCard && currentLessonId !== lessonId) {
+        prevCard.classList.remove('is-playing');
+        const prevAvail = Boolean(videoAvailabilityCache[currentLessonId] && videoAvailabilityCache[currentLessonId].available);
+        updateCardStatus(currentLessonId, prevAvail);
+      }
+
       currentLessonId = lessonId;
+
+      // Carrega marca d'água salva para esta aula
+      const savedProg = T ? T.getLessonProgress(lessonId) : { maxTime: 0, duration: 0, completed: false };
+      maxWatchedTime = savedProg.maxTime || 0;
+      lastValidTime = maxWatchedTime;
+      lastWallMs = performance.now();
+      lastSavedMs = 0;
 
       // Destaca o card selecionado
       lessonCards.forEach(c => {
@@ -501,6 +698,7 @@
         if (playerFrame) playerFrame.style.display = 'block';
         if (playerFooterBar) playerFooterBar.style.display = 'flex';
         if (recordingNotice) recordingNotice.style.display = 'none';
+        if (watchBadge) watchBadge.style.display = 'inline-flex';
 
         // Configura fontes do vídeo para esta aula
         currentVideoSources = getLessonVideoSources(lessonId);
@@ -508,10 +706,13 @@
         if (currentSrcIndex === -1) currentSrcIndex = 0;
 
         if (video.getAttribute('data-loaded-lesson') !== lessonId || !video.src) {
+          pendingResumeLessonId = lessonId;
           video.src = videoCheck.validSrc;
           video.setAttribute('data-loaded-lesson', lessonId);
           video.load();
         }
+
+        updateWatchBadgeUI(lessonId, maxWatchedTime, savedProg.duration || video.duration || 0);
 
         // Atualiza botão de play com o número da aula
         if (bigPlayBtn) {
@@ -545,6 +746,7 @@
         if (playerFrame) playerFrame.style.display = 'none';
         if (playerFooterBar) playerFooterBar.style.display = 'none';
         if (recordingNotice) recordingNotice.style.display = 'block';
+        if (watchBadge) watchBadge.style.display = 'none';
 
         if (recordingNoticeTitle) {
           recordingNoticeTitle.textContent = lessonId === '7' ? 'Projeto Integrado: Videoaula em Construção' : `Aula ${lessonId}: Videoaula em Construção`;
@@ -566,8 +768,14 @@
       }, 80);
     }
 
+    // Expõe abertura de aula para o Hub de Certificação
+    window.openCourseLesson = function (lessonId) {
+      openLessonDrawer(String(lessonId), true);
+    };
+
     function closeLessonDrawer() {
       if (!drawerWrap) return;
+      persistCurrentWatchProgress();
       video.pause();
       drawerWrap.classList.remove('is-open');
       drawerWrap.setAttribute('aria-hidden', 'true');
@@ -576,16 +784,8 @@
         c.setAttribute('aria-expanded', 'false');
         c.classList.remove('is-playing');
         const lessonId = c.getAttribute('data-lesson');
-        const badge = c.querySelector('.badge-status');
-        if (badge) {
-          if (videoAvailabilityCache[lessonId] && videoAvailabilityCache[lessonId].available) {
-            badge.className = 'badge-status ready';
-            badge.textContent = '▶ Assistir Aula';
-          } else {
-            badge.className = 'badge-status recording';
-            badge.textContent = 'Em Construção';
-          }
-        }
+        const exists = Boolean(videoAvailabilityCache[lessonId] && videoAvailabilityCache[lessonId].available);
+        updateCardStatus(lessonId, exists);
       });
     }
 
@@ -593,7 +793,7 @@
       btnClosePlayer.addEventListener('click', closeLessonDrawer);
     }
 
-    // Associa eventos de clique e teclado a todos os 6 cards de aula
+    // Associa eventos de clique e teclado a todos os cards de aula
     lessonCards.forEach(card => {
       const lessonId = card.getAttribute('data-lesson');
       card.addEventListener('click', () => {
@@ -637,17 +837,25 @@
 
     // Eventos do vídeo para sincronizar indicadores visuais
     video.addEventListener('play', () => {
+      lastWallMs = performance.now();
+      if (!isLessonDone(currentLessonId) && video.currentTime > maxWatchedTime + 1.0) {
+        enforceNoSkipForward();
+      }
       if (bigPlayBtn) bigPlayBtn.classList.add('playing');
       if (liveDot) liveDot.classList.add('is-live');
       const currentCard = document.querySelector(`.upcoming-card[data-lesson="${currentLessonId}"]`);
       if (currentCard) {
         currentCard.classList.add('is-playing');
         const badge = currentCard.querySelector('.badge-status');
-        if (badge) badge.textContent = '▶ Reproduzindo';
+        if (badge) {
+          badge.className = 'badge-status ready';
+          badge.textContent = '▶ Reproduzindo';
+        }
       }
     });
 
     video.addEventListener('pause', () => {
+      persistCurrentWatchProgress();
       if (video.currentTime === 0 || video.ended) {
         if (bigPlayBtn) bigPlayBtn.classList.remove('playing');
       }
@@ -657,7 +865,12 @@
         currentCard.classList.remove('is-playing');
         const badge = currentCard.querySelector('.badge-status');
         if (badge && drawerWrap && drawerWrap.classList.contains('is-open')) {
-          badge.textContent = '⏸ Pausado';
+          if (isLessonDone(currentLessonId)) {
+            badge.className = 'badge-status completed';
+            badge.textContent = '✓ Concluída';
+          } else {
+            badge.textContent = '⏸ Pausado';
+          }
         }
       }
     });
@@ -665,15 +878,29 @@
     video.addEventListener('ended', () => {
       if (bigPlayBtn) bigPlayBtn.classList.remove('playing');
       if (liveDot) liveDot.classList.remove('is-live');
-      const currentCard = document.querySelector(`.upcoming-card[data-lesson="${currentLessonId}"]`);
-      if (currentCard) {
-        currentCard.classList.remove('is-playing');
-        const badge = currentCard.querySelector('.badge-status');
-        if (badge) badge.textContent = '✓ Aula Concluída';
+
+      // Valida se o aluno realmente assistiu até o final (não pulou via script)
+      if (!isLessonDone(currentLessonId)) {
+        if (video.duration && isFinite(video.duration) && video.duration > 5 && maxWatchedTime >= video.duration - 3.5) {
+          completeCurrentLesson();
+        } else {
+          isRevertingSeek = true;
+          video.currentTime = maxWatchedTime;
+          setTimeout(() => { isRevertingSeek = false; }, 120);
+          showSkipBlockedToast();
+          return;
+        }
+      } else {
+        const currentCard = document.querySelector(`.upcoming-card[data-lesson="${currentLessonId}"]`);
+        if (currentCard) {
+          currentCard.classList.remove('is-playing');
+          updateCardStatus(currentLessonId, true);
+        }
       }
-      const label = currentLessonId === '7' ? 'Projeto Integrado concluído!' : `Aula ${currentLessonId} concluída!`;
-      window.showToast && window.showToast(`${label} Acesse o conteúdo teórico acima.`, 'success');
     });
+
+    // Salva progresso ao sair/fechar a aba
+    window.addEventListener('beforeunload', persistCurrentWatchProgress);
 
     // Atalho global da barra de espaço
     window.addEventListener('keydown', (e) => {
@@ -689,12 +916,181 @@
 
     // Sondagem inicial em segundo plano de todas as aulas na carga da página
     async function probeAllLessons() {
+      const availableIds = [];
       for (const id of ['1', '2', '3', '4', '5', '6', '7']) {
         const res = await verifyLessonVideo(id);
+        if (res.available) {
+          availableIds.push(id);
+        }
         updateCardStatus(id, res.available);
+      }
+      if (T && availableIds.length > 0) {
+        T.setRequiredLessons(availableIds);
+      }
+      if (window.refreshCertificateHubUI) {
+        window.refreshCertificateHubUI();
       }
     }
     probeAllLessons();
+  }
+
+  // Hub de Progresso e Emissão do Certificado (10 Horas)
+  function setupCertificateHub() {
+    const T = window.TCLCert;
+    if (!T) return;
+
+    const progressPercentEl = document.getElementById('certProgressPercent');
+    const progressCountEl = document.getElementById('certProgressCount');
+    const progressFillEl = document.getElementById('certProgressFill');
+    const progressTrackEl = document.getElementById('certProgressTrack');
+    const checklistEl = document.getElementById('certLessonChecklist');
+    const lockedPanel = document.getElementById('certLockedPanel');
+    const unlockedPanel = document.getElementById('certUnlockedPanel');
+    const frozenDateEl = document.getElementById('homeCertFrozenDate');
+    const btnResumeNext = document.getElementById('btnResumeNextLesson');
+
+    const homeForm = document.getElementById('homeCertForm');
+    const inputName = document.getElementById('homeCertName');
+    const inputCpf = document.getElementById('homeCertCpf');
+    const nameStatus = document.getElementById('homeNameStatus');
+    const cpfStatus = document.getElementById('homeCpfStatus');
+
+    const shortLabels = {
+      '1': 'Aula 1',
+      '2': 'Aula 2',
+      '3': 'Aula 3',
+      '4': 'Aula 4',
+      '5': 'Aula 5',
+      '6': 'Aula 6',
+      '7': 'Projeto Integrado'
+    };
+
+    function refreshUI() {
+      const summary = T.getCompletionSummary();
+
+      if (progressPercentEl) progressPercentEl.textContent = `${summary.percent}%`;
+      if (progressCountEl) progressCountEl.textContent = `${summary.completedCount} de ${summary.totalCount} aulas`;
+      if (progressFillEl) progressFillEl.style.width = `${summary.percent}%`;
+      if (progressTrackEl) progressTrackEl.setAttribute('aria-valuenow', String(summary.percent));
+
+      if (checklistEl) {
+        checklistEl.innerHTML = summary.requiredIds
+          .map(id => {
+            const done = summary.completedIds.includes(id);
+            const label = shortLabels[id] || `Aula ${id}`;
+            return `<button type="button" class="cert-lesson-chip ${done ? 'done' : ''}" data-jump-lesson="${id}" title="${done ? 'Aula concluída! Clique para rever' : 'Clique para assistir esta aula'}">${done ? '✓' : '○'} ${label}</button>`;
+          })
+          .join('');
+
+        checklistEl.querySelectorAll('[data-jump-lesson]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const lid = btn.getAttribute('data-jump-lesson');
+            const sec = document.getElementById('videoaulas');
+            if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (window.openCourseLesson) {
+              setTimeout(() => window.openCourseLesson(lid), 200);
+            }
+          });
+        });
+      }
+
+      if (summary.isCompleted) {
+        if (lockedPanel) lockedPanel.style.display = 'none';
+        if (unlockedPanel) unlockedPanel.style.display = 'block';
+        if (frozenDateEl) {
+          frozenDateEl.textContent = `Conclusão registrada em: ${T.formatDateShort(summary.courseCompletedAt)}`;
+        }
+        const savedStudent = T.getStudentInfo();
+        if (inputName && !inputName.value && savedStudent.name) {
+          inputName.value = savedStudent.name;
+        }
+        if (inputCpf && !inputCpf.value && savedStudent.cpf) {
+          inputCpf.value = savedStudent.cpf;
+        }
+      } else {
+        if (lockedPanel) lockedPanel.style.display = 'flex';
+        if (unlockedPanel) unlockedPanel.style.display = 'none';
+      }
+    }
+
+    window.refreshCertificateHubUI = refreshUI;
+
+    if (btnResumeNext) {
+      btnResumeNext.addEventListener('click', (e) => {
+        const summary = T.getCompletionSummary();
+        if (summary.pendingIds.length > 0 && window.openCourseLesson) {
+          e.preventDefault();
+          const nextId = summary.pendingIds[0];
+          const sec = document.getElementById('videoaulas');
+          if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => window.openCourseLesson(nextId), 200);
+        }
+      });
+    }
+
+    if (inputName) {
+      inputName.addEventListener('input', () => {
+        if (!inputName.value.trim()) {
+          nameStatus.textContent = '';
+          return;
+        }
+        if (T.isValidFullName(inputName.value)) {
+          nameStatus.textContent = '✓ Válido';
+          nameStatus.className = 'cert-field-status ok';
+        } else {
+          nameStatus.textContent = 'Nome e sobrenome';
+          nameStatus.className = 'cert-field-status err';
+        }
+      });
+    }
+
+    if (inputCpf) {
+      inputCpf.addEventListener('input', () => {
+        inputCpf.value = T.formatCPF(inputCpf.value);
+        const digits = T.cleanCPF(inputCpf.value);
+        if (digits.length === 0) {
+          cpfStatus.textContent = '';
+          return;
+        }
+        if (digits.length < 11) {
+          cpfStatus.textContent = `${digits.length}/11`;
+          cpfStatus.className = 'cert-field-status';
+          return;
+        }
+        if (T.isValidCPF(inputCpf.value)) {
+          cpfStatus.textContent = '✓ CPF Válido';
+          cpfStatus.className = 'cert-field-status ok';
+        } else {
+          cpfStatus.textContent = '✕ CPF Inválido';
+          cpfStatus.className = 'cert-field-status err';
+        }
+      });
+    }
+
+    if (homeForm) {
+      homeForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!T.isCourseCompleted()) {
+          window.showToast && window.showToast('Assista a todas as aulas até o final para emitir o certificado.', 'error');
+          refreshUI();
+          return;
+        }
+        if (!T.isValidFullName(inputName.value)) {
+          window.showToast && window.showToast('Informe seu nome e sobrenome completos.', 'error');
+          inputName.focus();
+          return;
+        }
+        if (!T.isValidCPF(inputCpf.value)) {
+          window.showToast && window.showToast('Informe um CPF válido (verifique os dígitos).', 'error');
+          inputCpf.focus();
+          return;
+        }
+        T.saveStudentInfo(inputName.value, inputCpf.value);
+        window.location.href = 'certificado.html';
+      });
+    }
+
+    refreshUI();
   }
 
   // Citation Copy Button
@@ -716,6 +1112,7 @@
     setupNavbar();
     setupSmoothScroll();
     setupCoursePlayer();
+    setupCertificateHub();
     setupCitationCopy();
   }
 

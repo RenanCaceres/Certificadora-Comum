@@ -37,6 +37,8 @@
         <a href="#trilha">Trilha de 6 Fases</a>
         <a href="#materiais">Cadernos &amp; PDFs</a>
         <a href="#equipe">Equipe</a>
+        <a href="#certificado">Certificado</a>
+        <a href="validar.html">Validar</a>
       </nav>
 
       <!-- Action Button -->
@@ -64,7 +66,9 @@
         <a href="#trilha">Trilha de 6 Fases</a>
         <a href="#materiais">Cadernos &amp; PDFs</a>
         <a href="#equipe">Equipe</a>
-        <a href="#videoaulas" class="mobile-btn-pill">Assistir Aulas (6 Videoaulas)</a>
+        <a href="#certificado">Certificado (10h)</a>
+        <a href="validar.html">Validar Certificado</a>
+        <a href="#videoaulas" class="mobile-btn-pill">Assistir Aulas</a>
       </nav>
     </div>
   </div>
@@ -602,6 +606,7 @@
                 <h3 class="player-lesson-title" id="playerLessonTitle">Fase 1: Primeiros Passos em C — Algoritmos, Memória e Variáveis</h3>
               </div>
               <div class="player-meta-badges">
+                <span class="player-badge player-watch-badge" id="playerWatchBadge" title="Assista até o final sem avançar para contabilizar esta aula no certificado">🔒 0% assistido</span>
                 <span class="player-badge" id="playerDurationBadge">14:14 min</span>
                 <span class="player-badge">1080p HD</span>
                 <button type="button" class="player-close-btn" id="btnClosePlayer" title="Fechar player" aria-label="Fechar player">&times; Fechar</button>
@@ -635,7 +640,7 @@
 
             <!-- Video Box (Shown for Aula 1) -->
             <div class="player-frame-box" id="playerFrameBox">
-              <video id="mainCourseVideo" preload="metadata" playsinline controls src="Conteúdo-Teórico/aulas/Aula1.mp4" tabindex="0">
+              <video id="mainCourseVideo" preload="metadata" playsinline controls controlsList="nodownload" src="Conteúdo-Teórico/aulas/Aula1.mp4" tabindex="0">
                 <source src="Conteúdo-Teórico/aulas/Aula1.mp4" type="video/mp4">
                 <source src="Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula1.mp4" type="video/mp4">
                 <source src="aulas/Aula1.mp4" type="video/mp4">
@@ -666,11 +671,9 @@
             <div class="player-footer-bar" id="playerFooterBar">
               <div class="player-status-hint" id="playerStatusHint">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="16" x2="12" y2="12"></line>
-                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
-                <span>Dica: Clique no vídeo ou use <strong>Espaço</strong> para pausar/retomar.</span>
+                <span><strong>Modo Certificação:</strong> Assista até o final sem pular trechos não vistos para contabilizar a aula.</span>
               </div>
               <a href="Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula1.mp4" target="_blank" class="player-direct-file-link" id="playerDirectFileLink" title="Abrir vídeo em arquivo direto ou nova aba">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -687,9 +690,103 @@
       </div>
     </section>
 
+    <!-- 8. PROGRESSO E CERTIFICADO DE CONCLUSÃO (10 HORAS) -->
+    <section class="cert-hub-section" id="certificado">
+      <div class="shell">
+        <div class="section-eyebrow reveal">Certificação Gratuita • 10 Horas</div>
+        <h2 class="section-headline reveal stagger-1">Seu Progresso e Certificado</h2>
+        <p class="section-subhead reveal stagger-2">
+          Assista todas as videoaulas disponíveis até o final para desbloquear seu certificado de conclusão com código verificável por criptografia SHA-256.
+        </p>
+
+        <div class="cert-hub-card reveal stagger-3">
+          <!-- Barra de Progresso Geral -->
+          <div class="cert-progress-header">
+            <div>
+              <h3 class="cert-progress-title">Progresso na Trilha de Videoaulas</h3>
+              <p class="cert-progress-sub" id="certProgressSubtitle">Conclua cada aula até o final no player acima para contabilizar automaticamente.</p>
+            </div>
+            <div class="cert-progress-counter">
+              <strong id="certProgressPercent">0%</strong>
+              <span id="certProgressCount">0 de 6 aulas</span>
+            </div>
+          </div>
+
+          <div class="cert-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="certProgressTrack">
+            <div class="cert-progress-fill" id="certProgressFill" style="width: 0%;"></div>
+          </div>
+
+          <!-- Chips de Status por Aula -->
+          <div class="cert-lessons-checklist" id="certLessonChecklist"></div>
+
+          <!-- ESTADO BLOQUEADO (Enquanto faltam aulas) -->
+          <div class="cert-locked-panel" id="certLockedPanel">
+            <div class="cert-locked-icon" aria-hidden="true">🔒</div>
+            <div class="cert-locked-content">
+              <h4>Certificado bloqueado até a conclusão de todas as aulas</h4>
+              <p id="certLockedMessage">
+                Para garantir o aprendizado completo, o player acompanha o tempo assistido e não permite pular partes ainda não vistas. Assim que todas as aulas forem concluídas, o formulário de emissão será liberado automaticamente aqui.
+              </p>
+              <div class="cert-locked-actions">
+                <a href="#videoaulas" class="btn-pill" id="btnResumeNextLesson">
+                  <span>Continuar Assistindo</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+                <a href="validar.html" class="btn-secondary-pill">
+                  <span>Validar um Certificado Existente →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ESTADO DESBLOQUEADO (100% concluído — Preencher APENAS Nome e CPF) -->
+          <div class="cert-unlocked-panel" id="certUnlockedPanel" style="display: none;">
+            <div class="cert-unlocked-banner">
+              <div class="cert-unlocked-badge">✓ Trilha 100% Concluída</div>
+              <span class="cert-frozen-date-tag" id="homeCertFrozenDate">Conclusão registrada em: --/--/----</span>
+            </div>
+
+            <div class="cert-form-intro">
+              <h4>Emita seu Certificado de 10 Horas</h4>
+              <p>Preencha apenas seu <strong>Nome Completo</strong> e <strong>CPF</strong> abaixo. A data de conclusão já foi registrada automaticamente no término da última aula.</p>
+            </div>
+
+            <form id="homeCertForm" class="cert-emit-grid" novalidate>
+              <div class="cert-input-group">
+                <label for="homeCertName">
+                  <span>Nome Completo</span>
+                  <span class="cert-field-status" id="homeNameStatus"></span>
+                </label>
+                <input type="text" id="homeCertName" placeholder="Digite seu nome completo" autocomplete="name" required>
+              </div>
+
+              <div class="cert-input-group">
+                <label for="homeCertCpf">
+                  <span>CPF</span>
+                  <span class="cert-field-status" id="homeCpfStatus"></span>
+                </label>
+                <input type="text" id="homeCertCpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required>
+              </div>
+
+              <div class="cert-submit-row">
+                <button type="submit" class="btn-pill cert-btn-emit">
+                  <span>Emitir Certificado Oficial (10h)</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <a href="validar.html" class="btn-secondary-pill">
+                  <span>Página de Validação →</span>
+                </a>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- 8. FOOTER -->
+  <!-- 9. FOOTER -->
   <footer class="footer">
     <div class="shell">
       <div class="footer-top">
@@ -710,6 +807,8 @@
           <a href="#sobre">A Certificadora Comum</a>
           <a href="#equipe">Equipe do Projeto</a>
           <a href="#videoaulas">Videoaulas &amp; Projeto</a>
+          <a href="#certificado">Certificado (10h)</a>
+          <a href="validar.html">Validar Certificado</a>
         </div>
 
         <div class="footer-links-group">
@@ -731,6 +830,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="js/certificate-core.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

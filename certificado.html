@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificado de Conclusão — Try, Catch &amp; Learn</title>
+  <meta name="description" content="Emissão oficial do Certificado de Conclusão de 10 horas — Projeto Try, Catch & Learn (Recurso Educacional Aberto de Programação em C).">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <!-- Google Fonts: Cinzel, Dancing Script, Plus Jakarta Sans & DM Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- QR Code Vector Generator (MIT) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js" defer></script>
+  <script src="js/certificate-core.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --paper: #fcfbfa;
+      --ink: #0f172a;
+      --ink-soft: #475569;
+      --gold: #c9a227;
+      --gold-soft: #e6cf8b;
+      --accent: #2f37ff;
+      --emerald: #10b981;
+      --rose: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1e293b 0%, #0b1120 75%);
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* Top Control Bar (hidden on print) */
+    .cert-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      transition: all 0.2s ease;
+    }
+
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary-gold {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #0f172a;
+      box-shadow: 0 8px 22px rgba(245, 158, 11, 0.28);
+    }
+
+    .btn-primary-gold:hover {
+      filter: brightness(1.07);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary-dark {
+      background: rgba(255, 255, 255, 0.08);
+      color: #f1f5f9;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .btn-secondary-dark:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .btn-emerald {
+      background: rgba(16, 185, 129, 0.16);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-emerald:hover {
+      background: rgba(16, 185, 129, 0.26);
+    }
+
+    /* Locked / Form Cards */
+    .state-card {
+      max-width: 620px;
+      margin: 40px auto;
+      background: rgba(30, 41, 59, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 36px 32px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .state-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 18px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+    }
+
+    .state-icon.locked {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+    }
+
+    .state-icon.unlocked {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+    }
+
+    .state-card h1 {
+      font-size: 1.55rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .state-card p {
+      font-size: 0.94rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 10px;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2f37ff, #10b981);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .pending-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 16px 0 24px;
+    }
+
+    .pending-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(255, 107, 74, 0.14);
+      border: 1px solid rgba(255, 107, 74, 0.35);
+      color: #fca5a5;
+    }
+
+    /* Form inside state-card */
+    .cert-form {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .form-field label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    .form-field input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      background: #0f172a;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-field input:focus {
+      border-color: #f59e0b;
+    }
+
+    .form-field input.mono {
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+
+    .field-hint {
+      font-size: 0.76rem;
+      margin-top: 5px;
+      min-height: 18px;
+    }
+
+    .field-hint.ok { color: #34d399; }
+    .field-hint.err { color: #fb7185; }
+
+    .frozen-date-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    /* =========================================================================
+       FOLHA DO CERTIFICADO (A4 PAISAGEM)
+       ========================================================================= */
+    .cert-stage {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .cert-sheet {
+      position: relative;
+      width: 100%;
+      min-width: 860px;
+      max-width: 1080px;
+      aspect-ratio: 297 / 210;
+      margin: 0 auto;
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 8px;
+      border: 9px solid #0f172a;
+      box-shadow:
+        inset 0 0 0 2px var(--gold),
+        inset 0 0 0 5px #0f172a,
+        inset 0 0 0 7px var(--gold),
+        0 28px 70px rgba(0, 0, 0, 0.45);
+      padding: 36px 52px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .cert-watermark {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(var(--gold) 0.75px, transparent 0.75px);
+      background-size: 24px 24px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .cert-corner {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      color: var(--gold);
+      pointer-events: none;
+    }
+    .cert-corner.tl { top: 16px; left: 16px; }
+    .cert-corner.tr { top: 16px; right: 16px; transform: rotate(90deg); }
+    .cert-corner.bl { bottom: 16px; left: 16px; transform: rotate(-90deg); }
+    .cert-corner.br { bottom: 16px; right: 16px; transform: rotate(180deg); }
+
+    /* Ribbon Seal */
+    .cert-seal {
+      position: absolute;
+      top: 34px;
+      right: 48px;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #0f172a, #1e293b);
+      border: 2.5px solid var(--gold);
+      box-shadow: inset 0 0 0 3px rgba(201, 162, 39, 0.35), 0 6px 16px rgba(15, 23, 42, 0.16);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #f8fafc;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .cert-seal-hours {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #facc15;
+      line-height: 1;
+    }
+
+    .cert-seal-label {
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #e2e8f0;
+      margin-top: 3px;
+      font-weight: 700;
+    }
+
+    /* Certificate Header */
+    .cert-header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .cert-brand-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 4px;
+    }
+
+    .cert-brand-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: #0f172a;
+      color: #fbbf24;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    .cert-brand-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #1e293b;
+    }
+
+    .cert-subtitle-top {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #64748b;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .cert-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 2.35rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0f172a;
+      line-height: 1.1;
+    }
+
+    .cert-divider {
+      width: 160px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 10px auto 0;
+    }
+
+    /* Certificate Body */
+    .cert-body {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .cert-intro {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #475569;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .cert-student-name {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0f172a;
+      display: inline-block;
+      padding: 0 24px 5px;
+      border-bottom: 2px solid #cbd5e1;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+    }
+
+    .cert-student-cpf {
+      margin-top: 7px;
+      margin-bottom: 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: #475569;
+      letter-spacing: 0.05em;
+    }
+
+    .cert-student-cpf strong {
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    .cert-prose {
+      font-size: 0.86rem;
+      line-height: 1.65;
+      color: #334155;
+    }
+
+    .cert-prose strong {
+      color: #0f172a;
+    }
+
+    .cert-prose code {
+      font-family: 'DM Mono', monospace;
+      background: #e2e8f0;
+      color: #0f172a;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+    }
+
+    .cert-hours-hl {
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 1px;
+    }
+
+    /* Signatures Row */
+    .cert-footer-wrap {
+      position: relative;
+      z-index: 2;
+      padding-top: 12px;
+      border-top: 1px solid rgba(15, 23, 42, 0.1);
+    }
+
+    .cert-signatures {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      align-items: end;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .sig-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sig-visual-box {
+      height: 50px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .cert-sig-img {
+      max-height: 48px;
+      max-width: 155px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: contrast(1.12);
+      display: block;
+    }
+
+    .cert-sig-fallback {
+      display: none;
+      font-family: 'Dancing Script', 'Brush Script MT', cursive;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #172554;
+      line-height: 1.1;
+      padding-bottom: 2px;
+    }
+
+    .sig-line {
+      width: 86%;
+      height: 1px;
+      background: #64748b;
+      margin-bottom: 5px;
+    }
+
+    .sig-name {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.25;
+    }
+
+    .sig-role {
+      font-size: 0.56rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* Bottom Authenticity Bar */
+    .cert-auth-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-top: 10px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .cert-auth-meta {
+      font-size: 0.66rem;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    .cert-auth-meta strong {
+      color: #0f172a;
+    }
+
+    .cert-hash-pill {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 6px 14px;
+      text-align: center;
+    }
+
+    .cert-hash-code {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: 0.06em;
+    }
+
+    .cert-hash-url {
+      font-size: 0.56rem;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .cert-qr-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cert-qr-caption {
+      text-align: right;
+      font-size: 0.56rem;
+      color: #64748b;
+      line-height: 1.3;
+      max-width: 96px;
+    }
+
+    .cert-qr-caption strong {
+      color: #0f172a;
+      display: block;
+    }
+
+    .cert-qr-box {
+      width: 58px;
+      height: 58px;
+      padding: 3px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cert-qr-box svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Toast */
+    .mini-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      pointer-events: none;
+    }
+
+    .mini-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================================
+       PRINT RULES (A4 LANDSCAPE PERFEITO)
+       ========================================================================= */
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+
+      html, body {
+        width: 297mm;
+        height: 210mm;
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .page-container,
+      .cert-stage {
+        max-width: none !important;
+        width: 297mm !important;
+        height: 210mm !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+      }
+
+      .cert-sheet {
+        width: 297mm !important;
+        height: 210mm !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+        box-shadow:
+          inset 0 0 0 2px var(--gold),
+          inset 0 0 0 5px #0f172a,
+          inset 0 0 0 7px var(--gold) !important;
+        padding: 14mm 18mm 11mm !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+
+    <!-- BARRA DE AÇÕES (NÃO APARECE NA IMPRESSÃO) -->
+    <div class="cert-toolbar no-print">
+      <div class="toolbar-left">
+        <a href="index.html#certificado" class="btn-back">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Voltar ao Portal</span>
+        </a>
+        <a href="validar.html" class="btn-back">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          <span>Validar Certificado</span>
+        </a>
+      </div>
+
+      <div class="toolbar-actions hidden" id="certReadyActions">
+        <button type="button" class="btn-action btn-secondary-dark" id="btnEditData">
+          Alterar Nome / CPF
+        </button>
+        <button type="button" class="btn-action btn-secondary-dark" id="btnCopyHash">
+          Copiar Código
+        </button>
+        <a href="validar.html" target="_blank" rel="noopener noreferrer" class="btn-action btn-emerald" id="btnOpenValidator">
+          Verificar Autenticidade ↗
+        </a>
+        <button type="button" class="btn-action btn-primary-gold" id="btnPrintPdf">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Salvar / Imprimir PDF</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ESTADO 1: BLOQUEADO (NÃO ASSISTIU TODAS AS AULAS) -->
+    <section class="state-card no-print hidden" id="lockedSection">
+      <div class="state-icon locked">🔒</div>
+      <h1>Certificado Ainda Bloqueado</h1>
+      <p id="lockedDesc">
+        Para garantir a autenticidade da certificação de 10 horas, é obrigatório assistir a todas as videoaulas até o final sem pular etapas.
+      </p>
+
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="lockedProgressBar" style="width: 0%;"></div>
+      </div>
+      <div style="font-size: 0.82rem; font-weight: 700; color: #f8fafc; margin-bottom: 10px;" id="lockedProgressText">
+        0 de 6 videoaulas concluídas (0%)
+      </div>
+
+      <div class="pending-pills" id="lockedPendingList"></div>
+
+      <a href="index.html#videoaulas" class="btn-action btn-primary-gold">
+        Ir para as Videoaulas →
+      </a>
+    </section>
+
+    <!-- ESTADO 2: DESBLOQUEADO — PREENCHER APENAS NOME E CPF -->
+    <section class="state-card no-print hidden" id="formSection">
+      <div class="state-icon unlocked">🎓</div>
+      <h1>Parabéns! Curso Concluído</h1>
+      <div class="frozen-date-pill" id="formFrozenDate">
+        ✓ Conclusão registrada em: --/--/----
+      </div>
+      <p>
+        Preencha abaixo <strong>apenas o seu Nome Completo e CPF</strong> para emitir seu certificado oficial de 10 horas com código de autenticidade.
+      </p>
+
+      <form id="certEmitForm" class="cert-form" novalidate>
+        <div class="form-field">
+          <label for="inputStudentName">
+            <span>Nome Completo</span>
+            <span id="nameBadge" style="font-size: 0.7rem; color: #94a3b8;">Obrigatório</span>
+          </label>
+          <input id="inputStudentName" type="text" placeholder="Ex.: Maria Clara Oliveira Santos" autocomplete="name" required>
+          <div class="field-hint" id="nameHint"></div>
+        </div>
+
+        <div class="form-field">
+          <label for="inputStudentCpf">
+            <span>CPF</span>
+            <span id="cpfBadge" style="font-size: 0.7rem; color: #94a3b8;">000.000.000-00</span>
+          </label>
+          <input id="inputStudentCpf" class="mono" type="text" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required>
+          <div class="field-hint" id="cpfHint"></div>
+        </div>
+
+        <button type="submit" class="btn-action btn-primary-gold" style="justify-content: center; width: 100%; padding: 13px 20px; font-size: 0.92rem; margin-top: 4px;">
+          Gerar Meu Certificado Oficial
+        </button>
+      </form>
+    </section>
+
+    <!-- ESTADO 3: FOLHA OFICIAL DO CERTIFICADO (PRONTO PARA IMPRIMIR / PDF) -->
+    <div class="cert-stage hidden" id="certStage">
+      <article class="cert-sheet" id="certSheet" aria-label="Certificado de Conclusão Try, Catch & Learn">
+        <div class="cert-watermark"></div>
+
+        <!-- Cantoneiras Ornamentais SVG -->
+        <svg class="cert-corner tl" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+          <path d="M0 0 L42 0 L42 10 L10 10 L10 42 L0 42 Z"></path>
+          <circle cx="22" cy="22" r="4.5"></circle>
+        </svg>
+        <svg class="cert-corner tr" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+          <path d="M0 0 L42 0 L42 10 L10 10 L10 42 L0 42 Z"></path>
+          <circle cx="22" cy="22" r="4.5"></circle>
+        </svg>
+        <svg class="cert-corner bl" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+          <path d="M0 0 L42 0 L42 10 L10 10 L10 42 L0 42 Z"></path>
+          <circle cx="22" cy="22" r="4.5"></circle>
+        </svg>
+        <svg class="cert-corner br" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+          <path d="M0 0 L42 0 L42 10 L10 10 L10 42 L0 42 Z"></path>
+          <circle cx="22" cy="22" r="4.5"></circle>
+        </svg>
+
+        <!-- Selo de Carga Horária -->
+        <div class="cert-seal" aria-hidden="true">
+          <span class="cert-seal-hours">10h</span>
+          <span class="cert-seal-label">REA • C99</span>
+        </div>
+
+        <!-- Cabeçalho -->
+        <header class="cert-header">
+          <div class="cert-brand-row">
+            <span class="cert-brand-badge">&lt;C/&gt;</span>
+            <span class="cert-brand-name">Projeto Try, Catch &amp; Learn</span>
+          </div>
+          <p class="cert-subtitle-top">Recurso Educacional Aberto • Fundamentos de Programação em C</p>
+          <h1 class="cert-title">Certificado de Conclusão</h1>
+          <div class="cert-divider"></div>
+        </header>
+
+        <!-- Corpo -->
+        <section class="cert-body">
+          <p class="cert-intro">Certificamos para os devidos fins que</p>
+          <div class="cert-student-name" id="displayStudentName">Nome do Estudante</div>
+          <div class="cert-student-cpf">
+            portador(a) do CPF nº <strong id="displayStudentCpf">000.000.000-00</strong>
+          </div>
+          <p class="cert-prose">
+            concluiu com aproveitamento integral todas as etapas formativas da trilha teórico-prática de
+            <strong>Fundamentos de Programação na Linguagem C</strong>
+            (Fases 1 a 6 e Projeto Integrado Modular), contemplando algoritmos, variáveis, estruturas de decisão, laços de repetição, modularização por funções, vetores, matrizes e registros compostos (<code>struct</code>), totalizando a carga horária de
+            <span class="cert-hours-hl">10 (dez) horas</span> de estudos e atividades práticas.
+          </p>
+        </section>
+
+        <!-- Rodapé com 4 Assinaturas dos Autores + Autenticidade + QR Code -->
+        <footer class="cert-footer-wrap">
+          <div class="cert-signatures">
+            <!-- Renan -->
+            <div class="sig-block">
+              <div class="sig-visual-box">
+                <img
+                  src="assets/img/signatures/renan.png"
+                  alt="Assinatura de Renan Cáceres Anselmo"
+                  class="cert-sig-img"
+                  onerror="handleSignatureFallback(this, 'renan')"
+                >
+                <span class="cert-sig-fallback">Renan Cáceres</span>
+              </div>
+              <div class="sig-line"></div>
+              <div class="sig-name">Renan Cáceres Anselmo</div>
+              <div class="sig-role">Arquitetura &amp; Código C</div>
+            </div>
+
+            <!-- Lauren -->
+            <div class="sig-block">
+              <div class="sig-visual-box">
+                <img
+                  src="assets/img/signatures/lauren.png"
+                  alt="Assinatura de Lauren Marçulo"
+                  class="cert-sig-img"
+                  onerror="handleSignatureFallback(this, 'lauren')"
+                >
+                <span class="cert-sig-fallback">Lauren Marçulo</span>
+              </div>
+              <div class="sig-line"></div>
+              <div class="sig-name">Lauren Marçulo</div>
+              <div class="sig-role">Conteúdo Didático</div>
+            </div>
+
+            <!-- Lorena (Curadoria & Documentação) -->
+            <div class="sig-block">
+              <div class="sig-visual-box">
+                <img
+                  src="assets/img/signatures/lorena.png"
+                  alt="Assinatura de Lorena Eduarda Barros Martinelli"
+                  class="cert-sig-img"
+                  onerror="handleSignatureFallback(this, 'lorena')"
+                >
+                <span class="cert-sig-fallback">Lorena Eduarda</span>
+              </div>
+              <div class="sig-line"></div>
+              <div class="sig-name">Lorena Eduarda Barros</div>
+              <div class="sig-role">Curadoria &amp; Documentação</div>
+            </div>
+
+            <!-- Manuella (Design Pedagógico) -->
+            <div class="sig-block">
+              <div class="sig-visual-box">
+                <img
+                  src="assets/img/signatures/manuella.png"
+                  alt="Assinatura de Manuella Vieira Reginato"
+                  class="cert-sig-img"
+                  onerror="handleSignatureFallback(this, 'manuella')"
+                >
+                <span class="cert-sig-fallback">Manuella Vieira</span>
+              </div>
+              <div class="sig-line"></div>
+              <div class="sig-name">Manuella Vieira Reginato</div>
+              <div class="sig-role">Design Pedagógico</div>
+            </div>
+          </div>
+
+          <!-- Autenticidade, Data Fixada e QR Code -->
+          <div class="cert-auth-bar">
+            <div class="cert-auth-meta">
+              <div>Concluído em: <strong id="displayCompletionDate">-- de ---- de ----</strong></div>
+              <div>Iniciativa REA • Licença Aberta MIT • Try, Catch &amp; Learn</div>
+            </div>
+
+            <div class="cert-hash-pill">
+              <span class="cert-hash-code" id="displayHashCode">TCL-2026-0000-000000</span>
+              <span class="cert-hash-url">Valide em: renancaceres.github.io/Certificadora-Comum/validar.html</span>
+            </div>
+
+            <div class="cert-qr-wrap">
+              <div class="cert-qr-caption">
+                <strong>Validação Digital</strong>
+                Aponte a câmera para verificar autenticidade
+              </div>
+              <div class="cert-qr-box" id="certQrBox" aria-label="QR Code de validação do certificado"></div>
+            </div>
+          </div>
+        </footer>
+      </article>
+    </div>
+
+  </div>
+
+  <div class="mini-toast no-print" id="miniToast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Fallback inteligente para imagens de assinatura: tenta .png -> .jpg -> .jpeg -> texto cursivo
+    function handleSignatureFallback(imgEl, slug) {
+      const step = parseInt(imgEl.dataset.fallbackStep || '0', 10);
+      if (step === 0) {
+        imgEl.dataset.fallbackStep = '1';
+        imgEl.src = 'assets/img/signatures/' + slug + '.jpg';
+      } else if (step === 1) {
+        imgEl.dataset.fallbackStep = '2';
+        imgEl.src = 'assets/img/signatures/' + slug + '.jpeg';
+      } else {
+        imgEl.style.display = 'none';
+        if (imgEl.nextElementSibling) {
+          imgEl.nextElementSibling.style.display = 'inline-block';
+        }
+      }
+    }
+
+    (function () {
+      'use strict';
+      const T = window.TCLCert;
+      if (!T) return;
+
+      const lockedSection = document.getElementById('lockedSection');
+      const lockedProgressBar = document.getElementById('lockedProgressBar');
+      const lockedProgressText = document.getElementById('lockedProgressText');
+      const lockedPendingList = document.getElementById('lockedPendingList');
+
+      const formSection = document.getElementById('formSection');
+      const formFrozenDate = document.getElementById('formFrozenDate');
+      const certEmitForm = document.getElementById('certEmitForm');
+      const inputStudentName = document.getElementById('inputStudentName');
+      const inputStudentCpf = document.getElementById('inputStudentCpf');
+      const nameBadge = document.getElementById('nameBadge');
+      const cpfBadge = document.getElementById('cpfBadge');
+      const nameHint = document.getElementById('nameHint');
+      const cpfHint = document.getElementById('cpfHint');
+
+      const certStage = document.getElementById('certStage');
+      const certReadyActions = document.getElementById('certReadyActions');
+      const displayStudentName = document.getElementById('displayStudentName');
+      const displayStudentCpf = document.getElementById('displayStudentCpf');
+      const displayCompletionDate = document.getElementById('displayCompletionDate');
+      const displayHashCode = document.getElementById('displayHashCode');
+      const certQrBox = document.getElementById('certQrBox');
+
+      const btnPrintPdf = document.getElementById('btnPrintPdf');
+      const btnCopyHash = document.getElementById('btnCopyHash');
+      const btnOpenValidator = document.getElementById('btnOpenValidator');
+      const btnEditData = document.getElementById('btnEditData');
+      const miniToast = document.getElementById('miniToast');
+
+      const lessonNames = {
+        '1': 'Aula 1: Algoritmos',
+        '2': 'Aula 2: Decisões',
+        '3': 'Aula 3: Repetição',
+        '4': 'Aula 4: Funções',
+        '5': 'Aula 5: Vetores/Matrizes',
+        '6': 'Aula 6: Structs',
+        '7': 'Aula 7: Projeto Integrado'
+      };
+
+      let toastTimer = null;
+      function showToast(msg) {
+        if (!miniToast) return;
+        miniToast.textContent = msg;
+        miniToast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => miniToast.classList.remove('show'), 2800);
+      }
+
+      function renderQrCode(url) {
+        if (!certQrBox) return;
+        if (typeof window.qrcode === 'function') {
+          try {
+            const qr = window.qrcode(0, 'M');
+            qr.addData(url);
+            qr.make();
+            certQrBox.innerHTML = qr.createSvgTag({ cellSize: 2, margin: 0, scalable: true });
+            return;
+          } catch (e) {
+            console.warn('Erro ao gerar QR SVG:', e);
+          }
+        }
+        // Fallback vetorial elegante caso offline
+        certQrBox.innerHTML = '<svg viewBox="0 0 24 24" fill="#0f172a"><path d="M3 3h7v7H3V3zm2 2v3h3V5H5zm9-2h7v7h-7V3zm2 2v3h3V5h-3zM3 14h7v7H3v-7zm2 2v3h3v-3H5zm11-2h2v2h-2v-2zm3 0h2v2h-2v-2zm-5 3h2v2h-2v-2zm3 2h2v2h-2v-2zm2-2h2v2h-2v-2zm-5 2h2v2h-2v-2z"/></svg>';
+      }
+
+      function renderCertificate(name, cpf, isoDate) {
+        const cleanName = String(name).trim().replace(/\s+/g, ' ');
+        const formattedCpf = T.formatCPF(cpf);
+        const hash = T.generateHash(cleanName, formattedCpf, isoDate);
+        const validationUrl = T.buildValidationUrl(cleanName, formattedCpf, isoDate, hash);
+
+        displayStudentName.textContent = cleanName;
+        displayStudentCpf.textContent = formattedCpf;
+        displayCompletionDate.textContent = T.formatDatePTBR(isoDate);
+        displayHashCode.textContent = hash;
+        document.title = `Certificado — ${cleanName} | Try, Catch & Learn`;
+
+        if (btnOpenValidator) {
+          btnOpenValidator.href = validationUrl;
+        }
+
+        // Renderiza QR Code (aguarda biblioteca defer se ainda estiver carregando)
+        if (typeof window.qrcode === 'function') {
+          renderQrCode(validationUrl);
+        } else {
+          window.addEventListener('load', () => renderQrCode(validationUrl), { once: true });
+          renderQrCode(validationUrl);
+        }
+
+        lockedSection.classList.add('hidden');
+        formSection.classList.add('hidden');
+        certStage.classList.remove('hidden');
+        certReadyActions.classList.remove('hidden');
+      }
+
+      function validateNameUI() {
+        const ok = T.isValidFullName(inputStudentName.value);
+        if (!inputStudentName.value.trim()) {
+          nameBadge.textContent = 'Obrigatório';
+          nameBadge.style.color = '#94a3b8';
+          nameHint.textContent = '';
+          return false;
+        }
+        if (ok) {
+          nameBadge.textContent = '✓ Válido';
+          nameBadge.style.color = '#34d399';
+          nameHint.textContent = '';
+          return true;
+        } else {
+          nameBadge.textContent = 'Incompleto';
+          nameBadge.style.color = '#fb7185';
+          nameHint.textContent = 'Digite seu nome e sobrenome completos.';
+          nameHint.className = 'field-hint err';
+          return false;
+        }
+      }
+
+      function validateCpfUI() {
+        const formatted = T.formatCPF(inputStudentCpf.value);
+        inputStudentCpf.value = formatted;
+        const digits = T.cleanCPF(formatted);
+        if (digits.length === 0) {
+          cpfBadge.textContent = '000.000.000-00';
+          cpfBadge.style.color = '#94a3b8';
+          cpfHint.textContent = '';
+          return false;
+        }
+        if (digits.length < 11) {
+          cpfBadge.textContent = `${digits.length}/11 dígitos`;
+          cpfBadge.style.color = '#fbbf24';
+          cpfHint.textContent = '';
+          return false;
+        }
+        if (T.isValidCPF(formatted)) {
+          cpfBadge.textContent = '✓ CPF Válido';
+          cpfBadge.style.color = '#34d399';
+          cpfHint.textContent = 'CPF verificado com sucesso.';
+          cpfHint.className = 'field-hint ok';
+          return true;
+        } else {
+          cpfBadge.textContent = '✕ CPF Inválido';
+          cpfBadge.style.color = '#fb7185';
+          cpfHint.textContent = 'Dígitos verificadores inválidos. Confira o número digitado.';
+          cpfHint.className = 'field-hint err';
+          return false;
+        }
+      }
+
+      inputStudentName.addEventListener('input', validateNameUI);
+      inputStudentCpf.addEventListener('input', validateCpfUI);
+
+      certEmitForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const nameOk = validateNameUI();
+        const cpfOk = validateCpfUI();
+        if (!nameOk || !cpfOk) {
+          showToast('Confira o Nome Completo e um CPF válido para emitir o certificado.');
+          return;
+        }
+        const summary = T.getCompletionSummary();
+        if (!summary.isCompleted) {
+          initPage();
+          return;
+        }
+        const saved = T.saveStudentInfo(inputStudentName.value, inputStudentCpf.value);
+        renderCertificate(saved.name, saved.cpf, summary.courseCompletedAt);
+        showToast('Certificado gerado com sucesso!');
+      });
+
+      btnEditData.addEventListener('click', function () {
+        const student = T.getStudentInfo();
+        const summary = T.getCompletionSummary();
+        inputStudentName.value = student.name || '';
+        inputStudentCpf.value = student.cpf || '';
+        validateNameUI();
+        validateCpfUI();
+        formFrozenDate.textContent = `✓ Conclusão registrada em: ${T.formatDateShort(summary.courseCompletedAt)} (data fixa)`;
+        certStage.classList.add('hidden');
+        certReadyActions.classList.add('hidden');
+        formSection.classList.remove('hidden');
+      });
+
+      btnCopyHash.addEventListener('click', function () {
+        const code = displayHashCode.textContent.trim();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(() => showToast(`Código ${code} copiado!`));
+        } else {
+          showToast(`Código: ${code}`);
+        }
+      });
+
+      btnPrintPdf.addEventListener('click', function () {
+        window.print();
+      });
+
+      function initPage() {
+        const summary = T.getCompletionSummary();
+        if (!summary.isCompleted) {
+          lockedSection.classList.remove('hidden');
+          formSection.classList.add('hidden');
+          certStage.classList.add('hidden');
+          certReadyActions.classList.add('hidden');
+
+          lockedProgressBar.style.width = `${summary.percent}%`;
+          lockedProgressText.textContent = `${summary.completedCount} de ${summary.totalCount} videoaulas concluídas (${summary.percent}%)`;
+          lockedPendingList.innerHTML = summary.pendingIds
+            .map(id => `<span class="pending-pill">Pendente: ${lessonNames[id] || ('Aula ' + id)}</span>`)
+            .join('');
+          return;
+        }
+
+        const student = T.getStudentInfo();
+        if (T.isValidFullName(student.name) && T.isValidCPF(student.cpf)) {
+          renderCertificate(student.name, student.cpf, summary.courseCompletedAt);
+        } else {
+          formFrozenDate.textContent = `✓ Conclusão registrada em: ${T.formatDateShort(summary.courseCompletedAt)} (data fixa)`;
+          inputStudentName.value = student.name || '';
+          inputStudentCpf.value = student.cpf || '';
+          lockedSection.classList.add('hidden');
+          certStage.classList.add('hidden');
+          certReadyActions.classList.add('hidden');
+          formSection.classList.remove('hidden');
+        }
+      }
+
+      initPage();
+    })();
+  </script>
+</body>
+</html>
