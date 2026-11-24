@@ -123,7 +123,7 @@ video:focus-visible {
 
 .nav-pill {
   pointer-events: auto;
-  max-width: 1040px;
+  max-width: 1160px;
   margin: 0 auto;
   height: 60px;
   background: rgba(251, 248, 242, 0.88);
@@ -134,7 +134,8 @@ video:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px 0 22px;
+  gap: 16px;
+  padding: 0 10px 0 20px;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
   transition: all var(--trans-normal);
 }
@@ -152,8 +153,10 @@ video:focus-visible {
   text-decoration: none;
   color: var(--text-ink);
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1rem;
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .brand-icon {
@@ -168,10 +171,11 @@ video:focus-visible {
   font-family: 'DM Mono', monospace;
   font-size: 0.82rem;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .brand-tag {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   background: var(--ultramarine-soft);
   color: var(--ultramarine);
   padding: 3px 8px;
@@ -179,22 +183,27 @@ video:focus-visible {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 18px;
   list-style: none;
+  min-width: 0;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--text-ink-soft);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
   transition: color var(--trans-fast);
   position: relative;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-links a:hover,
@@ -219,11 +228,13 @@ video:focus-visible {
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 10px 18px;
   border-radius: var(--radius-pill);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--trans-normal);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 10px 24px -10px rgba(47, 55, 255, 0.7);
   border: none;
@@ -1937,7 +1948,30 @@ video:focus-visible {
 /* ==========================================================================
    10. RESPONSIVE BREAKPOINTS (DESKTOP, TABLET & WEB-MOBILE / REA ACCESSIBILITY)
    ========================================================================== */
+@media (max-width: 1120px) {
+  .brand-tag {
+    display: none;
+  }
+  .nav-links {
+    gap: 14px;
+  }
+  .nav-links a {
+    font-size: 0.82rem;
+  }
+}
+
 @media (max-width: 992px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-pill > .btn-pill {
+    display: none;
+  }
+  .menu-toggle {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+  }
   .hero-grid, .dark-grid {
     grid-template-columns: 1fr;
     gap: 36px;
