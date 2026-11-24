@@ -18,7 +18,7 @@ Apresentação elaborada por **Lauren Marçulo**.
 ---
 
 ### 🛡️ Fase 2 — O Programa Aprende a Decidir (`Fase2-Decisoes/`)
-Apresentação elaborada por **Lorena Eduarda**.
+Apresentação elaborada por **Manuella Vieira**.
 
 | Arquivo | Missão do Slide | Tópico |
 |---------|-----------------|--------|
@@ -41,7 +41,7 @@ Apresentação elaborada por **Lauren Marçulo**.
 ---
 
 ### 🧩 Fase 4 — Modularização: Dividir para Programar (`Fase4-Modularizacao/`)
-Apresentação elaborada por **Lorena Eduarda**.
+Apresentação elaborada por **Manuella Vieira**.
 
 | Arquivo | Missão do Slide | Tópico |
 |---------|-----------------|--------|
@@ -64,7 +64,7 @@ Apresentação elaborada por **Lauren Marçulo**.
 ---
 
 ### 👑 Fase 6 — A Ficha Completa: Struct (`Fase6-Struct/`)
-Apresentação elaborada por **Lorena Eduarda**.
+Apresentação elaborada por **Manuella Vieira**.
 
 | Arquivo | Missão do Slide | Tópico |
 |---------|-----------------|--------|

@@ -3,7 +3,7 @@
 
 /**
  * Try, Catch & Learn - Slides Fase 6: Struct
- * Apresentado por: Lorena Eduarda
+ * Apresentado por: Manuella Vieira
  * 
  * VAMOS PRATICAR!
  * Missão 1: A Ficha do Herói

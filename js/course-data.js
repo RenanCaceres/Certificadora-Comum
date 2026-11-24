@@ -16,13 +16,13 @@ const COURSE_DATA = {
     },
     {
       name: "Lorena Eduarda Barros Martinelli",
-      role: "Design Pedagógico & Apresentação",
+      role: "Curadoria de Exercícios & Documentação",
       initials: "LE",
       color: "from-indigo-500 to-purple-400"
     },
     {
       name: "Manuella Vieira Reginato",
-      role: "Curadoria de Exercícios & Documentação",
+      role: "Design Pedagógico & Apresentação",
       initials: "MV",
       color: "from-sky-500 to-teal-400"
     },

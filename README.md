@@ -195,8 +195,8 @@ gcc -Wall -Wextra Projeto-Integrado/main.c -o projeto_integrado
 | Integrante | Papel Principal |
 |------------|-----------------|
 | **Lauren Marçulo** | Desenvolvimento & Conteúdo Didático (Fase 5) |
-| **Lorena Eduarda Barros Martinelli** | Design Pedagógico & Apresentação (Fase 6) |
-| **Manuella Vieira Reginato** | Curadoria de Exercícios & Documentação |
+| **Lorena Eduarda Barros Martinelli** | Curadoria de Exercícios & Documentação |
+| **Manuella Vieira Reginato** | Design Pedagógico & Apresentação (Fase 6) |
 | **Renan Cáceres Anselmo** | Arquitetura, Desenvolvimento & Código em C |
 
 **Supervisão:** Prof. Dr. André Luís dos Santos Domingues  

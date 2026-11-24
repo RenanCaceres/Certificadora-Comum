@@ -25,11 +25,11 @@ Além das apresentações em PDF, as resoluções em código C compilável de to
 | Fase | Título dos Slides | Apresentador(a) | Arquivo PDF | Exercícios em C |
 |:----:|-------------------|-----------------|-------------|:---------------:|
 | **1** | **Primeiros Passos em C** | Lauren Marçulo | [📄 `Fase 1 -Primeiros Passos em C.pdf`](<./Fase 1 -Primeiros Passos em C.pdf>) | [💻 3 Missões Resolvidas](./Exercicios-Resolvidos/Fase1-Primeiros-Passos/) |
-| **2** | **O Programa Aprende a Decidir** | Lorena Eduarda | [📄 `Fase 2 - O Programa Aprende a Decidir.pdf`](<./Fase 2 - O Programa Aprende a Decidir.pdf>) | [💻 3 Missões Resolvidas](./Exercicios-Resolvidos/Fase2-Decisoes/) |
+| **2** | **O Programa Aprende a Decidir** | Manuella Vieira | [📄 `Fase 2 - O Programa Aprende a Decidir.pdf`](<./Fase 2 - O Programa Aprende a Decidir.pdf>) | [💻 3 Missões Resolvidas](./Exercicios-Resolvidos/Fase2-Decisoes/) |
 | **3** | **Repita Comigo: Laços de Repetição** | Lauren Marçulo | [📄 `Fase 3 -Repetição.pdf`](<./Fase 3 -Repetição.pdf>) | [💻 4 Missões Resolvidas](./Exercicios-Resolvidos/Fase3-Lacos-de-Repeticao/) |
-| **4** | **Dividir para Programar (Modularização)** | Lorena Eduarda | [📄 `Fase 4 - Modularização.pdf`](<./Fase 4 - Modularização.pdf>) | [💻 3 Missões Resolvidas](./Exercicios-Resolvidos/Fase4-Modularizacao/) |
+| **4** | **Dividir para Programar (Modularização)** | Manuella Vieira | [📄 `Fase 4 - Modularização.pdf`](<./Fase 4 - Modularização.pdf>) | [💻 3 Missões Resolvidas](./Exercicios-Resolvidos/Fase4-Modularizacao/) |
 | **5** | **Muitos Dados, Uma Só Caixa: Vetores e Matrizes** | Lauren Marçulo | [📄 `Fase 5 - Muitos dados, uma só caixa vetores e matrizes.pdf`](<./Fase 5 - Muitos dados, uma só caixa vetores e matrizes.pdf>) | [💻 4 Missões Resolvidas](./Exercicios-Resolvidos/Fase5-Vetores-e-Matrizes/) |
-| **6** | **A Ficha Completa: Struct** | Lorena Eduarda | [📄 `Fase 6 - Struct.pdf`](<./Fase 6 - Struct.pdf>) | [💻 4 Missões Resolvidas](./Exercicios-Resolvidos/Fase6-Struct/) |
+| **6** | **A Ficha Completa: Struct** | Manuella Vieira | [📄 `Fase 6 - Struct.pdf`](<./Fase 6 - Struct.pdf>) | [💻 4 Missões Resolvidas](./Exercicios-Resolvidos/Fase6-Struct/) |
 
 ---
 

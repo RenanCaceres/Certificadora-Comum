@@ -2,7 +2,7 @@
 
 /**
  * Try, Catch & Learn - Slides Fase 4: Dividir para Programar (Modularização)
- * Apresentado por: Lorena Eduarda
+ * Apresentado por: Manuella Vieira
  * 
  * VAMOS PRATICAR!
  * Missão 1: Grito de Guerra da Guilda (Procedimento void)

@@ -2,7 +2,7 @@
 
 /**
  * Try, Catch & Learn - Slides Fase 4: Dividir para Programar (Modularização)
- * Apresentado por: Lorena Eduarda
+ * Apresentado por: Manuella Vieira
  * 
  * VAMOS PRATICAR!
  * Missão 3: Calculadora de Dano no Chefão (Função com return)

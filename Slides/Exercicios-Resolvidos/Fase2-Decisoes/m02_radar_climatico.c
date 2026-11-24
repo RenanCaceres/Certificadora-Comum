@@ -2,7 +2,7 @@
 
 /**
  * Try, Catch & Learn - Slides Fase 2: O Programa Aprende a Decidir
- * Apresentado por: Lorena Eduarda
+ * Apresentado por: Manuella Vieira
  * 
  * VAMOS PRATICAR!
  * Missão 2: Radar Climático da Expedição (if / else if / else)

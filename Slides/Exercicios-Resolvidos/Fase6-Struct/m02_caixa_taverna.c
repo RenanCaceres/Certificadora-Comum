@@ -2,7 +2,7 @@
 
 /**
  * Try, Catch & Learn - Slides Fase 6: Struct
- * Apresentado por: Lorena Eduarda
+ * Apresentado por: Manuella Vieira
  * 
  * VAMOS PRATICAR!
  * Missão 2: O Caixa da Taverna

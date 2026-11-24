@@ -2,7 +2,7 @@
 
 /**
  * Try, Catch & Learn - Slides Fase 4: Dividir para Programar (Modularização)
- * Apresentado por: Lorena Eduarda
+ * Apresentado por: Manuella Vieira
  * 
  * VAMOS PRATICAR!
  * Missão 2: Feitiço de Cura do Mago (Procedimento com Parâmetro)
