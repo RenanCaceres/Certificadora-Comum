@@ -238,9 +238,9 @@
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase1-Primeiros-Passos'
       },
       '2': {
-        tag: 'Aula 2 • Em Construção',
+        tag: 'Aula 2 • Disponível',
         title: 'Fase 2: O Programa Aprende a Decidir — if, else e switch-case',
-        duration: 'Em Construção',
+        duration: '07:48 min',
         theoryTitle: 'Material Teórico Oficial — Fase 2 (Tomada de Decisão)',
         theoryUrl: 'Conte%C3%BAdo-Te%C3%B3rico/Fase%202%20-%20O%20Programa%20Aprende%20a%20Decidir.pdf',
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase2-Decisoes'
@@ -254,9 +254,9 @@
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase3-Lacos-de-Repeticao'
       },
       '4': {
-        tag: 'Aula 4 • Em Construção',
+        tag: 'Aula 4 • Disponível',
         title: 'Fase 4: Dividir para Programar — Funções, Escopo e Modularização',
-        duration: 'Em Construção',
+        duration: '07:58 min',
         theoryTitle: 'Material Teórico Oficial — Fase 4 (Funções e Modularização)',
         theoryUrl: 'Conte%C3%BAdo-Te%C3%B3rico/Aula%20Fase%204%20-%20Dividir%20Para%20Programar.pdf',
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase4-Modularizacao'
@@ -270,11 +270,11 @@
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase5-Vetores-e-Matrizes'
       },
       '6': {
-        tag: 'Aula 6 • Em Construção',
+        tag: 'Aula 6 • Disponível',
         title: 'Fase 6: Tipos Compostos — Structs e Registros Heterogêneos',
-        duration: 'Em Construção',
+        duration: '07:40 min',
         theoryTitle: 'Material Teórico Oficial — Fase 6 (Structs e Registros)',
-        theoryUrl: 'Slides/Fase%206%20-%20Struct%20.pdf',
+        theoryUrl: 'Slides/Fase%206%20-%20Struct.pdf',
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase6-Struct'
       }
     };

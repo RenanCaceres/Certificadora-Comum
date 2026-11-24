@@ -122,11 +122,11 @@ A pasta [`aulas/`](./aulas/) armazena os arquivos de vídeo locais produzidos pe
 | Aula / Fase | Arquivo Esperado | Status no Player |
 |---|---|---|
 | **Aula 1: Primeiros Passos em C** | `aulas/Aula1.mp4` | 🟢 Disponível |
-| **Aula 2: Tomada de Decisão** | `aulas/Aula2.mp4` | 🟡 Em Construção (detecta automaticamente ao adicionar) |
+| **Aula 2: Tomada de Decisão** | `aulas/Aula2.mp4` | 🟢 Disponível |
 | **Aula 3: Laços de Repetição** | `aulas/Aula3.mp4` | 🟢 Disponível |
-| **Aula 4: Funções & Modularização** | `aulas/Aula4.mp4` | 🟡 Em Construção (detecta automaticamente ao adicionar) |
+| **Aula 4: Funções & Modularização** | `aulas/Aula4.mp4` | 🟢 Disponível |
 | **Aula 5: Vetores & Matrizes** | `aulas/Aula5.mp4` | 🟢 Disponível |
-| **Aula 6: Structs & Registros** | `aulas/Aula6.mp4` | 🟡 Em Construção (detecta automaticamente ao adicionar) |
+| **Aula 6: Structs & Registros** | `aulas/Aula6.mp4` | 🟢 Disponível |
 
 > **💡 Como Adicionar Novas Aulas:** Basta salvar o arquivo de vídeo em formato `.mp4` na pasta `Conteúdo-Teórico/aulas/` com o nome correspondente (ex: `Aula2.mp4`, `Aula3.mp4`, etc.). O site reconhece o arquivo imediatamente, libera a reprodução na tela e altera o status para *▶ Assistir Aula*. Enquanto o arquivo não estiver presente, o portal exibirá a mensagem de *Em Construção* e manterá os botões de apostila teórica e exercícios 100% acessíveis.
 
