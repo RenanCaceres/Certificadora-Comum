@@ -91,7 +91,7 @@ flowchart TD
     Repo --> P5["🌐 Portal Web REA<br/>Plataforma web com player e downloads"]
 ```
 
-1. **[📖 Conteúdo Teórico](./Conteúdo-Teórico/README.md):** Reúne o Ebook oficial do curso, as apostilas descritivas de cada fase em PDF, os cadernos oficiais de missões e gabaritos comentados, além de todas as 6 gravações de videoaulas em vídeo local (`aulas/Aula1.mp4` a `aulas/Aula6.mp4`).
+1. **[📖 Conteúdo Teórico](./Conteúdo-Teórico/README.md):** Reúne o Ebook oficial do curso, as apostilas descritivas de cada fase em PDF, os cadernos oficiais de missões e gabaritos comentados, além das gravações de videoaulas em vídeo local (`aulas/Aula1.mp4` a `aulas/Aula5.mp4` e o Projeto Integrado em `aulas/Aula7.mp4`).
 2. **[💻 Gabarito de Exercícios](./Gabarito-Exercícios/README.md):** Códigos-fonte em C com as soluções de referência de todas as questões dos Cadernos de Missões (Fases 1 a 6), incluindo os desafios integradores e códigos extras com propósitos didáticos de depuração.
 3. **[📽️ Slides das Videoaulas](./Slides/README.md):** Apresentações visuais em alta resolução (formato widescreen 16:9) utilizadas nas aulas gravadas e a pasta de **[Exercícios Resolvidos dos Slides](./Slides/Exercicios-Resolvidos/README.md)** com os códigos C específicos passados durante os slides.
 4. **[🏗️ Projeto Integrado](./Projeto-Integrado/README.md):** Aplicação prática contínua em C (`main.c`) demonstrando a construção incremental de um sistema real de cadastro que evoluiu pelas fases da disciplina.
@@ -119,7 +119,8 @@ flowchart TD
 │       ├── Aula3.mp4                              # Videoaula 3: Laços de Repetição (for, while, do-while)
 │       ├── Aula4.mp4                              # Videoaula 4: Funções, Escopo e Modularização
 │       ├── Aula5.mp4                              # Videoaula 5: Vetores e Matrizes
-│       └── Aula6.mp4                              # Videoaula 6: Structs e Registros Heterogêneos
+│       ├── Aula6.mp4                              # Videoaula 6: Structs e Registros (Em construção)
+│       └── Aula7.mp4                              # Videoaula 7: Projeto Integrado em C
 │
 ├── Gabarito-Exercícios/                           # Soluções em C dos Cadernos de Missões
 │   ├── README.md                                  # Guia completo de exercícios e compilação

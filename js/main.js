@@ -270,12 +270,20 @@
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase5-Vetores-e-Matrizes'
       },
       '6': {
-        tag: 'Aula 6 • Disponível',
+        tag: 'Aula 6 • Em Construção',
         title: 'Fase 6: Tipos Compostos — Structs e Registros Heterogêneos',
-        duration: '07:40 min',
+        duration: 'Em Construção',
         theoryTitle: 'Material Teórico Oficial — Fase 6 (Structs e Registros)',
         theoryUrl: 'Slides/Fase%206%20-%20Struct.pdf',
         exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Gabarito-Exerc%C3%ADcios/Fase6-Struct'
+      },
+      '7': {
+        tag: 'Projeto Integrado • Disponível',
+        title: 'Projeto Integrado: Construindo um Sistema Real de Cadastro em C',
+        duration: '07:40 min',
+        theoryTitle: 'Projeto Integrado Oficial — Código em C e Documentação',
+        theoryUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/tree/main/Projeto-Integrado',
+        exercisesUrl: 'https://github.com/RenanCaceres/Certificadora-Comum/blob/main/Projeto-Integrado/main.c'
       }
     };
 
@@ -283,7 +291,7 @@
 
     // Retorna a lista de nomes de arquivos e caminhos suportados para cada aula
     function getLessonVideoSources(id) {
-      return [
+      const list = [
         `Conteúdo-Teórico/aulas/Aula${id}.mp4`,
         `Conte%C3%BAdo-Te%C3%B3rico/aulas/Aula${id}.mp4`,
         `aulas/Aula${id}.mp4`,
@@ -292,6 +300,16 @@
         `Conteúdo-Teórico/aulas/Aula_${id}.mp4`,
         `aulas/Aula_${id}.mp4`
       ];
+      if (id === '7') {
+        list.push(
+          'Conteúdo-Teórico/aulas/Projeto_Integrado.mp4',
+          'Conte%C3%BAdo-Te%C3%B3rico/aulas/Projeto_Integrado.mp4',
+          'aulas/Projeto_Integrado.mp4',
+          'Conteúdo-Teórico/aulas/Aula_Projeto_Integrado.mp4',
+          'aulas/Aula_Projeto_Integrado.mp4'
+        );
+      }
+      return list;
     }
 
     // Testa se uma URL/caminho de vídeo existe (suporta http/https via fetch e file:// via elemento de vídeo)
@@ -358,7 +376,8 @@
       if (exists) {
         card.classList.add('active-playable');
         card.classList.remove('playable-theory');
-        card.setAttribute('title', `Clique para abrir o player da Aula ${id}`);
+        const titleStr = id === '7' ? 'Clique para abrir o player do Projeto Integrado' : `Clique para abrir o player da Aula ${id}`;
+        card.setAttribute('title', titleStr);
         if (badge) {
           badge.className = 'badge-status ready';
           if (!card.classList.contains('is-playing')) {
@@ -368,7 +387,8 @@
       } else {
         card.classList.remove('active-playable');
         card.classList.add('playable-theory');
-        card.setAttribute('title', `Aula ${id} em construção — clique para ver o conteúdo teórico`);
+        const titleStr = id === '7' ? 'Projeto Integrado em construção — clique para ver o código em C' : `Aula ${id} em construção — clique para ver o conteúdo teórico`;
+        card.setAttribute('title', titleStr);
         if (badge) {
           badge.className = 'badge-status recording';
           badge.textContent = 'Em Construção';
@@ -448,8 +468,20 @@
       // Atualiza cabeçalho e links do material teórico
       if (lessonTitle) lessonTitle.textContent = data.title;
       if (theoryBarTitle) theoryBarTitle.textContent = data.theoryTitle;
-      if (btnTheoryLink) btnTheoryLink.href = data.theoryUrl;
-      if (btnExercisesLink) btnExercisesLink.href = data.exercisesUrl;
+      if (btnTheoryLink) {
+        btnTheoryLink.href = data.theoryUrl;
+        const textSpan = btnTheoryLink.querySelector('span');
+        if (textSpan) {
+          textSpan.textContent = lessonId === '7' ? 'Acessar Documentação do Projeto' : 'Clique aqui e acesse o conteúdo teórico';
+        }
+      }
+      if (btnExercisesLink) {
+        btnExercisesLink.href = data.exercisesUrl;
+        const textSpan = btnExercisesLink.querySelector('span');
+        if (textSpan) {
+          textSpan.textContent = lessonId === '7' ? 'Ver Código do Projeto em C' : 'Ver Exercícios em C';
+        }
+      }
 
       // Abre a gaveta
       drawerWrap.classList.add('is-open');
@@ -484,8 +516,10 @@
         // Atualiza botão de play com o número da aula
         if (bigPlayBtn) {
           const label = bigPlayBtn.querySelector('.player-big-play-label');
-          if (label) label.textContent = `Dar Play na Aula ${lessonId}`;
-          bigPlayBtn.setAttribute('aria-label', `Iniciar reprodução da Aula ${lessonId}`);
+          if (label) {
+            label.textContent = lessonId === '7' ? 'Dar Play no Projeto Integrado' : `Dar Play na Aula ${lessonId}`;
+          }
+          bigPlayBtn.setAttribute('aria-label', lessonId === '7' ? 'Iniciar reprodução do Projeto Integrado' : `Iniciar reprodução da Aula ${lessonId}`);
           bigPlayBtn.classList.remove('playing');
         }
 
@@ -495,7 +529,9 @@
           directFileLink.setAttribute('download', `Aula${lessonId}.mp4`);
         }
 
-        if (lessonTag) lessonTag.textContent = `Aula ${lessonId} • Disponível`;
+        if (lessonTag) {
+          lessonTag.textContent = lessonId === '7' ? 'Projeto Integrado • Disponível' : `Aula ${lessonId} • Disponível`;
+        }
         if (durationBadge) durationBadge.textContent = data.duration && data.duration !== 'Em Construção' ? data.duration : 'Vídeo Disponível';
 
         updateCardStatus(lessonId, true);
@@ -511,13 +547,15 @@
         if (recordingNotice) recordingNotice.style.display = 'block';
 
         if (recordingNoticeTitle) {
-          recordingNoticeTitle.textContent = `Aula ${lessonId}: Videoaula em Construção`;
+          recordingNoticeTitle.textContent = lessonId === '7' ? 'Projeto Integrado: Videoaula em Construção' : `Aula ${lessonId}: Videoaula em Construção`;
         }
         if (recordingNoticeDesc) {
           recordingNoticeDesc.innerHTML = `O arquivo de vídeo desta aula (<strong>Aula${lessonId}.mp4</strong>) ainda não foi inserido na pasta <code>Conteúdo-Teórico/aulas/</code>. Enquanto a videoaula está em construção, o <strong>Conteúdo Teórico em PDF</strong> e os <strong>Exercícios Resolvidos em C</strong> já estão 100% disponíveis nos botões acima!`;
         }
 
-        if (lessonTag) lessonTag.textContent = `Aula ${lessonId} • Em Construção`;
+        if (lessonTag) {
+          lessonTag.textContent = lessonId === '7' ? 'Projeto Integrado • Em Construção' : `Aula ${lessonId} • Em Construção`;
+        }
         if (durationBadge) durationBadge.textContent = 'Em Construção';
 
         updateCardStatus(lessonId, false);
@@ -633,7 +671,8 @@
         const badge = currentCard.querySelector('.badge-status');
         if (badge) badge.textContent = '✓ Aula Concluída';
       }
-      window.showToast && window.showToast(`Aula ${currentLessonId} concluída! Acesse o conteúdo teórico acima.`, 'success');
+      const label = currentLessonId === '7' ? 'Projeto Integrado concluído!' : `Aula ${currentLessonId} concluída!`;
+      window.showToast && window.showToast(`${label} Acesse o conteúdo teórico acima.`, 'success');
     });
 
     // Atalho global da barra de espaço
@@ -650,7 +689,7 @@
 
     // Sondagem inicial em segundo plano de todas as aulas na carga da página
     async function probeAllLessons() {
-      for (const id of ['1', '2', '3', '4', '5', '6']) {
+      for (const id of ['1', '2', '3', '4', '5', '6', '7']) {
         const res = await verifyLessonVideo(id);
         updateCardStatus(id, res.available);
       }

@@ -1459,6 +1459,17 @@ video:focus-visible {
   color: #ffffff;
 }
 
+.upcoming-card.card-project-integrated {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(47, 55, 255, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%), var(--bg-paper);
+  border-color: rgba(47, 55, 255, 0.35);
+}
+
+.upcoming-card.card-project-integrated:hover {
+  border-color: var(--ultramarine);
+  box-shadow: 0 12px 28px rgba(47, 55, 255, 0.16);
+}
+
 .upcoming-info h4 {
   font-size: 0.88rem;
   font-weight: 700;
